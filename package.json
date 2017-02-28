@@ -1,0 +1,42 @@
+{
+  "name": "pandemonium",
+  "version": "1.0.0",
+  "description": "Typical random-related functions for JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint *.js",
+    "prepublish": "npm run lint && npm test",
+    "test": "mocha"
+  },
+  "files": [
+    "index.js",
+    "random.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yomguithereal/pandemonium.git"
+  },
+  "keywords": [
+    "random",
+    "choice",
+    "sample",
+    "shuffle"
+  ],
+  "author": {
+    "name": "Guillaume Plique",
+    "url": "http://github.com/Yomguithereal"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yomguithereal/pandemonium/issues"
+  },
+  "homepage": "https://github.com/yomguithereal/pandemonium#readme",
+  "devDependencies": {
+    "@yomguithereal/eslint-config": "^3.0.0",
+    "eslint": "^3.16.1",
+    "seedrandom": "^2.4.2"
+  },
+  "eslintConfig": {
+    "extends": "@yomguithereal/eslint-config"
+  }
+}
