@@ -7,6 +7,7 @@
 module.exports = {
   choice: require('./choice.js'),
   dangerousButPerformantSample: require('./dangerous-but-performant-sample.js'),
+  naiveSample: require('./naive-sample.js'),
   random: require('./random.js'),
   randomIndex: require('./random-index.js'),
   sample: require('./sample.js'),

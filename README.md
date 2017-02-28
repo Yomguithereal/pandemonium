@@ -18,6 +18,7 @@ npm install --save pandemonium
 
 * [choice](#choice)
 * [dangerousButPerformantSample](#dangerousbutperformantsample)
+* [naiveSample](#naivesample)
 * [random](#random)
 * [randomIndex](#randomIndex)
 * [sample](#sample)
@@ -62,6 +63,28 @@ import {createDangerousButPerformantSample} from 'pandemonium/dangerous-but-perf
 const customSample = createDangerousButPerformantSample(rng);
 ```
 
+## naiveSample
+
+Function returning a sample of size `k` from the given array.
+
+This function works by keeping a `Set` of the already picked items and choosing a random item in the array until we have the desired `k` items.
+
+While it is a good pick for cases when `k` is little compared to the size of your array, this function will see its performance drop really fast when `k` becomes proportionally bigger.
+
+```js
+import naiveSample from 'pandemonium/naive-sample';
+// Or
+import {naiveSample} from 'pandemonium';
+
+naiveSample(2, ['apple', 'orange', 'pear', 'pineapple']);
+>>> ['apple', 'pear']
+
+// To create your own function using custom RNG
+import {createNaiveSample} from 'pandemonium/naive-sample';
+
+const customSample = createNaiveSample(rng);
+```
+
 ## random
 
 Function returning a random integer between given `a` & `b`.
@@ -104,7 +127,7 @@ Function returning a sample of size `k` from the given array.
 
 This function using a partial Fisher-Yates shuffle and runs therefore in `O(k)` time but requires `O(n)` memory.
 
-If you need faster sampling, check out [`dangerousButPerformantSample`](#dangerousbutperformantsample).
+If you need faster sampling, check out [`dangerousButPerformantSample`](#dangerousbutperformantsample) or [`naiveSample`](#naivesample).
 
 ```js
 import sample from 'pandemonium/sample';

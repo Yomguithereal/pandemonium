@@ -12,6 +12,7 @@
     "choice.js",
     "dangerous-but-performant-sample",
     "index.js",
+    "naive-sample.js",
     "random-index.js",
     "random.js",
     "sample.js",
@@ -43,6 +44,9 @@
     "seedrandom": "^2.4.2"
   },
   "eslintConfig": {
-    "extends": "@yomguithereal/eslint-config"
+    "extends": "@yomguithereal/eslint-config",
+    "globals": {
+      "Set": true
+    }
   }
 }

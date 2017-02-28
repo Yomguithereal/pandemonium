@@ -95,13 +95,6 @@ describe('#.createShuffle', function() {
   });
 });
 
-// describe('#.weightedRandomIndex', function() {
-//   it('should return a number superior to zero and within the range of the list.', function() {
-//     var randomIndex = weightedRandomIndex([2 / 3, 1 / 6, 1 / 6]);
-//     assert(randomIndex >= 0 && randomIndex < 3);
-//   });
-// });
-
 describe('#.createDangerousButPerformantSample', function() {
   var createDangerousButPerformantSample = lib.dangerousButPerformantSample.createDangerousButPerformantSample;
 
@@ -119,6 +112,22 @@ describe('#.createDangerousButPerformantSample', function() {
 
     // Ensuring the state of the array did not change
     assert.deepEqual(copy, data);
+  });
+});
+
+describe('#.naiveSample', function() {
+  var createNaiveSample = lib.naiveSample.createNaiveSample;
+
+  it('should be possible to create a sample function using the supplied rng.', function() {
+    var sample = createNaiveSample(rng());
+
+    var data = [13, 14, 15, 8, 20, 20];
+
+    var tests = vec(7, 0).map(function() {
+      return sample(2, data);
+    });
+
+    assert.deepEqual(tests, [[15, 14], [14, 15], [8, 14], [15, 20], [15, 20], [20, 8], [20, 15]]);
   });
 });
 
