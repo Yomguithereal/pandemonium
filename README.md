@@ -19,6 +19,25 @@ npm install --save pandemonium
 * [choice](#choice)
 * [random](#random)
 * [randomIndex](#randomIndex)
+* [sample](#sample)
+* [shuffle](#shuffle)
+
+## choice
+
+Function returning a random item from the given array.
+
+```js
+import choice from 'pandemonium/choice';
+
+choice(['apple', 'orange', 'pear']);
+>>> 'orange'
+
+// To create your own function using custom RNG
+import {createChoice} from 'pandemonium/choice';
+
+const customChoice = createChoice(rng);
+```
+
 
 ## random
 
@@ -52,21 +71,44 @@ import {createRandomIndex} from 'pandemonium/random-index';
 const customRandomIndex = createRandomIndex(rng);
 ```
 
-## choice
+## sample
 
-Function returning a random item from the given array.
+Function returning a sample of size `k` from the given array.
+
+This function using a partial Fisher-Yates shuffle and runs therefore in `O(k)` time but requires `O(n)` memory.
+
+If you need faster sampling, check out [`dangerousButPerformantSample`](#dangerousbutperformantsample).
 
 ```js
-import choice from 'pandemonium/choice';
+import sample from 'pandemonium/sample';
 
-choice(['apple', 'orange', 'pear']);
->>> 'orange'
+sample(2, ['apple', 'orange', 'pear', 'pineapple']);
+>>> ['apple', 'pear']
 
 // To create your own function using custom RNG
-import {createChoice} from 'pandemonium/choice';
+import {createSample} from 'pandemonium/sample';
 
-const customChoice = createChoice(rng);
+const customSample = createSample(rng);
 ```
+
+## shuffle
+
+Function returning a shuffled version of the given array using the Fisher-Yates algorithm.
+
+In what you need is shuffle the original array in place, check out [`shuffleInPlace`](#shuffleinplace).
+
+```js
+import shuffle from 'pandemonium/shuffle';
+
+shuffle(['apple', 'orange', 'pear', 'pineapple']);
+>>> ['pear', 'orange', 'apple', 'pineapple']
+
+// To create your own function using custom RNG
+import {createShuffle} from 'pandemonium/shuffle';
+
+const customShuffle = createShuffle(rng);
+```
+
 
 # Contribution
 

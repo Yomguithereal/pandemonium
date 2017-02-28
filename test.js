@@ -68,25 +68,32 @@ describe('#.createChoice', function() {
   });
 });
 
-// describe('#.createSample', function() {
-//   var data = [13, 14, 15, 8, 20];
+describe('#.createSample', function() {
+  var createSample = lib.sample.createSample;
 
-//   it('should be possible to create a sample function using the supplied rng.', function() {
-//     var sample = createSample(rng());
+  var data = [13, 14, 15, 8, 20];
 
-//     var tests = vec(5, 0).map(() => sample(2, data));
-//     assert.deepEqual(tests, [[14, 13], [14, 15], [15, 13], [15, 8], [14, 20]]);
-//   });
-// });
+  it('should be possible to create a sample function using the supplied rng.', function() {
+    var sample = createSample(rng());
 
-// describe('#.createShuffle', function() {
-//   it('should be possible to create a shuffle function using the supplied rng.', function() {
-//     var shuffle = createShuffle(rng());
+    var tests = vec(5, 0).map(function() {
+      return sample(2, data);
+    });
 
-//     var shuffled = shuffle([1, 2, 3, 4, 5]);
-//     assert.deepEqual(shuffled, [2, 1, 3, 4, 5]);
-//   });
-// });
+    assert.deepEqual(tests, [[14, 13], [14, 15], [15, 13], [15, 8], [14, 20]]);
+  });
+});
+
+describe('#.createShuffle', function() {
+  var createShuffle = lib.shuffle.createShuffle;
+
+  it('should be possible to create a shuffle function using the supplied rng.', function() {
+    var shuffle = createShuffle(rng());
+
+    var shuffled = shuffle([1, 2, 3, 4, 5]);
+    assert.deepEqual(shuffled, [2, 1, 3, 4, 5]);
+  });
+});
 
 // describe('#.weightedRandomIndex', function() {
 //   it('should return a number superior to zero and within the range of the list.', function() {

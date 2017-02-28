@@ -12,7 +12,9 @@
     "choice.js",
     "index.js",
     "random-index.js",
-    "random.js"
+    "random.js",
+    "sample.js",
+    "shuffle.js"
   ],
   "repository": {
     "type": "git",
