@@ -5,5 +5,6 @@
  * Exporting the library's functions.
  */
 module.exports = {
-  random: require('./random.js')
+  random: require('./random.js'),
+  randomIndex: require('./random-index.js')
 };

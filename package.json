@@ -10,6 +10,7 @@
   },
   "files": [
     "index.js",
+    "random-index.js",
     "random.js"
   ],
   "repository": {

@@ -34,17 +34,21 @@ describe('#.createRandom', function() {
   });
 });
 
-// describe('#.createRandomIndex', function() {
-//   it('should be possible to create a random index function using the supplied rng.', function() {
-//     var randomIndex = createRandomIndex(rng());
+describe('#.createRandomIndex', function() {
+  var createRandomIndex = lib.randomIndex.createRandomIndex;
 
-//     var fruits = ['apple', 'pear', 'orange'];
+  it('should be possible to create a random index function using the supplied rng.', function() {
+    var randomIndex = createRandomIndex(rng());
 
-//     var tests = vec(10, 0).map(() => randomIndex(fruits));
+    var fruits = ['apple', 'pear', 'orange'];
 
-//     assert.deepEqual(tests, [1, 0, 0, 1, 1, 0, 1, 2, 1, 2]);
-//   });
-// });
+    var tests = vec(10, 0).map(function() {
+      return randomIndex(fruits);
+    });
+
+    assert.deepEqual(tests, [1, 0, 0, 1, 1, 0, 1, 2, 1, 2]);
+  });
+});
 
 // describe('#.createChoice', function() {
 //   it('should be possible to create a choice function using the supplied rng.', function() {
