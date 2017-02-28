@@ -21,7 +21,7 @@ function createRandom(rng) {
    * @return {number}
    */
   return function(a, b) {
-    return a + (rng() * (b - a + 1)) | 0;
+    return a + Math.floor(rng() * (b - a + 1));
   };
 }
 
