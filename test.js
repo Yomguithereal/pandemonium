@@ -102,28 +102,34 @@ describe('#.createShuffle', function() {
 //   });
 // });
 
-// describe('#.createDangerousButPerformantSample', function() {
-//   var data = [13, 14, 15, 8, 20],
-//       copy = data.slice();
+describe('#.createDangerousButPerformantSample', function() {
+  var createDangerousButPerformantSample = lib.dangerousButPerformantSample.createDangerousButPerformantSample;
 
-//   it('should be possible to create a sample function using the supplied rng.', function() {
-//     var sample = createDangerousButPerformantSample(rng());
+  var data = [13, 14, 15, 8, 20],
+      copy = data.slice();
 
-//     var tests = vec(7, 0).map(() => sample(2, data));
+  it('should be possible to create a sample function using the supplied rng.', function() {
+    var sample = createDangerousButPerformantSample(rng());
 
-//     assert.deepEqual(tests, [[14, 13], [14, 15], [15, 13], [15, 8], [14, 20], [8, 13], [20, 13]]);
+    var tests = vec(7, 0).map(function() {
+      return sample(2, data);
+    });
 
-//     // Ensuring the state of the array did not change
-//     assert.deepEqual(copy, data);
-//   });
-// });
+    assert.deepEqual(tests, [[14, 13], [14, 15], [15, 13], [15, 8], [14, 20], [8, 13], [20, 13]]);
 
-// describe('#.createShuffleInPlace', function() {
-//   it('should be possible to create a shuffle in place function using the supplied rng.', function() {
-//     var shuffle = createShuffleInPlace(rng()),
-//         array = [1, 2, 3, 4, 5];
+    // Ensuring the state of the array did not change
+    assert.deepEqual(copy, data);
+  });
+});
 
-//     shuffle(array);
-//     assert.deepEqual(array, [2, 1, 3, 4, 5]);
-//   });
-// });
+describe('#.createShuffleInPlace', function() {
+  var createShuffleInPlace = lib.shuffleInPlace.createShuffleInPlace;
+
+  it('should be possible to create a shuffle in place function using the supplied rng.', function() {
+    var shuffle = createShuffleInPlace(rng()),
+        array = [1, 2, 3, 4, 5];
+
+    shuffle(array);
+    assert.deepEqual(array, [2, 1, 3, 4, 5]);
+  });
+});

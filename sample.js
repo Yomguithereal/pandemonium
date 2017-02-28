@@ -2,7 +2,8 @@
  * Pandemonium Sample
  * ===================
  *
- * Sample function.
+ * Sample function using `k` iterations of the Fisher-Yates over a copy of the
+ * provided array.
  */
 var createRandom = require('./random.js').createRandom;
 

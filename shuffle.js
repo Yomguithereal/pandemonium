@@ -2,7 +2,8 @@
  * Pandemonium Shuffle
  * ====================
  *
- * Shuffle function.
+ * Shuffle function which is basically just applying the Fisher-Yates sampling
+ * function over the whole array.
  */
 var createSample = require('./sample.js').createSample;
 

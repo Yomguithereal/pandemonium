@@ -2,7 +2,7 @@
 
 # Pandemonium
 
-Pandemonium is a very simple JavaScript library providing typical random-related functions such as `choice`, `sample` etc.
+Pandemonium is a dead simple JavaScript library providing typical random-related functions such as `choice`, `sample` etc.
 
 The library also provides a way to create any of the available functions using a custom random source ([seedrandom](https://www.npmjs.com/package/seedrandom), for instance).
 
@@ -17,10 +17,12 @@ npm install --save pandemonium
 ## Summary
 
 * [choice](#choice)
+* [dangerousButPerformantSample](#dangerousbutperformantsample)
 * [random](#random)
 * [randomIndex](#randomIndex)
 * [sample](#sample)
 * [shuffle](#shuffle)
+* [shuffleInPlace](#shuffleinplace)
 
 ## choice
 
@@ -28,6 +30,8 @@ Function returning a random item from the given array.
 
 ```js
 import choice from 'pandemonium/choice';
+// Or
+import {choice} from 'pandemonium';
 
 choice(['apple', 'orange', 'pear']);
 >>> 'orange'
@@ -38,6 +42,25 @@ import {createChoice} from 'pandemonium/choice';
 const customChoice = createChoice(rng);
 ```
 
+## dangerousButPerformantSample
+
+Function returning a sample of size `k` from the given array.
+
+This function runs in `O(k)` time & memory but is somewhat dangerous because it will mutate the given array while performing its Fisher-Yates shuffle before reverting the mutations at the end.
+
+```js
+import dangerousButPerformantSample from 'pandemonium/dangerous-but-performant-sample';
+// Or
+import {dangerousButPerformantSample} from 'pandemonium';
+
+dangerousButPerformantSample(2, ['apple', 'orange', 'pear', 'pineapple']);
+>>> ['apple', 'pear']
+
+// To create your own function using custom RNG
+import {createDangerousButPerformantSample} from 'pandemonium/dangerous-but-performant-sample';
+
+const customSample = createDangerousButPerformantSample(rng);
+```
 
 ## random
 
@@ -45,6 +68,8 @@ Function returning a random integer between given `a` & `b`.
 
 ```js
 import random from 'pandemonium/random';
+// Or
+import {random} from 'pandemonium';
 
 random(3, 7);
 >>> 4
@@ -61,6 +86,8 @@ Function returning a random index of the given array.
 
 ```js
 import randomIndex from 'pandemonium/random-index';
+// Or
+import {randomIndex} from 'pandemonium';
 
 randomIndex(['apple', 'orange', 'pear']);
 >>> 1
@@ -81,6 +108,8 @@ If you need faster sampling, check out [`dangerousButPerformantSample`](#dangero
 
 ```js
 import sample from 'pandemonium/sample';
+// Or
+import {sample} from 'pandemonium';
 
 sample(2, ['apple', 'orange', 'pear', 'pineapple']);
 >>> ['apple', 'pear']
@@ -99,12 +128,36 @@ In what you need is shuffle the original array in place, check out [`shuffleInPl
 
 ```js
 import shuffle from 'pandemonium/shuffle';
+// Or
+import {shuffle} from 'pandemonium';
 
 shuffle(['apple', 'orange', 'pear', 'pineapple']);
 >>> ['pear', 'orange', 'apple', 'pineapple']
 
 // To create your own function using custom RNG
 import {createShuffle} from 'pandemonium/shuffle';
+
+const customShuffle = createShuffle(rng);
+```
+
+## shuffleInPlace
+
+Function the given array in place using the Fisher-Yates algorithm.
+
+```js
+import shuffleInPlace from 'pandemonium/shuffle-in-place';
+// Or
+import {shuffleInPlace} from 'pandemonium';
+
+var array = ['apple', 'orange', 'pear', 'pineapple'];
+shuffleInPlace(array);
+
+// Array was mutated:
+array
+>>> ['pear', 'orange', 'apple', 'pineapple']
+
+// To create your own function using custom RNG
+import {createShuffle} from 'pandemonium/shuffle-in-place';
 
 const customShuffle = createShuffle(rng);
 ```
