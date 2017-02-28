@@ -2,7 +2,9 @@
 
 # Pandemonium
 
-Pandemonium is a very simple JavaScript library providing typical random-related functions such as `choice`, `sample` etc. and coming with a way to create any of the available functions using a custom random source ([seedrandom](https://www.npmjs.com/package/seedrandom), for instance).
+Pandemonium is a very simple JavaScript library providing typical random-related functions such as `choice`, `sample` etc.
+
+The library also provides a way to create any of the available functions using a custom random source ([seedrandom](https://www.npmjs.com/package/seedrandom), for instance).
 
 # Installation
 
@@ -14,6 +16,7 @@ npm install --save pandemonium
 
 ## Summary
 
+* [choice](#choice)
 * [random](#random)
 * [randomIndex](#randomIndex)
 
@@ -46,7 +49,23 @@ randomIndex(['apple', 'orange', 'pear']);
 // To create your own function using custom RNG
 import {createRandomIndex} from 'pandemonium/random-index';
 
-const customRandom = createRandomIndex(rng);
+const customRandomIndex = createRandomIndex(rng);
+```
+
+## choice
+
+Function returning a random item from the given array.
+
+```js
+import choice from 'pandemonium/choice';
+
+choice(['apple', 'orange', 'pear']);
+>>> 'orange'
+
+// To create your own function using custom RNG
+import {createChoice} from 'pandemonium/choice';
+
+const customChoice = createChoice(rng);
 ```
 
 # Contribution

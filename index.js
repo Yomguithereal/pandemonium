@@ -6,5 +6,6 @@
  */
 module.exports = {
   random: require('./random.js'),
-  randomIndex: require('./random-index.js')
+  randomIndex: require('./random-index.js'),
+  choice: require('./choice.js')
 };

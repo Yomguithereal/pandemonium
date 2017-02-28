@@ -27,7 +27,7 @@ function createRandomIndex(rng) {
 }
 
 /**
- * Default random using `Math.random`.
+ * Default random index using `Math.random`.
  */
 var randomIndex = createRandomIndex(Math.random);
 

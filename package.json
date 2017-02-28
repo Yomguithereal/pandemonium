@@ -9,6 +9,7 @@
     "test": "mocha"
   },
   "files": [
+    "choice.js",
     "index.js",
     "random-index.js",
     "random.js"
