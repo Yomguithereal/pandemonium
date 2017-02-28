@@ -1,6 +1,6 @@
 {
   "name": "pandemonium",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Typical random-related functions for JavaScript.",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "files": [
     "choice.js",
-    "dangerous-but-performant-sample",
+    "dangerous-but-performant-sample.js",
     "index.js",
     "naive-sample.js",
     "random-index.js",
