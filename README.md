@@ -180,9 +180,9 @@ array
 >>> ['pear', 'orange', 'apple', 'pineapple']
 
 // To create your own function using custom RNG
-import {createShuffle} from 'pandemonium/shuffle-in-place';
+import {createShuffleInPlace} from 'pandemonium/shuffle-in-place';
 
-const customShuffle = createShuffle(rng);
+const customShuffleInPlace = createShuffleInPlace(rng);
 ```
 
 
