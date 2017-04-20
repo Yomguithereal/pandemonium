@@ -3,6 +3,9 @@
  * ===========================
  *
  * Function returning a random index from a weighted list of items.
+ *
+ * [Reference]:
+ * http://eli.thegreenplace.net/2010/01/22/weighted-random-generation-in-python
  */
 
 /**
