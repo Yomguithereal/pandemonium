@@ -189,7 +189,7 @@ const customShuffleInPlace = createShuffleInPlace(rng);
 
 ## weightedChoice
 
-Function returning a random item from the given array.
+Function returning a random item from the given array of weights.
 
 Note that weights don't need to be relative.
 
