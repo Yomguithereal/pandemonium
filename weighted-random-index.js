@@ -4,6 +4,10 @@
  *
  * Function returning a random index from a weighted list of items.
  */
+
+/**
+ * Defaults.
+ */
 var DEFAULTS = {
   rng: Math.random,
   getWeight: null
@@ -85,7 +89,6 @@ function createCachedWeightedRandomIndex(rngOrOptions, sequence) {
   /**
    * Weighted random index from the given sequence.
    *
-   * @param  {array} sequence - Target sequence.
    * @return {number}
    */
   return function() {

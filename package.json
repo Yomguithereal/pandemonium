@@ -18,6 +18,7 @@
     "sample.js",
     "shuffle-in-place.js",
     "shuffle.js",
+    "weighted-choice.js",
     "weighted-random-index.js"
   ],
   "repository": {

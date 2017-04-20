@@ -143,7 +143,7 @@ describe('#.createShuffleInPlace', function() {
   });
 });
 
-describe('#.createWeightedIndex', function() {
+describe('#.createWeightedRandomIndex', function() {
   var createWeightedRandomIndex = lib.weightedRandomIndex.createWeightedRandomIndex;
 
   function freq(fn, target) {
@@ -306,6 +306,90 @@ describe('#.createCachedWeightedRandomIndex', function() {
       0: 0.1012,
       1: 0.0999,
       2: 0.7989
+    });
+  });
+});
+
+describe('#.createWeightedChoice', function() {
+  var createWeightedChoice = lib.weightedChoice.createWeightedChoice;
+
+  function freq(fn, target) {
+    var sample = 10 * 1000,
+        af = {},
+        rf = {},
+        r;
+
+    for (var i = 0; i < sample; i++) {
+      r = fn(target)[0];
+      af[r] = af[r] || 0;
+      af[r]++;
+    }
+
+    for (var k in af) {
+      rf[k] = af[k] / sample;
+    }
+
+    return {absolute: af, relative: rf};
+  }
+
+  it('should correctly return a random item from weighted list.', function() {
+    var weightedChoice = createWeightedChoice({
+      rng: rng(),
+      getWeight: function(item) {
+        return item[1];
+      }
+    });
+
+    var weights = [['pear', 0.1], ['apple', 0.1], ['cherry', 0.8]];
+
+    var f = freq(weightedChoice, weights);
+
+    assert.deepEqual(f.relative, {
+      pear: 0.0977,
+      apple: 0.0947,
+      cherry: 0.8076
+    });
+  });
+});
+
+describe('#.createCachedWeightedChoice', function() {
+  var createCachedWeightedChoice = lib.weightedChoice.createCachedWeightedChoice;
+
+  function freq(fn) {
+    var sample = 10 * 1000,
+        af = {},
+        rf = {},
+        r;
+
+    for (var i = 0; i < sample; i++) {
+      r = fn()[0];
+      af[r] = af[r] || 0;
+      af[r]++;
+    }
+
+    for (var k in af) {
+      rf[k] = af[k] / sample;
+    }
+
+    return {absolute: af, relative: rf};
+  }
+
+  it('should correctly return a random item from weighted list.', function() {
+    var weights = [['pear', 0.1], ['apple', 0.1], ['cherry', 0.8]];
+
+    var weightedChoice = createCachedWeightedChoice({
+      rng: rng(),
+      getWeight: function(item) {
+        return item[1];
+      }
+    }, weights);
+
+    var f = freq(weightedChoice);
+
+    assert.deepEqual(f.relative, {
+      pear: 0.1012,
+      apple: 0.0999,
+      cherry: 0.7989
     });
   });
 });

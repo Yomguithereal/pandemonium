@@ -24,6 +24,7 @@ npm install --save pandemonium
 * [sample](#sample)
 * [shuffle](#shuffle)
 * [shuffleInPlace](#shuffleinplace)
+* [weightedChoice](#weightedchoice)
 * [weightedRandomIndex](#weightedrandomindex)
 
 ## choice
@@ -184,6 +185,50 @@ array
 import {createShuffleInPlace} from 'pandemonium/shuffle-in-place';
 
 const customShuffleInPlace = createShuffleInPlace(rng);
+```
+
+## weightedChoice
+
+Function returning a random item from the given array.
+
+Note that weights don't need to be relative.
+
+```js
+import weightedChoice from 'pandemonium/weighted-choice';
+// Or
+import {weightedChoice} from 'pandemonium';
+
+const array = [.1, .1, .4, .3, .1];
+weightedChoice(array);
+>>> .4
+
+// To create your own function using custom RNG
+import {createWeightedChoice} from 'pandemonium/weighted-choice';
+
+const customWeightedChoice = createWeightedChoice(rng);
+
+// If you have an array of objects
+const customWeightedChoice = createWeightedChoice({
+  rng: rng,
+  getWeight: (item, index) => {
+    return item.weight;
+  }
+});
+
+const array = [{fruit: 'pear', weight: 4}, {fruit: 'apple', weight: 30}];
+customWeightedChoice(array);
+>>> 'apple'
+
+
+// If you intent to call the function multiple times on the same array,
+// you should use the cached version instead:
+import {createCachedWeightedChoice} from 'pandemonium/weighted-choice';
+
+const array = [.1, .1, .4, .3, .1];
+const customWeightedChoice = createCachedWeightedChoice(rng, array);
+
+customWeightedChoice();
+>>> .3
 ```
 
 ## weightedRandomIndex
