@@ -127,7 +127,7 @@ const customRandomIndex = createRandomIndex(rng);
 
 Function returning a sample of size `k` from the given array.
 
-This function using a partial Fisher-Yates shuffle and runs therefore in `O(k)` time but requires `O(n)` memory.
+This function uses a partial Fisher-Yates shuffle and runs therefore in `O(k)` time but requires `O(n)` memory.
 
 If you need faster sampling, check out [`dangerousButPerformantSample`](#dangerousbutperformantsample) or [`naiveSample`](#naivesample).
 
