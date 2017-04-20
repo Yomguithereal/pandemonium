@@ -24,6 +24,7 @@ npm install --save pandemonium
 * [sample](#sample)
 * [shuffle](#shuffle)
 * [shuffleInPlace](#shuffleinplace)
+* [weightedRandomIndex](#weightedrandomindex)
 
 ## choice
 
@@ -165,14 +166,14 @@ const customShuffle = createShuffle(rng);
 
 ## shuffleInPlace
 
-Function the given array in place using the Fisher-Yates algorithm.
+Function shuffling the given array in place using the Fisher-Yates algorithm.
 
 ```js
 import shuffleInPlace from 'pandemonium/shuffle-in-place';
 // Or
 import {shuffleInPlace} from 'pandemonium';
 
-var array = ['apple', 'orange', 'pear', 'pineapple'];
+const array = ['apple', 'orange', 'pear', 'pineapple'];
 shuffleInPlace(array);
 
 // Array was mutated:
@@ -183,6 +184,50 @@ array
 import {createShuffleInPlace} from 'pandemonium/shuffle-in-place';
 
 const customShuffleInPlace = createShuffleInPlace(rng);
+```
+
+## weightedRandomIndex
+
+Function returning a random index from the given array of weights.
+
+Note that weights don't need to be relative.
+
+```js
+import weightedRandomIndex from 'pandemonium/weighted-random-index';
+// Or
+import {weightedRandomIndex} from 'pandemonium';
+
+const array = [.1, .1, .4, .3, .1];
+weightedRandomIndex(array);
+>>> 2
+
+// To create your own function using custom RNG
+import {createWeightedRandomIndex} from 'pandemonium/weighted-random-index';
+
+const customWeightedRandomIndex = createWeightedRandomIndex(rng);
+
+// If you have an array of objects
+const customWeightedRandomIndex = createWeightedRandomIndex({
+  rng: rng,
+  getWeight: (item, index) => {
+    return item.weight;
+  }
+});
+
+const array = [{fruit: 'pear', weight: 4}, {fruit: 'apple', weight: 30}];
+customWeightedRandomIndex(array);
+>>> 1
+
+
+// If you intent to call the function multiple times on the same array,
+// you should use the cached version instead:
+import {createCachedWeightedRandomIndex} from 'pandemonium/weighted-random-index';
+
+const array = [.1, .1, .4, .3, .1];
+const customWeightedRandomIndex = createCachedWeightedRandomIndex(rng, array);
+
+customWeightedRandomIndex();
+>>> 3
 ```
 
 

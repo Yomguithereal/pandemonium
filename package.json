@@ -17,7 +17,8 @@
     "random.js",
     "sample.js",
     "shuffle-in-place.js",
-    "shuffle.js"
+    "shuffle.js",
+    "weighted-random-index.js"
   ],
   "repository": {
     "type": "git",

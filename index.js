@@ -12,5 +12,6 @@ module.exports = {
   randomIndex: require('./random-index.js'),
   sample: require('./sample.js'),
   shuffle: require('./shuffle.js'),
-  shuffleInPlace: require('./shuffle-in-place.js')
+  shuffleInPlace: require('./shuffle-in-place.js'),
+  weightedRandomIndex: require('./weighted-random-index.js')
 };
