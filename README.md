@@ -149,7 +149,7 @@ const customSample = createSample(rng);
 
 Function returning a shuffled version of the given array using the Fisher-Yates algorithm.
 
-In what you need is shuffle the original array in place, check out [`shuffleInPlace`](#shuffleinplace).
+If what you need is to shuffle the original array in place, check out [`shuffleInPlace`](#shuffleinplace).
 
 ```js
 import shuffle from 'pandemonium/shuffle';
