@@ -105,7 +105,7 @@ import {createRandom} from 'pandemonium/random';
 const customRandom = createRandom(rng);
 ```
 
-## random
+## randomIndex
 
 Function returning a random index of the given array.
 
