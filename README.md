@@ -20,7 +20,8 @@ npm install --save pandemonium
 * [dangerousButPerformantSample](#dangerousbutperformantsample)
 * [naiveSample](#naivesample)
 * [random](#random)
-* [randomIndex](#randomIndex)
+* [randomIndex](#randomindex)
+* [randomString](#randomstring)
 * [sample](#sample)
 * [shuffle](#shuffle)
 * [shuffleInPlace](#shuffleinplace)
@@ -105,7 +106,7 @@ import {createRandom} from 'pandemonium/random';
 const customRandom = createRandom(rng);
 ```
 
-## random
+## randomIndex
 
 Function returning a random index of the given array.
 
@@ -121,6 +122,32 @@ randomIndex(['apple', 'orange', 'pear']);
 import {createRandomIndex} from 'pandemonium/random-index';
 
 const customRandomIndex = createRandomIndex(rng);
+```
+
+## randomString
+
+Function returning a random string.
+
+```js
+import randomString from 'pandemonium/random-string';
+// Or
+import {randomString} from 'pandemonium';
+
+// To generate a string of fixed length
+randomString(5);
+>>> 'gHepM'
+
+// To generate a string of variable length
+randomString(3, 7);
+>>> 'hySf3'
+
+// To create your own function using custom RNG
+import {createRandomString} from 'pandemonium/random-string';
+
+const customRandomString = createRandomString(rng);
+
+// If you need a custom alphabet
+const customRandomString = createRandomString(rng, 'ATGC');
 ```
 
 ## sample

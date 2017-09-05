@@ -10,6 +10,7 @@ module.exports = {
   naiveSample: require('./naive-sample.js'),
   random: require('./random.js'),
   randomIndex: require('./random-index.js'),
+  randomString: require('./random-string.js'),
   sample: require('./sample.js'),
   shuffle: require('./shuffle.js'),
   shuffleInPlace: require('./shuffle-in-place.js'),

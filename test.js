@@ -393,3 +393,84 @@ describe('#.createCachedWeightedChoice', function() {
     });
   });
 });
+
+describe('#.createRandomString', function() {
+  var createRandomString = lib.randomString.createRandomString;
+
+  it('should be able to produce random string of fixed length.', function() {
+    var randomString = createRandomString(rng());
+
+    var tests = [
+      '',
+      'w',
+      'os',
+      'CFq',
+      'DRw',
+      '9TLYZ',
+      'QD02aP',
+      'VXNLajS',
+      'l07VLFXK'
+    ];
+
+    var results = tests.map(function(s) {
+      return randomString(s.length);
+    });
+
+    assert.deepEqual(results, tests);
+  });
+
+  it('should be able to produce random string of variable length.', function() {
+    var randomString = createRandomString(rng());
+
+    var tests = [
+      [0, 0, ''],
+      [0, 2, ''],
+      [0, 3, 'C'],
+      [0, 3, 'qD'],
+      [0, 3, 'w9'],
+      [0, 10, 'LYZQD02a'],
+      [4, 7, 'VXNLaj'],
+      [5, 5, 'l07VL'],
+      [3, 14, 'XKuVG2i18']
+    ];
+
+    var results = tests.map(function(s) {
+      return randomString(s[0], s[1]);
+    });
+
+    assert.deepEqual(results, tests.map(function(s) {
+      return s[2];
+    }));
+
+    var batch = new Array(1000);
+
+    for (var i = 0; i < 1000; i++)
+      batch[i] = randomString(3, 14);
+
+    assert(batch.every(function(s) {
+      return s.length >= 3 && s.length <= 14;
+    }));
+  });
+
+  it('should produce random strings based on a custom alphabet.', function() {
+    var randomString = createRandomString(rng(), 'ATGC');
+
+    var tests = [
+      '',
+      'T',
+      'AT',
+      'TGT',
+      'TGT',
+      'CGGCC',
+      'GTCCAG',
+      'CCGGAAG',
+      'ACCCGGCG'
+    ];
+
+    var results = tests.map(function(s) {
+      return randomString(s.length);
+    });
+
+    assert.deepEqual(results, tests);
+  });
+});
