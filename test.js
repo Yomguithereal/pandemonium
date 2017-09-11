@@ -48,6 +48,18 @@ describe('#.createRandomIndex', function() {
 
     assert.deepEqual(tests, [1, 0, 0, 1, 1, 0, 1, 2, 1, 2]);
   });
+
+  it('should be possible to pass the length of the array instead of the array itself.', function() {
+    var randomIndex = createRandomIndex(rng());
+
+    var fruits = ['apple', 'pear', 'orange'];
+
+    var tests = vec(10, 0).map(function() {
+      return randomIndex(fruits.length);
+    });
+
+    assert.deepEqual(tests, [1, 0, 0, 1, 1, 0, 1, 2, 1, 2]);
+  });
 });
 
 describe('#.createChoice', function() {
@@ -128,6 +140,18 @@ describe('#.naiveSample', function() {
     });
 
     assert.deepEqual(tests, [[15, 14], [14, 15], [8, 14], [15, 20], [15, 20], [20, 8], [20, 15]]);
+  });
+
+  it('should be possible to give the sequence\'s length and get indices back.', function() {
+    var sample = createNaiveSample(rng());
+
+    var data = [13, 14, 15, 8, 20, 20];
+
+    var tests = vec(7, 0).map(function() {
+      return sample(2, data.length);
+    });
+
+    assert.deepEqual(tests, [[2, 1], [1, 2], [3, 1], [2, 4], [2, 5], [4, 3], [4, 2]]);
   });
 });
 

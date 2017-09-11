@@ -20,21 +20,28 @@ function createNaiveSample(rng) {
   /**
    * Function returning sample of size n from array.
    *
-   * @param  {number} n        - Size of the sample.
-   * @param  {array}  sequence - Target sequence.
-   * @return {array}           - The random sample.
+   * @param  {number} n              - Size of the sample.
+   * @param  {array|number} sequence - Target sequence or its length.
+   * @return {array}                 - The random sample.
    */
   return function(n, sequence) {
-    var items = new Set();
+    var items = new Set(),
+        array = [],
+        size = 0,
+        index;
 
-    while (items.size < n)
-      items.add(customRandomIndex(sequence));
+    var needItems = typeof sequence !== 'number';
 
-    var array = new Array();
+    while (items.size < n) {
+      index = customRandomIndex(sequence);
 
-    items.forEach(function(index) {
-      array.push(sequence[index]);
-    });
+      items.add(index);
+
+      if (items.size > size)
+        array.push(needItems ? sequence[index] : index);
+
+      size = items.size;
+    }
 
     return array;
   };

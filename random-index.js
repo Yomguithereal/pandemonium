@@ -18,11 +18,14 @@ function createRandomIndex(rng) {
   /**
    * Random function.
    *
-   * @param  {array}  array - Target array.
+   * @param  {array|number}  array - Target array or length of the array.
    * @return {number}
    */
-  return function(array) {
-    return customRandom(0, array.length - 1);
+  return function(length) {
+    if (typeof length !== 'number')
+      length = length.length;
+
+    return customRandom(0, length - 1);
   };
 }
 

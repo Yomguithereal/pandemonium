@@ -82,6 +82,11 @@ import {naiveSample} from 'pandemonium';
 naiveSample(2, ['apple', 'orange', 'pear', 'pineapple']);
 >>> ['apple', 'pear']
 
+// Alternatively, you can pass the array's length and get
+// a sample of indices back
+naiveSample(2, 4);
+>>> [0, 2]
+
 // To create your own function using custom RNG
 import {createNaiveSample} from 'pandemonium/naive-sample';
 
@@ -117,6 +122,10 @@ import {randomIndex} from 'pandemonium';
 
 randomIndex(['apple', 'orange', 'pear']);
 >>> 1
+
+// Alternatively, you can give the array's length instead
+randomIndex(3);
+>>> 2
 
 // To create your own function using custom RNG
 import {createRandomIndex} from 'pandemonium/random-index';
