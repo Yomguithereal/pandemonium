@@ -23,7 +23,7 @@ npm install --save pandemonium
 * [randomIndex](#randomindex)
 * [randomString](#randomstring)
 * [sample](#sample)
-* [sampleWithReplacements](#sample-with-replacements)
+* [sampleWithReplacements](#samplewithreplacements)
 * [shuffle](#shuffle)
 * [shuffleInPlace](#shuffleinplace)
 * [weightedChoice](#weightedchoice)
