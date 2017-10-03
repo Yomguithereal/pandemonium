@@ -96,6 +96,22 @@ describe('#.createSample', function() {
   });
 });
 
+describe('#.createSampleWithReplacements', function() {
+  var createSampleWithReplacements = lib.sampleWithReplacements.createSampleWithReplacements;
+
+  var data = [13, 14, 15, 8, 20];
+
+  it('should be possible to create a sample function using the supplied rng.', function() {
+    var sample = createSampleWithReplacements(rng());
+
+    var tests = vec(3, 0).map(function() {
+      return sample(4, data);
+    });
+
+    assert.deepEqual(tests, [[1, 1, 1, 2], [2, 1, 2, 3], [1, 4, 3, 3]]);
+  });
+});
+
 describe('#.createShuffle', function() {
   var createShuffle = lib.shuffle.createShuffle;
 

@@ -23,6 +23,7 @@ npm install --save pandemonium
 * [randomIndex](#randomindex)
 * [randomString](#randomstring)
 * [sample](#sample)
+* [sampleWithReplacements](#sample-with-replacements)
 * [shuffle](#shuffle)
 * [shuffleInPlace](#shuffleinplace)
 * [weightedChoice](#weightedchoice)
@@ -179,6 +180,26 @@ sample(2, ['apple', 'orange', 'pear', 'pineapple']);
 import {createSample} from 'pandemonium/sample';
 
 const customSample = createSample(rng);
+```
+
+## sampleWithReplacements
+
+Function returning a sample of size `k` with replacements from the given array. This prosaically means that an items from the array might occur several times in the resulting sample.
+
+The function runs in both `O(k)` time & space complexity.
+
+```js
+import sampleWithReplacements from 'pandemonium/sample-with-replacements';
+// Or
+import {sampleWithReplacements} from 'pandemonium';
+
+sampleWithReplacements(3, ['apple', 'orange', 'pear', 'pineapple']);
+>>> ['apple', 'pear', 'apple']
+
+// To create your own function using custom RNG
+import {createSampleWithReplacements} from 'pandemonium/sample-with-replacements';
+
+const customSample = createSampleWithReplacements(rng);
 ```
 
 ## shuffle
