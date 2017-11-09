@@ -43,9 +43,9 @@
   },
   "homepage": "https://github.com/yomguithereal/pandemonium#readme",
   "devDependencies": {
-    "@yomguithereal/eslint-config": "^3.0.0",
-    "eslint": "^3.16.1",
-    "mocha": "^3.2.0",
+    "@yomguithereal/eslint-config": "^4.0.0",
+    "eslint": "^4.10.0",
+    "mocha": "^4.0.1",
     "seedrandom": "^2.4.2"
   },
   "eslintConfig": {
