@@ -26,21 +26,22 @@ function createNaiveSample(rng) {
    */
   return function(n, sequence) {
     var items = new Set(),
-        array = [],
+        array = new Array(n),
         size = 0,
         index;
 
-    var needItems = typeof sequence !== 'number';
+    var needItems = typeof sequence !== 'number',
+        i = 0;
 
     while (items.size < n) {
       index = customRandomIndex(sequence);
 
       items.add(index);
 
-      if (items.size > size)
-        array.push(needItems ? sequence[index] : index);
-
-      size = items.size;
+      if (items.size > size) {
+        array[i++] = needItems ? sequence[index] : index;
+        size = items.size;
+      }
     }
 
     return array;
