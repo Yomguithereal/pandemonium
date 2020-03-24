@@ -1,14 +1,12 @@
 import {RNGFunction} from './types';
 
-type RandomIndexTarget<T> = Array<T> | number;
+type RandomIndexFunction<T> = (array: Array<T>) => number;
 
-type RandomIndexFunction<T> = (target: RandomIndexTarget<T>) => Array<T>;
+declare const randomIndex: {
+  <T>(array: Array<T>): number;
+  createRandomIndex<T>(rng: RNGFunction): RandomIndexFunction<T>;
+};
 
-interface IRandomIndex {
-  (target: RandomIndexTarget<T>): Array<T>;
-  createRandomIndex(rng: RNGFunction): RandomIndexFunction;
-}
-
-declare const randomIndex: IRandomIndex;
+export function createRandomIndex<T>(rng: RNGFunction): RandomIndexFunction<T>;
 
 export default randomIndex;
