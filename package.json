@@ -9,6 +9,7 @@
     "test": "mocha"
   },
   "files": [
+    "*.d.ts",
     "choice.js",
     "dangerous-but-performant-sample.js",
     "index.js",
