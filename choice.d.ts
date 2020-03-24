@@ -1,12 +1,12 @@
 import {RNGFunction} from './types';
 
-type ChoiceFunction<T> = (array: Array<T>) => Array<T>;
+type ChoiceFunction<T> = (array: Array<T>) => T;
 
-interface IChoice {
-  (array: Array<T>): Array<T>;
-  createChoice(rng: RNGFunction): ChoiceFunction;
-}
+declare const choice: {
+  <T>(array: Array<T>): T;
+  createChoice<T>(rng: RNGFunction): ChoiceFunction<T>;
+};
 
-declare const choice: IChoice;
+export function createChoice<T>(rng: RNGFunction): ChoiceFunction<T>;
 
 export default choice;
