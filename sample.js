@@ -31,7 +31,7 @@ function createSample(rng) {
 
     while (++index < n) {
       var r = customRandom(index, lastIndex),
-            value = result[r];
+          value = result[r];
 
       result[r] = result[index];
       result[index] = value;

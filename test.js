@@ -108,7 +108,7 @@ describe('#.createSampleWithReplacements', function() {
       return sample(4, data);
     });
 
-    assert.deepEqual(tests, [[1, 1, 1, 2], [2, 1, 2, 3], [1, 4, 3, 3]]);
+    assert.deepEqual(tests, [[14, 14, 14, 15], [15, 14, 15, 8], [14, 20, 8, 8]]);
   });
 });
 

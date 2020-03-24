@@ -5,7 +5,7 @@
  * Straightforward sampling function that allows an item to exist multiple
  * times in the resulting sample.
  */
-var createRandomIndex = require('./random-index.js').createRandomIndex;
+var createRandom = require('./random.js').createRandom;
 
 /**
  * Creating a function returning a sample of size n with replacements
@@ -15,7 +15,7 @@ var createRandomIndex = require('./random-index.js').createRandomIndex;
  * @return {function}     - The created function.
  */
 function createSampleWithReplacements(rng) {
-  var customRandomIndex = createRandomIndex(rng);
+  var customRandom = createRandom(rng);
 
   /**
    * Function returning sample of size n from array with replacements.
@@ -26,10 +26,14 @@ function createSampleWithReplacements(rng) {
    */
   return function(n, sequence) {
     var sample = new Array(n),
-        i;
+        m = sequence.length - 1,
+        i,
+        r;
 
-    for (i = 0; i < n; i++)
-      sample[i] = customRandomIndex(sequence);
+    for (i = 0; i < n; i++) {
+      r = customRandom(0, m);
+      sample[i] = sequence[r];
+    }
 
     return sample;
   };
