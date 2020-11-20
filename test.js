@@ -20,6 +20,15 @@ var vec = function(size, fill) {
   return array;
 };
 
+var idx = function(size) {
+  var array = new Array(size);
+
+  for (var i = 0; i < size; i++)
+    array[i] = i;
+
+  return array;
+};
+
 describe('#.createRandom', function() {
   var createRandom = lib.random.createRandom;
 
@@ -34,7 +43,7 @@ describe('#.createRandom', function() {
   });
 });
 
-describe('#.createFloat', function() {
+describe('#.createRandomFloat', function() {
   var createRandomFloat = lib.randomFloat.createRandomFloat;
 
   it('should be possible to create a random function using supplied rng.', function() {
@@ -106,7 +115,7 @@ describe('#.createChoice', function() {
   });
 });
 
-describe('#.createSample', function() {
+describe('#.createFisherYatesSample', function() {
   var createFisherYatesSample = lib.fisherYatesSample.createFisherYatesSample;
 
   var data = [13, 14, 15, 8, 20];
@@ -119,6 +128,42 @@ describe('#.createSample', function() {
     });
 
     assert.deepStrictEqual(tests, [[14, 13], [14, 15], [15, 13], [15, 8], [14, 20]]);
+  });
+});
+
+describe('#.createGeometricReservoirSample', function() {
+  var createGeometricReservoirSample = lib.geometricReservoirSample.createGeometricReservoirSample;
+
+  var data = [13, 14, 15, 8, 20];
+
+  it('should be possible to create a sample function using the supplied rng.', function() {
+    var geometricReservoirSample = createGeometricReservoirSample(rng());
+
+    var tests = vec(10, 0).map(function() {
+      return geometricReservoirSample(2, data);
+    });
+
+    assert.deepStrictEqual(tests, [
+      [8, 14],
+      [13, 20],
+      [8, 20],
+      [13, 14],
+      [13, 20],
+      [15, 8],
+      [13, 20],
+      [13, 20],
+      [20, 8],
+      [15, 14]
+    ]);
+  });
+
+  it('should always return coherent results.', function() {
+    vec(50, 0).forEach(function() {
+      var sample = lib.geometricReservoirSample(500, idx(5000));
+
+      assert.strictEqual(sample.length, 500);
+      assert.strictEqual((new Set(sample)).size, 500);
+    });
   });
 });
 

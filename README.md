@@ -18,6 +18,7 @@ npm install --save pandemonium
 
 * [choice](#choice)
 * [dangerousButPerformantSample](#dangerousbutperformantsample)
+* [geometricReservoirSample](#geometricreservoirsample)
 * [naiveSample](#naivesample)
 * [random](#random)
 * [randomFloat](#randomfloat)
@@ -50,7 +51,7 @@ const customChoice = createChoice(rng);
 
 ## dangerousButPerformantSample
 
-Function returning a sample of size `k` from the given array.
+Function returning a random sample of size `k` from the given array.
 
 This function runs in `O(k)` time & memory but is somewhat dangerous because it will mutate the given array while performing its Fisher-Yates shuffle before reverting the mutations at the end.
 
@@ -68,9 +69,31 @@ import {createDangerousButPerformantSample} from 'pandemonium/dangerous-but-perf
 const customSample = createDangerousButPerformantSample(rng);
 ```
 
+## geometricReservoirSample
+
+Function returning a random sample of size `k` from the given array.
+
+This function runs in `O(k * (1 + log(n / k)))` time & `O(k)` memory using "Algorithm L" taken from the following paper:
+
+> Li, Kim-Hung. "Reservoir-sampling algorithms of time complexity O(n (1+ log (N/n)))." ACM Transactions on Mathematical Software (TOMS) 20.4 (1994): 481-493.
+
+```js
+import geometricReservoirSample from 'pandemonium/geometric-reservoir-sample';
+// Or
+import {geometricReservoirSample} from 'pandemonium';
+
+geometricReservoirSample(2, ['apple', 'orange', 'pear', 'pineapple']);
+>>> ['apple', 'pear']
+
+// To create your own function using custom RNG
+import {createGeometricReservoirSample} from 'pandemonium/dangerous-but-performant-sample';
+
+const customSample = createGeometricReservoirSample(rng);
+```
+
 ## naiveSample
 
-Function returning a sample of size `k` from the given array.
+Function returning a random sample of size `k` from the given array.
 
 This function works by keeping a `Set` of the already picked items and choosing a random item in the array until we have the desired `k` items.
 
@@ -181,7 +204,7 @@ const customRandomString = createRandomString(rng, 'ATGC');
 
 ## fisherYatesSample
 
-Function returning a sample of size `k` from the given array.
+Function returning a random sample of size `k` from the given array.
 
 This function uses a partial Fisher-Yates shuffle and therefore runs in `O(k)` but must clone the given array to work, which adds `O(n)` computations & memory.
 
@@ -203,7 +226,7 @@ const customFisherYatesSample = createFisherYatesSample(rng);
 
 ## sampleWithReplacements
 
-Function returning a sample of size `k` with replacements from the given array. This prosaically means that an items from the array might occur several times in the resulting sample.
+Function returning a random sample of size `k` with replacements from the given array. This prosaically means that an items from the array might occur several times in the resulting sample.
 
 The function runs in both `O(k)` time & space complexity.
 

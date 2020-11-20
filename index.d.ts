@@ -6,6 +6,7 @@ export {default as random} from './random';
 export {default as randomFloat} from './random-float';
 export {default as randomIndex} from './random-index';
 export {default as randomString} from './random-string';
+export {default as geometricReservoirSample} from './geometric-reservoir-sample';
 export {default as sampleWithReplacements} from './sample-with-replacements';
 export {default as shuffle} from './shuffle';
 export {default as shuffleInPlace} from './shuffle-in-place';

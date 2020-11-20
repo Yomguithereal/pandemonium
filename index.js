@@ -12,6 +12,7 @@ exports.random = require('./random.js');
 exports.randomFloat = require('./random-float.js');
 exports.randomIndex = require('./random-index.js');
 exports.randomString = require('./random-string.js');
+exports.geometricReservoirSample = require('./geometric-reservoir-sample.js');
 exports.sampleWithReplacements = require('./sample-with-replacements.js');
 exports.shuffle = require('./shuffle.js');
 exports.shuffleInPlace = require('./shuffle-in-place.js');
