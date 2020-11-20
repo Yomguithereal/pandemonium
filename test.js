@@ -30,7 +30,7 @@ describe('#.createRandom', function() {
       return random(1, 3);
     });
 
-    assert.deepEqual(numbers, [2, 1, 1, 2, 2, 1, 2, 3, 2, 3]);
+    assert.deepStrictEqual(numbers, [2, 1, 1, 2, 2, 1, 2, 3, 2, 3]);
   });
 });
 
@@ -46,7 +46,7 @@ describe('#.createRandomIndex', function() {
       return randomIndex(fruits);
     });
 
-    assert.deepEqual(tests, [1, 0, 0, 1, 1, 0, 1, 2, 1, 2]);
+    assert.deepStrictEqual(tests, [1, 0, 0, 1, 1, 0, 1, 2, 1, 2]);
   });
 
   it('should be possible to pass the length of the array instead of the array itself.', function() {
@@ -58,7 +58,7 @@ describe('#.createRandomIndex', function() {
       return randomIndex(fruits.length);
     });
 
-    assert.deepEqual(tests, [1, 0, 0, 1, 1, 0, 1, 2, 1, 2]);
+    assert.deepStrictEqual(tests, [1, 0, 0, 1, 1, 0, 1, 2, 1, 2]);
   });
 });
 
@@ -74,7 +74,7 @@ describe('#.createChoice', function() {
       return choice(fruits);
     });
 
-    assert.deepEqual(tests, [1, 0, 0, 1, 1, 0, 1, 2, 1, 2].map(function(index) {
+    assert.deepStrictEqual(tests, [1, 0, 0, 1, 1, 0, 1, 2, 1, 2].map(function(index) {
       return fruits[index];
     }));
   });
@@ -92,7 +92,7 @@ describe('#.createSample', function() {
       return sample(2, data);
     });
 
-    assert.deepEqual(tests, [[14, 13], [14, 15], [15, 13], [15, 8], [14, 20]]);
+    assert.deepStrictEqual(tests, [[14, 13], [14, 15], [15, 13], [15, 8], [14, 20]]);
   });
 });
 
@@ -108,7 +108,7 @@ describe('#.createSampleWithReplacements', function() {
       return sample(4, data);
     });
 
-    assert.deepEqual(tests, [[14, 14, 14, 15], [15, 14, 15, 8], [14, 20, 8, 8]]);
+    assert.deepStrictEqual(tests, [[14, 14, 14, 15], [15, 14, 15, 8], [14, 20, 8, 8]]);
   });
 });
 
@@ -119,7 +119,7 @@ describe('#.createShuffle', function() {
     var shuffle = createShuffle(rng());
 
     var shuffled = shuffle([1, 2, 3, 4, 5]);
-    assert.deepEqual(shuffled, [2, 1, 3, 4, 5]);
+    assert.deepStrictEqual(shuffled, [2, 1, 3, 4, 5]);
   });
 });
 
@@ -136,10 +136,10 @@ describe('#.createDangerousButPerformantSample', function() {
       return sample(2, data);
     });
 
-    assert.deepEqual(tests, [[14, 13], [14, 15], [15, 13], [15, 8], [14, 20], [8, 13], [20, 13]]);
+    assert.deepStrictEqual(tests, [[14, 13], [14, 15], [15, 13], [15, 8], [14, 20], [8, 13], [20, 13]]);
 
     // Ensuring the state of the array did not change
-    assert.deepEqual(copy, data);
+    assert.deepStrictEqual(copy, data);
   });
 });
 
@@ -155,7 +155,7 @@ describe('#.naiveSample', function() {
       return sample(2, data);
     });
 
-    assert.deepEqual(tests, [[15, 14], [14, 15], [8, 14], [15, 20], [15, 20], [20, 8], [20, 15]]);
+    assert.deepStrictEqual(tests, [[15, 14], [14, 15], [8, 14], [15, 20], [15, 20], [20, 8], [20, 15]]);
   });
 
   it('should be possible to give the sequence\'s length and get indices back.', function() {
@@ -167,7 +167,7 @@ describe('#.naiveSample', function() {
       return sample(2, data.length);
     });
 
-    assert.deepEqual(tests, [[2, 1], [1, 2], [3, 1], [2, 4], [2, 5], [4, 3], [4, 2]]);
+    assert.deepStrictEqual(tests, [[2, 1], [1, 2], [3, 1], [2, 4], [2, 5], [4, 3], [4, 2]]);
   });
 });
 
@@ -179,7 +179,7 @@ describe('#.createShuffleInPlace', function() {
         array = [1, 2, 3, 4, 5];
 
     shuffle(array);
-    assert.deepEqual(array, [2, 1, 3, 4, 5]);
+    assert.deepStrictEqual(array, [2, 1, 3, 4, 5]);
   });
 });
 
@@ -211,7 +211,7 @@ describe('#.createWeightedRandomIndex', function() {
 
     var f = freq(weightedRandomIndex, weights);
 
-    assert.deepEqual(f.relative, {
+    assert.deepStrictEqual(f.relative, {
       0: 0.0977,
       1: 0.0947,
       2: 0.8076
@@ -224,7 +224,7 @@ describe('#.createWeightedRandomIndex', function() {
 
     var f = freq(weightedRandomIndex, weights);
 
-    assert.deepEqual(f.relative, {
+    assert.deepStrictEqual(f.relative, {
       0: 0.0977,
       1: 0.0947,
       2: 0.8076
@@ -252,13 +252,13 @@ describe('#.createWeightedRandomIndex', function() {
     var relativeF = freq(relativeWeightedRandomIndex, relativeWeights),
         absoluteF = freq(absoluteWeightedRandomIndex, absoluteWeights);
 
-    assert.deepEqual(relativeF.relative, {
+    assert.deepStrictEqual(relativeF.relative, {
       0: 0.0977,
       1: 0.0947,
       2: 0.8076
     });
 
-    assert.deepEqual(absoluteF.relative, {
+    assert.deepStrictEqual(absoluteF.relative, {
       0: 0.0977,
       1: 0.0947,
       2: 0.8076
@@ -296,7 +296,7 @@ describe('#.createCachedWeightedRandomIndex', function() {
 
     var f = freq(weightedRandomIndex);
 
-    assert.deepEqual(f.relative, {
+    assert.deepStrictEqual(f.relative, {
       0: 0.1012,
       1: 0.0999,
       2: 0.7989
@@ -308,7 +308,7 @@ describe('#.createCachedWeightedRandomIndex', function() {
 
     var f = freq(weightedRandomIndex);
 
-    assert.deepEqual(f.relative, {
+    assert.deepStrictEqual(f.relative, {
       0: 0.1012,
       1: 0.0999,
       2: 0.7989
@@ -336,13 +336,13 @@ describe('#.createCachedWeightedRandomIndex', function() {
     var relativeF = freq(relativeWeightedRandomIndex),
         absoluteF = freq(absoluteWeightedRandomIndex);
 
-    assert.deepEqual(relativeF.relative, {
+    assert.deepStrictEqual(relativeF.relative, {
       0: 0.1012,
       1: 0.0999,
       2: 0.7989
     });
 
-    assert.deepEqual(absoluteF.relative, {
+    assert.deepStrictEqual(absoluteF.relative, {
       0: 0.1012,
       1: 0.0999,
       2: 0.7989
@@ -384,7 +384,7 @@ describe('#.createWeightedChoice', function() {
 
     var f = freq(weightedChoice, weights);
 
-    assert.deepEqual(f.relative, {
+    assert.deepStrictEqual(f.relative, {
       pear: 0.0977,
       apple: 0.0947,
       cherry: 0.8076
@@ -426,7 +426,7 @@ describe('#.createCachedWeightedChoice', function() {
 
     var f = freq(weightedChoice);
 
-    assert.deepEqual(f.relative, {
+    assert.deepStrictEqual(f.relative, {
       pear: 0.1012,
       apple: 0.0999,
       cherry: 0.7989
@@ -456,7 +456,7 @@ describe('#.createRandomString', function() {
       return randomString(s.length);
     });
 
-    assert.deepEqual(results, tests);
+    assert.deepStrictEqual(results, tests);
   });
 
   it('should be able to produce random string of variable length.', function() {
@@ -478,7 +478,7 @@ describe('#.createRandomString', function() {
       return randomString(s[0], s[1]);
     });
 
-    assert.deepEqual(results, tests.map(function(s) {
+    assert.deepStrictEqual(results, tests.map(function(s) {
       return s[2];
     }));
 
@@ -511,6 +511,6 @@ describe('#.createRandomString', function() {
       return randomString(s.length);
     });
 
-    assert.deepEqual(results, tests);
+    assert.deepStrictEqual(results, tests);
   });
 });
