@@ -20,6 +20,7 @@ npm install --save pandemonium
 * [dangerousButPerformantSample](#dangerousbutperformantsample)
 * [naiveSample](#naivesample)
 * [random](#random)
+* [randomFloat](#randomfloat)
 * [randomIndex](#randomindex)
 * [randomString](#randomstring)
 * [sample](#sample)
@@ -110,6 +111,24 @@ random(3, 7);
 import {createRandom} from 'pandemonium/random';
 
 const customRandom = createRandom(rng);
+```
+
+## randomFloat
+
+Function returning a random float between given `a` & `b`.
+
+```js
+import randomFloat from 'pandemonium/random-float';
+// Or
+import {randomFloat} from 'pandemonium';
+
+randomFloat(-5, 55);
+>>> 6.756482
+
+// To create your own function using custom RNG
+import {createRandomFloat} from 'pandemonium/random-float';
+
+const customRandomIndex = createRandomFloat(rng);
 ```
 
 ## randomIndex

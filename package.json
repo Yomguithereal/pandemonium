@@ -15,6 +15,7 @@
     "dangerous-but-performant-sample.js",
     "index.js",
     "naive-sample.js",
+    "random-float.js",
     "random-index.js",
     "random-string.js",
     "random.js",

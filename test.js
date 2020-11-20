@@ -34,6 +34,32 @@ describe('#.createRandom', function() {
   });
 });
 
+describe('#.createFloat', function() {
+  var createRandomFloat = lib.randomFloat.createRandomFloat;
+
+  it('should be possible to create a random function using supplied rng.', function() {
+    var randomFloat = createRandomFloat(rng());
+
+    var numbers = vec(10, 0).map(function() {
+      return randomFloat(-5, 5);
+    });
+
+    assert.deepStrictEqual(numbers, [
+      -1.3882625149887873,
+      -2.6951281957879387,
+      -2.0503955872813586,
+      -0.4793171781490271,
+      0.12873486129402423,
+      -2.3493674464758856,
+      -0.17451351278587435,
+      2.0272152885286534,
+      -1.4110661264160034,
+      4.861209836885362
+    ]);
+  });
+});
+
+
 describe('#.createRandomIndex', function() {
   var createRandomIndex = lib.randomIndex.createRandomIndex;
 
