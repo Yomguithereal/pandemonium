@@ -1,6 +1,6 @@
 /**
- * Pandemonium Sample
- * ===================
+ * Pandemonium Fisher-Yates Sample
+ * ================================
  *
  * Sample function using `k` iterations of the Fisher-Yates over a copy of the
  * provided array.
@@ -13,7 +13,7 @@ var createRandom = require('./random.js').createRandom;
  * @param  {function} rng - The RNG to use.
  * @return {function}     - The created function.
  */
-function createSample(rng) {
+function createFisherYatesSample(rng) {
   var customRandom = createRandom(rng);
 
   /**
@@ -47,10 +47,10 @@ function createSample(rng) {
 /**
  * Default sample using `Math.random`.
  */
-var sample = createSample(Math.random);
+var fisherYatesSample = createFisherYatesSample(Math.random);
 
 /**
  * Exporting.
  */
-sample.createSample = createSample;
-module.exports = sample;
+fisherYatesSample.createFisherYatesSample = createFisherYatesSample;
+module.exports = fisherYatesSample;

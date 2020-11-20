@@ -23,7 +23,7 @@ npm install --save pandemonium
 * [randomFloat](#randomfloat)
 * [randomIndex](#randomindex)
 * [randomString](#randomstring)
-* [sample](#sample)
+* [fisherYatesSample](#fisheryatessample)
 * [sampleWithReplacements](#samplewithreplacements)
 * [shuffle](#shuffle)
 * [shuffleInPlace](#shuffleinplace)
@@ -179,26 +179,26 @@ const customRandomString = createRandomString(rng);
 const customRandomString = createRandomString(rng, 'ATGC');
 ```
 
-## sample
+## fisherYatesSample
 
 Function returning a sample of size `k` from the given array.
 
-This function uses a partial Fisher-Yates shuffle and runs therefore in `O(k)` time but requires `O(n)` memory.
+This function uses a partial Fisher-Yates shuffle and therefore runs in `O(k)` but must clone the given array to work, which adds `O(n)` computations & memory.
 
 If you need faster sampling, check out [`dangerousButPerformantSample`](#dangerousbutperformantsample) or [`naiveSample`](#naivesample).
 
 ```js
-import sample from 'pandemonium/sample';
+import fisherYatesSample from 'pandemonium/fisher-yates-sample';
 // Or
-import {sample} from 'pandemonium';
+import {fisherYatesSample} from 'pandemonium';
 
-sample(2, ['apple', 'orange', 'pear', 'pineapple']);
+fisherYatesSample(2, ['apple', 'orange', 'pear', 'pineapple']);
 >>> ['apple', 'pear']
 
 // To create your own function using custom RNG
-import {createSample} from 'pandemonium/sample';
+import {createFisherYatesSample} from 'pandemonium/fisherYatesSample';
 
-const customSample = createSample(rng);
+const customFisherYatesSample = createFisherYatesSample(rng);
 ```
 
 ## sampleWithReplacements

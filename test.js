@@ -107,15 +107,15 @@ describe('#.createChoice', function() {
 });
 
 describe('#.createSample', function() {
-  var createSample = lib.sample.createSample;
+  var createFisherYatesSample = lib.fisherYatesSample.createFisherYatesSample;
 
   var data = [13, 14, 15, 8, 20];
 
   it('should be possible to create a sample function using the supplied rng.', function() {
-    var sample = createSample(rng());
+    var fisherYatesSample = createFisherYatesSample(rng());
 
     var tests = vec(5, 0).map(function() {
-      return sample(2, data);
+      return fisherYatesSample(2, data);
     });
 
     assert.deepStrictEqual(tests, [[14, 13], [14, 15], [15, 13], [15, 8], [14, 20]]);
