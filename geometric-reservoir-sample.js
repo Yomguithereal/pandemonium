@@ -41,9 +41,9 @@ function createGeometricReservoirSample(rng) {
       return sequence.slice();
 
     var sample = new Array(k);
-    var i = 0;
+    var i;
 
-    for (; i < k; i++)
+    for (i = 0; i < k; i++)
       sample[i] = sequence[i];
 
     // NOTE: from this point, formulae consider i to be 1-based

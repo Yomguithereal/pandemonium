@@ -1,12 +1,13 @@
 export {default as choice} from './choice';
 export {default as dangerousButPerformantSample} from './dangerous-but-performant-sample';
 export {default as fisherYatesSample} from './fisher-yates-sample';
+export {default as geometricReservoirSample} from './geometric-reservoir-sample';
 export {default as naiveSample} from './naive-sample';
 export {default as random} from './random';
 export {default as randomFloat} from './random-float';
 export {default as randomIndex} from './random-index';
 export {default as randomString} from './random-string';
-export {default as geometricReservoirSample} from './geometric-reservoir-sample';
+export {default as reservoirSample} from './reservoir-sample';
 export {default as sampleWithReplacements} from './sample-with-replacements';
 export {default as shuffle} from './shuffle';
 export {default as shuffleInPlace} from './shuffle-in-place';

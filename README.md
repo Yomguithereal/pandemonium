@@ -16,20 +16,26 @@ npm install --save pandemonium
 
 ## Summary
 
+*Miscellaneous*
+
 * [choice](#choice)
-* [dangerousButPerformantSample](#dangerousbutperformantsample)
-* [geometricReservoirSample](#geometricreservoirsample)
-* [naiveSample](#naivesample)
 * [random](#random)
 * [randomFloat](#randomfloat)
 * [randomIndex](#randomindex)
 * [randomString](#randomstring)
-* [fisherYatesSample](#fisheryatessample)
-* [sampleWithReplacements](#samplewithreplacements)
 * [shuffle](#shuffle)
 * [shuffleInPlace](#shuffleinplace)
 * [weightedChoice](#weightedchoice)
 * [weightedRandomIndex](#weightedrandomindex)
+
+*Sampling*
+
+* [dangerousButPerformantSample](#dangerousbutperformantsample)
+* [fisherYatesSample](#fisheryatessample)
+* [geometricReservoirSample](#geometricreservoirsample)
+* [naiveSample](#naivesample)
+* [reservoirSample](#reservoirsample)
+* [sampleWithReplacements](#samplewithreplacements)
 
 ## choice
 
@@ -47,75 +53,6 @@ choice(['apple', 'orange', 'pear']);
 import {createChoice} from 'pandemonium/choice';
 
 const customChoice = createChoice(rng);
-```
-
-## dangerousButPerformantSample
-
-Function returning a random sample of size `k` from the given array.
-
-This function runs in `O(k)` time & memory but is somewhat dangerous because it will mutate the given array while performing its Fisher-Yates shuffle before reverting the mutations at the end.
-
-```js
-import dangerousButPerformantSample from 'pandemonium/dangerous-but-performant-sample';
-// Or
-import {dangerousButPerformantSample} from 'pandemonium';
-
-dangerousButPerformantSample(2, ['apple', 'orange', 'pear', 'pineapple']);
->>> ['apple', 'pear']
-
-// To create your own function using custom RNG
-import {createDangerousButPerformantSample} from 'pandemonium/dangerous-but-performant-sample';
-
-const customSample = createDangerousButPerformantSample(rng);
-```
-
-## geometricReservoirSample
-
-Function returning a random sample of size `k` from the given array.
-
-This function runs in `O(k * (1 + log(n / k)))` time & `O(k)` memory using "Algorithm L" taken from the following paper:
-
-> Li, Kim-Hung. "Reservoir-sampling algorithms of time complexity O(n (1+ log (N/n)))." ACM Transactions on Mathematical Software (TOMS) 20.4 (1994): 481-493.
-
-```js
-import geometricReservoirSample from 'pandemonium/geometric-reservoir-sample';
-// Or
-import {geometricReservoirSample} from 'pandemonium';
-
-geometricReservoirSample(2, ['apple', 'orange', 'pear', 'pineapple']);
->>> ['apple', 'pear']
-
-// To create your own function using custom RNG
-import {createGeometricReservoirSample} from 'pandemonium/dangerous-but-performant-sample';
-
-const customSample = createGeometricReservoirSample(rng);
-```
-
-## naiveSample
-
-Function returning a random sample of size `k` from the given array.
-
-This function works by keeping a `Set` of the already picked items and choosing a random item in the array until we have the desired `k` items.
-
-While it is a good pick for cases when `k` is little compared to the size of your array, this function will see its performance drop really fast when `k` becomes proportionally bigger.
-
-```js
-import naiveSample from 'pandemonium/naive-sample';
-// Or
-import {naiveSample} from 'pandemonium';
-
-naiveSample(2, ['apple', 'orange', 'pear', 'pineapple']);
->>> ['apple', 'pear']
-
-// Alternatively, you can pass the array's length and get
-// a sample of indices back
-naiveSample(2, 4);
->>> [0, 2]
-
-// To create your own function using custom RNG
-import {createNaiveSample} from 'pandemonium/naive-sample';
-
-const customSample = createNaiveSample(rng);
 ```
 
 ## random
@@ -200,48 +137,6 @@ const customRandomString = createRandomString(rng);
 
 // If you need a custom alphabet
 const customRandomString = createRandomString(rng, 'ATGC');
-```
-
-## fisherYatesSample
-
-Function returning a random sample of size `k` from the given array.
-
-This function uses a partial Fisher-Yates shuffle and therefore runs in `O(k)` but must clone the given array to work, which adds `O(n)` computations & memory.
-
-If you need faster sampling, check out [`dangerousButPerformantSample`](#dangerousbutperformantsample) or [`naiveSample`](#naivesample).
-
-```js
-import fisherYatesSample from 'pandemonium/fisher-yates-sample';
-// Or
-import {fisherYatesSample} from 'pandemonium';
-
-fisherYatesSample(2, ['apple', 'orange', 'pear', 'pineapple']);
->>> ['apple', 'pear']
-
-// To create your own function using custom RNG
-import {createFisherYatesSample} from 'pandemonium/fisherYatesSample';
-
-const customFisherYatesSample = createFisherYatesSample(rng);
-```
-
-## sampleWithReplacements
-
-Function returning a random sample of size `k` with replacements from the given array. This prosaically means that an items from the array might occur several times in the resulting sample.
-
-The function runs in both `O(k)` time & space complexity.
-
-```js
-import sampleWithReplacements from 'pandemonium/sample-with-replacements';
-// Or
-import {sampleWithReplacements} from 'pandemonium';
-
-sampleWithReplacements(3, ['apple', 'orange', 'pear', 'pineapple']);
->>> ['apple', 'pear', 'apple']
-
-// To create your own function using custom RNG
-import {createSampleWithReplacements} from 'pandemonium/sample-with-replacements';
-
-const customSample = createSampleWithReplacements(rng);
 ```
 
 ## shuffle
@@ -374,6 +269,136 @@ customWeightedRandomIndex();
 >>> 3
 ```
 
+## dangerousButPerformantSample
+
+Function returning a random sample of size `k` from the given array.
+
+This function runs in `O(k)` time & memory but is somewhat dangerous because it will mutate the given array while performing its Fisher-Yates shuffle before reverting the mutations at the end.
+
+```js
+import dangerousButPerformantSample from 'pandemonium/dangerous-but-performant-sample';
+// Or
+import {dangerousButPerformantSample} from 'pandemonium';
+
+dangerousButPerformantSample(2, ['apple', 'orange', 'pear', 'pineapple']);
+>>> ['apple', 'pear']
+
+// To create your own function using custom RNG
+import {createDangerousButPerformantSample} from 'pandemonium/dangerous-but-performant-sample';
+
+const customSample = createDangerousButPerformantSample(rng);
+```
+
+## fisherYatesSample
+
+Function returning a random sample of size `k` from the given array.
+
+This function uses a partial Fisher-Yates shuffle and therefore runs in `O(k)` time but must clone the given array to work, which adds `O(n)` time & memory.
+
+If you need faster sampling, check out [`dangerousButPerformantSample`](#dangerousbutperformantsample) or [`naiveSample`](#naivesample).
+
+```js
+import fisherYatesSample from 'pandemonium/fisher-yates-sample';
+// Or
+import {fisherYatesSample} from 'pandemonium';
+
+fisherYatesSample(2, ['apple', 'orange', 'pear', 'pineapple']);
+>>> ['apple', 'pear']
+
+// To create your own function using custom RNG
+import {createFisherYatesSample} from 'pandemonium/fisherYatesSample';
+
+const customFisherYatesSample = createFisherYatesSample(rng);
+```
+
+## geometricReservoirSample
+
+Function returning a random sample of size `k` from the given array.
+
+This function runs in `O(k * (1 + log(n / k)))` time & `O(k)` memory using "Algorithm L" taken from the following paper:
+
+> Li, Kim-Hung. "Reservoir-sampling algorithms of time complexity O(n (1+ log (N/n)))." ACM Transactions on Mathematical Software (TOMS) 20.4 (1994): 481-493.
+
+```js
+import geometricReservoirSample from 'pandemonium/geometric-reservoir-sample';
+// Or
+import {geometricReservoirSample} from 'pandemonium';
+
+geometricReservoirSample(2, ['apple', 'orange', 'pear', 'pineapple']);
+>>> ['apple', 'pear']
+
+// To create your own function using custom RNG
+import {createGeometricReservoirSample} from 'pandemonium/dangerous-but-performant-sample';
+
+const customSample = createGeometricReservoirSample(rng);
+```
+
+## naiveSample
+
+Function returning a random sample of size `k` from the given array.
+
+This function works by keeping a `Set` of the already picked items and choosing a random item in the array until we have the desired `k` items.
+
+While it is a good pick for cases when `k` is little compared to the size of your array, this function will see its performance drop really fast when `k` becomes proportionally bigger.
+
+```js
+import naiveSample from 'pandemonium/naive-sample';
+// Or
+import {naiveSample} from 'pandemonium';
+
+naiveSample(2, ['apple', 'orange', 'pear', 'pineapple']);
+>>> ['apple', 'pear']
+
+// Alternatively, you can pass the array's length and get
+// a sample of indices back
+naiveSample(2, 4);
+>>> [0, 2]
+
+// To create your own function using custom RNG
+import {createNaiveSample} from 'pandemonium/naive-sample';
+
+const customSample = createNaiveSample(rng);
+```
+
+## reservoirSample
+
+Function returning a random sample of size `k` from the given array.
+
+This function runs in `O(n)` time and `O(k)` memory.
+
+```js
+import reservoirSample from 'pandemonium/reservoir-sample';
+// Or
+import {reservoirSample} from 'pandemonium';
+
+reservoirSample(2, ['apple', 'orange', 'pear', 'pineapple']);
+>>> ['apple', 'pear']
+
+// To create your own function using custom RNG
+import {createReservoirSample} from 'pandemonium/naive-sample';
+
+const customSample = createReservoirSample(rng);
+```
+
+## sampleWithReplacements
+
+Function returning a random sample of size `k` with replacements from the given array. This prosaically means that an items from the array might occur several times in the resulting sample.
+
+The function runs in both `O(k)` time & space complexity.
+
+```js
+import sampleWithReplacements from 'pandemonium/sample-with-replacements';
+// Or
+import {sampleWithReplacements} from 'pandemonium';
+
+sampleWithReplacements(3, ['apple', 'orange', 'pear', 'pineapple']);
+>>> ['apple', 'pear', 'apple']
+
+// To create your own function using custom RNG
+import {createSampleWithReplacements} from 'pandemonium/sample-with-replacements';
+
+const customSample = createSampleWithReplacements(rng);
+```
 
 # Contribution
 

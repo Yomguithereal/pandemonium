@@ -167,6 +167,42 @@ describe('#.createGeometricReservoirSample', function() {
   });
 });
 
+describe('#.createReservoirSample', function() {
+  var createReservoirSample = lib.reservoirSample.createReservoirSample;
+
+  var data = [13, 14, 15, 8, 20];
+
+  it('should be possible to create a sample function using the supplied rng.', function() {
+    var reservoirSample = createReservoirSample(rng());
+
+    var tests = vec(10, 0).map(function() {
+      return reservoirSample(2, data);
+    });
+
+    assert.deepStrictEqual(tests, [
+      [8, 20],
+      [15, 20],
+      [15, 20],
+      [13, 15],
+      [13, 15],
+      [15, 14],
+      [15, 14],
+      [13, 8],
+      [8, 14],
+      [15, 14]
+    ]);
+  });
+
+  it('should always return coherent results.', function() {
+    vec(50, 0).forEach(function() {
+      var sample = lib.reservoirSample(500, idx(5000));
+
+      assert.strictEqual(sample.length, 500);
+      assert.strictEqual((new Set(sample)).size, 500);
+    });
+  });
+});
+
 describe('#.createSampleWithReplacements', function() {
   var createSampleWithReplacements = lib.sampleWithReplacements.createSampleWithReplacements;
 
