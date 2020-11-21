@@ -129,6 +129,13 @@ describe('#.createFisherYatesSample', function() {
 
     assert.deepStrictEqual(tests, [[14, 13], [14, 15], [15, 13], [15, 8], [14, 20]]);
   });
+
+  it('should work when k >= n.', function() {
+    var numbers = [1, 2, 3];
+
+    assert.deepStrictEqual(new Set(numbers), new Set(lib.fisherYatesSample(3, numbers)));
+    assert.deepStrictEqual(new Set(numbers), new Set(lib.fisherYatesSample(14, numbers)));
+  });
 });
 
 describe('#.createGeometricReservoirSample', function() {
@@ -165,6 +172,13 @@ describe('#.createGeometricReservoirSample', function() {
       assert.strictEqual((new Set(sample)).size, 500);
     });
   });
+
+  it('should work when k >= n.', function() {
+    var numbers = [1, 2, 3];
+
+    assert.deepStrictEqual(new Set(numbers), new Set(lib.geometricReservoirSample(3, numbers)));
+    assert.deepStrictEqual(new Set(numbers), new Set(lib.geometricReservoirSample(14, numbers)));
+  });
 });
 
 describe('#.createReservoirSample', function() {
@@ -200,6 +214,13 @@ describe('#.createReservoirSample', function() {
       assert.strictEqual(sample.length, 500);
       assert.strictEqual((new Set(sample)).size, 500);
     });
+  });
+
+  it('should work when k >= n.', function() {
+    var numbers = [1, 2, 3];
+
+    assert.deepStrictEqual(new Set(numbers), new Set(lib.reservoirSample(3, numbers)));
+    assert.deepStrictEqual(new Set(numbers), new Set(lib.reservoirSample(14, numbers)));
   });
 });
 
@@ -248,6 +269,13 @@ describe('#.createDangerouslyMutatingSample', function() {
     // Ensuring the state of the array did not change
     assert.deepStrictEqual(copy, data);
   });
+
+  it('should work when k >= n.', function() {
+    var numbers = [1, 2, 3];
+
+    assert.deepStrictEqual(new Set(numbers), new Set(lib.dangerouslyMutatingSample(3, numbers)));
+    assert.deepStrictEqual(new Set(numbers), new Set(lib.dangerouslyMutatingSample(14, numbers)));
+  });
 });
 
 describe('#.naiveSample', function() {
@@ -275,6 +303,13 @@ describe('#.naiveSample', function() {
     });
 
     assert.deepStrictEqual(tests, [[2, 1], [1, 2], [3, 1], [2, 4], [2, 5], [4, 3], [4, 2]]);
+  });
+
+  it('should work when k >= n.', function() {
+    var numbers = [1, 2, 3];
+
+    assert.deepStrictEqual(new Set(numbers), new Set(lib.naiveSample(3, numbers)));
+    assert.deepStrictEqual(new Set(numbers), new Set(lib.naiveSample(14, numbers)));
   });
 });
 

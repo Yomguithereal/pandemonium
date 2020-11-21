@@ -27,6 +27,9 @@ function createFisherYatesSample(rng) {
     var result = sequence.slice(),
         lastIndex = result.length - 1;
 
+    if (n >= sequence.length)
+      return result;
+
     var index = -1;
 
     while (++index < n) {

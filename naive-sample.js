@@ -25,6 +25,9 @@ function createNaiveSample(rng) {
    * @return {array}                 - The random sample.
    */
   return function(n, sequence) {
+    if (n >= sequence.length)
+      return sequence.slice();
+
     var items = new Set(),
         array = new Array(n),
         size = 0,

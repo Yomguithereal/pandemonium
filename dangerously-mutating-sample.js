@@ -24,6 +24,9 @@ function createDangerouslyMutatingSample(rng) {
    * @return {array}           - The random sample.
    */
   return function(n, sequence) {
+    if (n >= sequence.length)
+      return sequence.slice();
+
     var result = new Array(n),
         swaps = new Array(n),
         lastIndex = sequence.length - 1;
