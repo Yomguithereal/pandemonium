@@ -2,7 +2,7 @@
 
 # Pandemonium
 
-Pandemonium is a dead simple JavaScript library providing typical random-related functions such as `choice`, `sample` etc.
+Pandemonium is a dead simple JavaScript/TypeScript library providing typical random-related functions such as `choice`, `sample` etc.
 
 The library also provides a way to create any of the available functions using a custom random source ([seedrandom](https://www.npmjs.com/package/seedrandom), for instance).
 
