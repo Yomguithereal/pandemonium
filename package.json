@@ -11,20 +11,7 @@
   },
   "files": [
     "*.d.ts",
-    "choice.js",
-    "dangerous-but-performant-sample.js",
-    "index.js",
-    "naive-sample.js",
-    "random-float.js",
-    "random-index.js",
-    "random-string.js",
-    "random.js",
-    "sample.js",
-    "sample-with-replacements.js",
-    "shuffle-in-place.js",
-    "shuffle.js",
-    "weighted-choice.js",
-    "weighted-random-index.js"
+    "*.js"
   ],
   "repository": {
     "type": "git",
