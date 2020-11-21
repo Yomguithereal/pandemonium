@@ -30,12 +30,16 @@ npm install --save pandemonium
 
 *Sampling*
 
-* [dangerouslyMutatingSample](#dangerouslymutatingsample)
-* [fisherYatesSample](#fisheryatessample)
-* [geometricReservoirSample](#geometricreservoirsample)
-* [naiveSample](#naivesample)
-* [reservoirSample](#reservoirsample)
-* [sampleWithReplacements](#samplewithreplacements)
+`n` being the number of items in the sampled sequence and `k` being the number of items to be sampled.
+
+| Method | Time | Memory | Note |
+|--------|------|--------|------|
+| [dangerouslyMutatingSample](#dangerouslymutatingsample) | `O(k)` | `O(k)` | Must be able to mutate given array to work. |
+| [fisherYatesSample](#fisheryatessample) | `O(n)` | `O(n)` | Probably not a good idea. |
+| [geometricReservoirSample](#geometricreservoirsample) | `O(k)` | `O(k)` | Probably the go-to way of sampling from a random access data structure. |
+| [naiveSample](#naivesample) | `Ω(k)`, `O(∞)` | `O(k)` | Only useful if `k << n`. |
+| [reservoirSample](#reservoirsample) | `O(n)` | `O(k)` | Useful if pulling a sample from a stream. |
+| [sampleWithReplacements](#samplewithreplacements) | `O(k)` | `O(k)` | Performant but allows replacements. |
 
 ## choice
 
@@ -294,8 +298,6 @@ const customSample = createDangerouslyMutatingSample(rng);
 Function returning a random sample of size `k` from the given array.
 
 This function uses a partial Fisher-Yates shuffle and therefore runs in `O(k)` time but must clone the given array to work, which adds `O(n)` time & memory.
-
-If you need faster sampling, check out [`dangerouslyMutatingSample`](#dangerousbutperformantsample) or [`naiveSample`](#naivesample).
 
 ```js
 import fisherYatesSample from 'pandemonium/fisher-yates-sample';
