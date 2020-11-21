@@ -13,7 +13,7 @@ var createRandom = require('./random.js').createRandom;
  * @param  {function} rng - The RNG to use.
  * @return {function}     - The created function.
  */
-function createDangerousButPerformantSample(rng) {
+function createDangerouslyMutatingSample(rng) {
   var customRandom = createRandom(rng);
 
   /**
@@ -61,10 +61,10 @@ function createDangerousButPerformantSample(rng) {
 /**
  * Default dangerous sample using `Math.random`.
  */
-var dangerousButPerformantSample = createDangerousButPerformantSample(Math.random);
+var dangerouslyMutatingSample = createDangerouslyMutatingSample(Math.random);
 
 /**
  * Exporting.
  */
-dangerousButPerformantSample.createDangerousButPerformantSample = createDangerousButPerformantSample;
-module.exports = dangerousButPerformantSample;
+dangerouslyMutatingSample.createDangerouslyMutatingSample = createDangerouslyMutatingSample;
+module.exports = dangerouslyMutatingSample;

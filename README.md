@@ -30,7 +30,7 @@ npm install --save pandemonium
 
 *Sampling*
 
-* [dangerousButPerformantSample](#dangerousbutperformantsample)
+* [dangerouslyMutatingSample](#dangerouslymutatingsample)
 * [fisherYatesSample](#fisheryatessample)
 * [geometricReservoirSample](#geometricreservoirsample)
 * [naiveSample](#naivesample)
@@ -269,24 +269,24 @@ customWeightedRandomIndex();
 >>> 3
 ```
 
-## dangerousButPerformantSample
+## dangerouslyMutatingSample
 
 Function returning a random sample of size `k` from the given array.
 
 This function runs in `O(k)` time & memory but is somewhat dangerous because it will mutate the given array while performing its Fisher-Yates shuffle before reverting the mutations at the end.
 
 ```js
-import dangerousButPerformantSample from 'pandemonium/dangerous-but-performant-sample';
+import dangerouslyMutatingSample from 'pandemonium/dangerously-mutating-sample';
 // Or
-import {dangerousButPerformantSample} from 'pandemonium';
+import {dangerouslyMutatingSample} from 'pandemonium';
 
-dangerousButPerformantSample(2, ['apple', 'orange', 'pear', 'pineapple']);
+dangerouslyMutatingSample(2, ['apple', 'orange', 'pear', 'pineapple']);
 >>> ['apple', 'pear']
 
 // To create your own function using custom RNG
-import {createDangerousButPerformantSample} from 'pandemonium/dangerous-but-performant-sample';
+import {createDangerouslyMutatingSample} from 'pandemonium/dangerously-mutating-sample';
 
-const customSample = createDangerousButPerformantSample(rng);
+const customSample = createDangerouslyMutatingSample(rng);
 ```
 
 ## fisherYatesSample
@@ -295,7 +295,7 @@ Function returning a random sample of size `k` from the given array.
 
 This function uses a partial Fisher-Yates shuffle and therefore runs in `O(k)` time but must clone the given array to work, which adds `O(n)` time & memory.
 
-If you need faster sampling, check out [`dangerousButPerformantSample`](#dangerousbutperformantsample) or [`naiveSample`](#naivesample).
+If you need faster sampling, check out [`dangerouslyMutatingSample`](#dangerousbutperformantsample) or [`naiveSample`](#naivesample).
 
 ```js
 import fisherYatesSample from 'pandemonium/fisher-yates-sample';
@@ -328,7 +328,7 @@ geometricReservoirSample(2, ['apple', 'orange', 'pear', 'pineapple']);
 >>> ['apple', 'pear']
 
 // To create your own function using custom RNG
-import {createGeometricReservoirSample} from 'pandemonium/dangerous-but-performant-sample';
+import {createGeometricReservoirSample} from 'pandemonium/geometric-reservoir-sample';
 
 const customSample = createGeometricReservoirSample(rng);
 ```

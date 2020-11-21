@@ -5,7 +5,7 @@
  * Exporting the library's functions.
  */
 exports.choice = require('./choice.js');
-exports.dangerousButPerformantSample = require('./dangerous-but-performant-sample.js');
+exports.dangerouslyMutatingSample = require('./dangerously-mutating-sample.js');
 exports.fisherYatesSample = require('./fisher-yates-sample.js');
 exports.geometricReservoirSample = require('./geometric-reservoir-sample.js');
 exports.naiveSample = require('./naive-sample.js');

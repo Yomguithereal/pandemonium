@@ -1,5 +1,5 @@
 export {default as choice} from './choice';
-export {default as dangerousButPerformantSample} from './dangerous-but-performant-sample';
+export {default as dangerouslyMutatingSample} from './dangerously-mutating-sample';
 export {default as fisherYatesSample} from './fisher-yates-sample';
 export {default as geometricReservoirSample} from './geometric-reservoir-sample';
 export {default as naiveSample} from './naive-sample';

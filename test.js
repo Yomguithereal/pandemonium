@@ -230,14 +230,14 @@ describe('#.createShuffle', function() {
   });
 });
 
-describe('#.createDangerousButPerformantSample', function() {
-  var createDangerousButPerformantSample = lib.dangerousButPerformantSample.createDangerousButPerformantSample;
+describe('#.createDangerouslyMutatingSample', function() {
+  var createDangerouslyMutatingSample = lib.dangerouslyMutatingSample.createDangerouslyMutatingSample;
 
   var data = [13, 14, 15, 8, 20],
       copy = data.slice();
 
   it('should be possible to create a sample function using the supplied rng.', function() {
-    var sample = createDangerousButPerformantSample(rng());
+    var sample = createDangerouslyMutatingSample(rng());
 
     var tests = vec(7, 0).map(function() {
       return sample(2, data);
