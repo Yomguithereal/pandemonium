@@ -347,6 +347,10 @@ import {geometricReservoirSample} from 'pandemonium';
 geometricReservoirSample(2, ['apple', 'orange', 'pear', 'pineapple']);
 >>> ['apple', 'pear']
 
+// Alternatively, you can pass a length and get a sample of indices back
+geometricReservoirSample(2, 4);
+>>> [0, 2]
+
 // To create your own function using custom RNG
 import {createGeometricReservoirSample} from 'pandemonium/geometric-reservoir-sample';
 
@@ -369,8 +373,7 @@ import {naiveSample} from 'pandemonium';
 naiveSample(2, ['apple', 'orange', 'pear', 'pineapple']);
 >>> ['apple', 'pear']
 
-// Alternatively, you can pass the array's length and get
-// a sample of indices back
+// Alternatively, you can pass a length and get a sample of indices back
 naiveSample(2, 4);
 >>> [0, 2]
 

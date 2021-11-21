@@ -208,6 +208,26 @@ describe('#.createGeometricReservoirSample', function () {
     });
   });
 
+  it("should be possible to give the sequence's length and get indices back.", function () {
+    var sample = createGeometricReservoirSample(rng());
+
+    var numbers = [13, 14, 15, 8, 20, 20];
+
+    var tests = vec(7, 0).map(function () {
+      return sample(2, numbers.length);
+    });
+
+    assert.deepStrictEqual(tests, [
+      [5, 1],
+      [0, 5],
+      [5, 2],
+      [3, 5],
+      [2, 3],
+      [5, 4],
+      [0, 3]
+    ]);
+  });
+
   it('should work when k >= n.', function () {
     var numbers = [1, 2, 3];
 
@@ -219,6 +239,14 @@ describe('#.createGeometricReservoirSample', function () {
       new Set(numbers),
       new Set(lib.geometricReservoirSample(14, numbers))
     );
+  });
+
+  it('should work when k >= n with indices.', function () {
+    var sample = createGeometricReservoirSample(rng());
+
+    var indices = sample(5, 3);
+
+    assert.deepStrictEqual(indices, [0, 1, 2]);
   });
 });
 

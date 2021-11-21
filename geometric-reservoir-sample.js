@@ -12,6 +12,7 @@
  * https://en.wikipedia.org/wiki/Reservoir_sampling#An_optimal_algorithm
  */
 var createRandomIndex = require('./random-index.js').createRandomIndex;
+var utils = require('./utils.js');
 
 var exp = Math.exp;
 var log = Math.log;
@@ -34,15 +35,21 @@ function createGeometricReservoirSample(rng) {
    * @return {array}                 - The random sample.
    */
   return function (k, sequence) {
-    var n = sequence.length;
+    var needItems = typeof sequence !== 'number';
+
+    var n = needItems ? sequence.length : sequence;
 
     // Sample size gte sequence's length
-    if (k >= n) return sequence.slice();
+    if (needItems) {
+      if (k >= n) return sequence.slice();
+    } else if (k >= n) {
+      return utils.indices(sequence);
+    }
 
     var sample = new Array(k);
     var i;
 
-    for (i = 0; i < k; i++) sample[i] = sequence[i];
+    for (i = 0; i < k; i++) sample[i] = needItems ? sequence[i] : i;
 
     // NOTE: from this point, formulae consider i to be 1-based
     var w = exp(log(rng()) / k);
@@ -51,7 +58,7 @@ function createGeometricReservoirSample(rng) {
       i += floor(log(rng()) / log(1 - w)) + 1;
 
       if (i <= n) {
-        sample[customRandomIndex(k)] = sequence[i - 1];
+        sample[customRandomIndex(k)] = needItems ? sequence[i - 1] : i - 1;
         w *= exp(log(rng()) / k);
       }
     }
