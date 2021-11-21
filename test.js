@@ -335,6 +335,14 @@ describe('#.naiveSample', function() {
     assert.deepStrictEqual(new Set(numbers), new Set(lib.naiveSample(3, numbers)));
     assert.deepStrictEqual(new Set(numbers), new Set(lib.naiveSample(14, numbers)));
   });
+
+  it('should work when k >= n with indices.', function() {
+    var sample = createNaiveSample(rng());
+
+    var indices = sample(5, 3);
+
+    assert.deepStrictEqual(indices, [0, 1, 2]);
+  });
 });
 
 describe('#.createShuffleInPlace', function() {
