@@ -21,9 +21,8 @@ function createRandomIndex(rng) {
    * @param  {array|number}  array - Target array or length of the array.
    * @return {number}
    */
-  return function(length) {
-    if (typeof length !== 'number')
-      length = length.length;
+  return function (length) {
+    if (typeof length !== 'number') length = length.length;
 
     return customRandom(0, length - 1);
   };

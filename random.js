@@ -12,7 +12,6 @@
  * @return {function}     - The created function.
  */
 function createRandom(rng) {
-
   /**
    * Random function.
    *
@@ -20,7 +19,7 @@ function createRandom(rng) {
    * @param  {number} b - To.
    * @return {number}
    */
-  return function(a, b) {
+  return function (a, b) {
     return a + Math.floor(rng() * (b - a + 1));
   };
 }

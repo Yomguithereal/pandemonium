@@ -7,6 +7,8 @@ declare const shuffleInPlace: {
   createShuffleInPlace<T>(rng: RNGFunction): ShuffleInPlaceFunction<T>;
 };
 
-export function createShuffleInPlace<T>(rng: RNGFunction): ShuffleInPlaceFunction<T>;
+export function createShuffleInPlace<T>(
+  rng: RNGFunction
+): ShuffleInPlaceFunction<T>;
 
 export default shuffleInPlace;

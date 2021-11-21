@@ -23,18 +23,17 @@ function createDangerouslyMutatingSample(rng) {
    * @param  {array}  sequence - Target sequence.
    * @return {array}           - The random sample.
    */
-  return function(n, sequence) {
-    if (n >= sequence.length)
-      return sequence.slice();
+  return function (n, sequence) {
+    if (n >= sequence.length) return sequence.slice();
 
     var result = new Array(n),
-        swaps = new Array(n),
-        lastIndex = sequence.length - 1;
+      swaps = new Array(n),
+      lastIndex = sequence.length - 1;
 
     var index = -1,
-        value,
-        swap,
-        r;
+      value,
+      swap,
+      r;
 
     while (++index < n) {
       r = customRandom(index, lastIndex);
@@ -69,5 +68,6 @@ var dangerouslyMutatingSample = createDangerouslyMutatingSample(Math.random);
 /**
  * Exporting.
  */
-dangerouslyMutatingSample.createDangerouslyMutatingSample = createDangerouslyMutatingSample;
+dangerouslyMutatingSample.createDangerouslyMutatingSample =
+  createDangerouslyMutatingSample;
 module.exports = dangerouslyMutatingSample;

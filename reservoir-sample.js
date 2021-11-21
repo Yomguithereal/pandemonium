@@ -25,24 +25,21 @@ function createReservoirSample(rng) {
    * @param  {array|number} sequence - Target sequence or its length.
    * @return {array}                 - The random sample.
    */
-  return function(k, sequence) {
+  return function (k, sequence) {
     var n = sequence.length;
 
     // Sample size gte sequence's length
-    if (k >= n)
-      return sequence.slice();
+    if (k >= n) return sequence.slice();
 
     var sample = new Array(k);
     var i, j;
 
-    for (i = 0; i < k; i++)
-      sample[i] = sequence[i];
+    for (i = 0; i < k; i++) sample[i] = sequence[i];
 
     for (; i < n; i++) {
       j = customRandomIndex(i);
 
-      if (j < k)
-        sample[j] = sequence[i];
+      if (j < k) sample[j] = sequence[i];
     }
 
     return sample;

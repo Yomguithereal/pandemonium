@@ -21,15 +21,15 @@ function createShuffleInPlace(rng) {
    * @param  {array}  sequence - Target sequence.
    * @return {array}           - The shuffled sequence.
    */
-  return function(sequence) {
+  return function (sequence) {
     var length = sequence.length,
-        lastIndex = length - 1;
+      lastIndex = length - 1;
 
     var index = -1;
 
     while (++index < length) {
       var r = customRandom(index, lastIndex),
-          value = sequence[r];
+        value = sequence[r];
 
       sequence[r] = sequence[index];
       sequence[index] = value;

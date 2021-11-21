@@ -23,7 +23,7 @@ function createCachedWeightedChoice(rngOrOptions, sequence) {
    *
    * @return {number}
    */
-  return function() {
+  return function () {
     var index = randomIndex();
 
     return sequence[index];
@@ -47,7 +47,7 @@ function createWeightedChoice(rngOrOptions) {
    * @param  {array} sequence - Target sequence.
    * @return {number}
    */
-  return function(sequence) {
+  return function (sequence) {
     var index = randomIndex(sequence);
 
     return sequence[index];

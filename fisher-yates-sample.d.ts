@@ -7,6 +7,8 @@ declare const fisherYatesSample: {
   createFisherYatesSample<T>(rng: RNGFunction): FisherYatesSampleFunction<T>;
 };
 
-export function createFisherYatesSample<T>(rng: RNGFunction): FisherYatesSampleFunction<T>;
+export function createFisherYatesSample<T>(
+  rng: RNGFunction
+): FisherYatesSampleFunction<T>;
 
 export default fisherYatesSample;

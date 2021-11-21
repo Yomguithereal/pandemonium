@@ -1,4 +1,5 @@
 [![Build Status](https://github.com/Yomguithereal/pandemonium/workflows/Tests/badge.svg)](https://github.com/Yomguithereal/pandemonium/actions)
+
 # Pandemonium
 
 Pandemonium is a dead simple JavaScript/TypeScript library providing typical random-related functions such as `choice`, `sample` etc.
@@ -15,31 +16,31 @@ npm install --save pandemonium
 
 ## Summary
 
-*Miscellaneous*
+_Miscellaneous_
 
-* [choice](#choice)
-* [random](#random)
-* [randomBoolean](#randomboolean)
-* [randomFloat](#randomfloat)
-* [randomIndex](#randomindex)
-* [randomString](#randomstring)
-* [shuffle](#shuffle)
-* [shuffleInPlace](#shuffleinplace)
-* [weightedChoice](#weightedchoice)
-* [weightedRandomIndex](#weightedrandomindex)
+- [choice](#choice)
+- [random](#random)
+- [randomBoolean](#randomboolean)
+- [randomFloat](#randomfloat)
+- [randomIndex](#randomindex)
+- [randomString](#randomstring)
+- [shuffle](#shuffle)
+- [shuffleInPlace](#shuffleinplace)
+- [weightedChoice](#weightedchoice)
+- [weightedRandomIndex](#weightedrandomindex)
 
-*Sampling*
+_Sampling_
 
 `n` being the number of items in the sampled sequence and `k` being the number of items to be sampled.
 
-| Method | Time | Memory | Note |
-|--------|------|--------|------|
-| [dangerouslyMutatingSample](#dangerouslymutatingsample) | `O(k)` | `O(k)` | Must be able to mutate given array to work. |
-| [fisherYatesSample](#fisheryatessample) | `O(n)` | `O(n)` | Probably not a good idea. |
-| [geometricReservoirSample](#geometricreservoirsample) | `O(k)` | `O(k)` | Probably the best way of sampling from a random access data structure. |
-| [naiveSample](#naivesample) | `Ω(k)`, `O(∞)` | `O(k)` | Only useful if `k << n`. |
-| [reservoirSample](#reservoirsample) | `O(n)` | `O(k)` | Useful if pulling a sample from a stream. |
-| [sampleWithReplacements](#samplewithreplacements) | `O(k)` | `O(k)` | Performant but allows replacements. |
+| Method                                                  | Time           | Memory | Note                                                                   |
+| ------------------------------------------------------- | -------------- | ------ | ---------------------------------------------------------------------- |
+| [dangerouslyMutatingSample](#dangerouslymutatingsample) | `O(k)`         | `O(k)` | Must be able to mutate given array to work.                            |
+| [fisherYatesSample](#fisheryatessample)                 | `O(n)`         | `O(n)` | Probably not a good idea.                                              |
+| [geometricReservoirSample](#geometricreservoirsample)   | `O(k)`         | `O(k)` | Probably the best way of sampling from a random access data structure. |
+| [naiveSample](#naivesample)                             | `Ω(k)`, `O(∞)` | `O(k)` | Only useful if `k << n`.                                               |
+| [reservoirSample](#reservoirsample)                     | `O(n)`         | `O(k)` | Useful if pulling a sample from a stream.                              |
+| [sampleWithReplacements](#samplewithreplacements)       | `O(k)`         | `O(k)` | Performant but allows replacements.                                    |
 
 ## choice
 
@@ -194,8 +195,7 @@ const array = ['apple', 'orange', 'pear', 'pineapple'];
 shuffleInPlace(array);
 
 // Array was mutated:
-array
->>> ['pear', 'orange', 'apple', 'pineapple']
+array >>> ['pear', 'orange', 'apple', 'pineapple'];
 
 // To create your own function using custom RNG
 import {createShuffleInPlace} from 'pandemonium/shuffle-in-place';

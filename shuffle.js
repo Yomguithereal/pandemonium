@@ -5,7 +5,8 @@
  * Shuffle function which is basically just applying the Fisher-Yates sampling
  * function over the whole array.
  */
-var createShuffleInPlace = require('./shuffle-in-place.js').createShuffleInPlace;
+var createShuffleInPlace =
+  require('./shuffle-in-place.js').createShuffleInPlace;
 
 /**
  * Creating a function returning the given array shuffled.
@@ -22,7 +23,7 @@ function createShuffle(rng) {
    * @param  {array}  sequence - Target sequence.
    * @return {array}           - The shuffled sequence.
    */
-  return function(sequence) {
+  return function (sequence) {
     var copy = sequence.slice();
     customShuffleInPlace(copy);
 

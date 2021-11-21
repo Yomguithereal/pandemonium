@@ -23,18 +23,17 @@ function createFisherYatesSample(rng) {
    * @param  {array}  sequence - Target sequence.
    * @return {array}           - The random sample.
    */
-  return function(n, sequence) {
+  return function (n, sequence) {
     var result = sequence.slice(),
-        lastIndex = result.length - 1;
+      lastIndex = result.length - 1;
 
-    if (n >= sequence.length)
-      return result;
+    if (n >= sequence.length) return result;
 
     var index = -1;
 
     while (++index < n) {
       var r = customRandom(index, lastIndex),
-          value = result[r];
+        value = result[r];
 
       result[r] = result[index];
       result[index] = value;

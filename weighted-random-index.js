@@ -26,9 +26,9 @@ var DEFAULTS = {
  */
 function upperBound(array, value) {
   var l = array.length,
-      d,
-      c,
-      i = 0;
+    d,
+    c,
+    i = 0;
 
   while (l) {
     d = l >>> 1;
@@ -36,8 +36,7 @@ function upperBound(array, value) {
 
     if (value < array[c]) {
       l = d;
-    }
-    else {
+    } else {
       i = c + 1;
       l -= d + 1;
     }
@@ -60,28 +59,25 @@ function upperBound(array, value) {
  * @return {function}
  */
 function createCachedWeightedRandomIndex(rngOrOptions, sequence) {
-  var rng,
-      options;
+  var rng, options;
 
   if (typeof rngOrOptions === 'function') {
     rng = rngOrOptions;
     options = {};
-  }
-  else {
+  } else {
     rng = rngOrOptions.rng || DEFAULTS.rng;
     options = rngOrOptions;
   }
 
-  var getWeight = typeof options.getWeight === 'function' ?
-    options.getWeight :
-    null;
+  var getWeight =
+    typeof options.getWeight === 'function' ? options.getWeight : null;
 
   // Computing the cumulative density function of the sequence (CDF)
   var l = sequence.length;
 
   var CDF = new Array(l),
-      total = 0,
-      weight;
+    total = 0,
+    weight;
 
   for (var i = 0; i < l; i++) {
     weight = getWeight ? getWeight(sequence[i], i) : sequence[i];
@@ -94,7 +90,7 @@ function createCachedWeightedRandomIndex(rngOrOptions, sequence) {
    *
    * @return {number}
    */
-  return function() {
+  return function () {
     var random = rng() * total;
 
     return upperBound(CDF, random);
@@ -115,21 +111,18 @@ function createCachedWeightedRandomIndex(rngOrOptions, sequence) {
  * @return {function}
  */
 function createWeightedRandomIndex(rngOrOptions) {
-  var rng,
-      options;
+  var rng, options;
 
   if (typeof rngOrOptions === 'function') {
     rng = rngOrOptions;
     options = {};
-  }
-  else {
+  } else {
     rng = rngOrOptions.rng || DEFAULTS.rng;
     options = rngOrOptions;
   }
 
-  var getWeight = typeof options.getWeight === 'function' ?
-    options.getWeight :
-    null;
+  var getWeight =
+    typeof options.getWeight === 'function' ? options.getWeight : null;
 
   /**
    * Weighted random index from the given sequence.
@@ -137,18 +130,17 @@ function createWeightedRandomIndex(rngOrOptions) {
    * @param  {array} sequence - Target sequence.
    * @return {number}
    */
-  return function(sequence) {
+  return function (sequence) {
     var total = 0,
-        winner = 0,
-        weight;
+      winner = 0,
+      weight;
 
     for (var i = 0, l = sequence.length; i < l; i++) {
       weight = getWeight ? getWeight(sequence[i], i) : sequence[i];
 
       total += weight;
 
-      if (rng() * total < weight)
-        winner = i;
+      if (rng() * total < weight) winner = i;
     }
 
     return winner;
@@ -163,6 +155,7 @@ var weightedRandomIndex = createWeightedRandomIndex(Math.random);
 /**
  * Exporting.
  */
-weightedRandomIndex.createCachedWeightedRandomIndex = createCachedWeightedRandomIndex;
+weightedRandomIndex.createCachedWeightedRandomIndex =
+  createCachedWeightedRandomIndex;
 weightedRandomIndex.createWeightedRandomIndex = createWeightedRandomIndex;
 module.exports = weightedRandomIndex;

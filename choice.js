@@ -21,7 +21,7 @@ function createChoice(rng) {
    * @param  {array}  array - Target array.
    * @return {any}
    */
-  return function(array) {
+  return function (array) {
     return array[customRandomIndex(array)];
   };
 }

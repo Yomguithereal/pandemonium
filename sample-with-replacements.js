@@ -24,11 +24,11 @@ function createSampleWithReplacements(rng) {
    * @param  {array}  sequence - Target sequence.
    * @return {array}           - The random sample.
    */
-  return function(n, sequence) {
+  return function (n, sequence) {
     var sample = new Array(n),
-        m = sequence.length - 1,
-        i,
-        r;
+      m = sequence.length - 1,
+      i,
+      r;
 
     for (i = 0; i < n; i++) {
       r = customRandom(0, m);
@@ -47,5 +47,6 @@ var sampleWithReplacements = createSampleWithReplacements(Math.random);
 /**
  * Exporting.
  */
-sampleWithReplacements.createSampleWithReplacements = createSampleWithReplacements;
+sampleWithReplacements.createSampleWithReplacements =
+  createSampleWithReplacements;
 module.exports = sampleWithReplacements;

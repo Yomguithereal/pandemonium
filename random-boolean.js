@@ -11,14 +11,13 @@
  * @param  {function} rng - RNG function returning uniform random.
  * @return {function}     - The created function.
  */
- function createRandomBoolean(rng) {
-
+function createRandomBoolean(rng) {
   /**
    * Random boolean function.
    *
    * @return {boolean}
    */
-  return function() {
+  return function () {
     return rng() < 0.5;
   };
 }

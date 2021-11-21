@@ -1,4 +1,4 @@
-exports.indices = function(n) {
+exports.indices = function (n) {
   var a = new Array(n);
   var i;
 

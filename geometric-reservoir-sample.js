@@ -33,18 +33,16 @@ function createGeometricReservoirSample(rng) {
    * @param  {array|number} sequence - Target sequence or its length.
    * @return {array}                 - The random sample.
    */
-  return function(k, sequence) {
+  return function (k, sequence) {
     var n = sequence.length;
 
     // Sample size gte sequence's length
-    if (k >= n)
-      return sequence.slice();
+    if (k >= n) return sequence.slice();
 
     var sample = new Array(k);
     var i;
 
-    for (i = 0; i < k; i++)
-      sample[i] = sequence[i];
+    for (i = 0; i < k; i++) sample[i] = sequence[i];
 
     // NOTE: from this point, formulae consider i to be 1-based
     var w = exp(log(rng()) / k);
@@ -70,5 +68,6 @@ var geometricReservoirSample = createGeometricReservoirSample(Math.random);
 /**
  * Exporting.
  */
-geometricReservoirSample.createGeometricReservoirSample = createGeometricReservoirSample;
+geometricReservoirSample.createGeometricReservoirSample =
+  createGeometricReservoirSample;
 module.exports = geometricReservoirSample;

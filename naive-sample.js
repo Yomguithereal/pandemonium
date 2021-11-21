@@ -25,21 +25,20 @@ function createNaiveSample(rng) {
    * @param  {array|number} sequence - Target sequence or its length.
    * @return {array}                 - The random sample.
    */
-  return function(n, sequence) {
+  return function (n, sequence) {
     var needItems = typeof sequence !== 'number';
 
     if (needItems) {
       if (n >= sequence.length) return sequence.slice();
-    }
-    else if (n >= sequence){
+    } else if (n >= sequence) {
       return utils.indices(sequence);
     }
 
     var items = new Set(),
-        array = new Array(n),
-        size = 0,
-        i = 0,
-        index;
+      array = new Array(n),
+      size = 0,
+      i = 0,
+      index;
 
     while (items.size < n) {
       index = customRandomIndex(sequence);

@@ -7,6 +7,8 @@ declare const reservoirSample: {
   createReservoirSample<T>(rng: RNGFunction): ReservoirSampleFunction<T>;
 };
 
-export function createReservoirSample<T>(rng: RNGFunction): ReservoirSampleFunction<T>;
+export function createReservoirSample<T>(
+  rng: RNGFunction
+): ReservoirSampleFunction<T>;
 
 export default reservoirSample;

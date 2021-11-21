@@ -12,7 +12,6 @@
  * @return {function}     - The created function.
  */
 function createRandomFloat(rng) {
-
   /**
    * Random float function.
    *
@@ -20,7 +19,7 @@ function createRandomFloat(rng) {
    * @param  {number} b - To.
    * @return {number}
    */
-  return function(a, b) {
+  return function (a, b) {
     return a + rng() * (b - a);
   };
 }

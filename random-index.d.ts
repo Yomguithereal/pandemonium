@@ -1,6 +1,6 @@
 import {RNGFunction} from './types';
 
-type RandomIndexFunction<T> = (array: Array<T> | number) => number;
+type RandomIndexFunction<T> = (array: Array<T> | number) => number;
 
 declare const randomIndex: {
   <T>(array: Array<T> | number): number;
