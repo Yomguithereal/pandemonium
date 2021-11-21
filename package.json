@@ -1,6 +1,6 @@
 {
   "name": "pandemonium",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Typical random-related functions for JavaScript.",
   "main": "index.js",
   "types": "index.d.ts",
