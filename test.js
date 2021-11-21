@@ -2,8 +2,8 @@
  * Pandemonium Library Unit Tests
  * ===============================
  */
-var assert = require('assert'),
-  seedrandom = require('seedrandom');
+var assert = require('assert');
+var seedrandom = require('seedrandom');
 
 var lib = require('./');
 
@@ -28,7 +28,7 @@ var idx = function (size) {
 };
 
 describe('#.createRandom', function () {
-  var createRandom = lib.random.createRandom;
+  var createRandom = lib.createRandom;
 
   it('should be possible to create a random function using supplied rng.', function () {
     var random = createRandom(rng());
@@ -42,7 +42,7 @@ describe('#.createRandom', function () {
 });
 
 describe('#.createRandomBoolean', function () {
-  var createRandomBoolean = lib.randomBoolean.createRandomBoolean;
+  var createRandomBoolean = lib.createRandomBoolean;
 
   it('should be possible to create a random function using supplied rng.', function () {
     var randomBoolean = createRandomBoolean(rng());
@@ -67,7 +67,7 @@ describe('#.createRandomBoolean', function () {
 });
 
 describe('#.createRandomFloat', function () {
-  var createRandomFloat = lib.randomFloat.createRandomFloat;
+  var createRandomFloat = lib.createRandomFloat;
 
   it('should be possible to create a random function using supplied rng.', function () {
     var randomFloat = createRandomFloat(rng());
@@ -89,7 +89,7 @@ describe('#.createRandomFloat', function () {
 });
 
 describe('#.createRandomIndex', function () {
-  var createRandomIndex = lib.randomIndex.createRandomIndex;
+  var createRandomIndex = lib.createRandomIndex;
 
   it('should be possible to create a random index function using the supplied rng.', function () {
     var randomIndex = createRandomIndex(rng());
@@ -117,7 +117,7 @@ describe('#.createRandomIndex', function () {
 });
 
 describe('#.createChoice', function () {
-  var createChoice = lib.choice.createChoice;
+  var createChoice = lib.createChoice;
 
   it('should be possible to create a choice function using the supplied rng.', function () {
     var choice = createChoice(rng());
@@ -138,7 +138,7 @@ describe('#.createChoice', function () {
 });
 
 describe('#.createFisherYatesSample', function () {
-  var createFisherYatesSample = lib.fisherYatesSample.createFisherYatesSample;
+  var createFisherYatesSample = lib.createFisherYatesSample;
 
   var data = [13, 14, 15, 8, 20];
 
@@ -173,8 +173,7 @@ describe('#.createFisherYatesSample', function () {
 });
 
 describe('#.createGeometricReservoirSample', function () {
-  var createGeometricReservoirSample =
-    lib.geometricReservoirSample.createGeometricReservoirSample;
+  var createGeometricReservoirSample = lib.createGeometricReservoirSample;
 
   var data = [13, 14, 15, 8, 20];
 
@@ -251,7 +250,7 @@ describe('#.createGeometricReservoirSample', function () {
 });
 
 describe('#.createReservoirSample', function () {
-  var createReservoirSample = lib.reservoirSample.createReservoirSample;
+  var createReservoirSample = lib.createReservoirSample;
 
   var data = [13, 14, 15, 8, 20];
 
@@ -299,9 +298,48 @@ describe('#.createReservoirSample', function () {
   });
 });
 
+describe('ReservoirSampler', function () {
+  it('should work as expected.', function () {
+    var sampler = new lib.ReservoirSampler(10, rng());
+
+    idx(100).forEach(function (i) {
+      sampler.process(i);
+    });
+
+    assert.deepStrictEqual(
+      sampler.end(),
+      [34, 70, 82, 15, 80, 79, 56, 16, 63, 91]
+    );
+
+    // Cannot use after end
+    assert.throws(function () {
+      sampler.process(45);
+    });
+
+    sampler = new lib.ReservoirSampler(15, rng());
+
+    idx(15).forEach(function (i) {
+      sampler.process(i);
+    });
+
+    assert.deepStrictEqual(sampler.end(), idx(15));
+
+    sampler = new lib.ReservoirSampler(15, rng());
+
+    idx(5).forEach(function (i) {
+      sampler.process(i);
+    });
+
+    assert.deepStrictEqual(sampler.end(), idx(5));
+
+    sampler = new lib.ReservoirSampler(15, rng());
+
+    assert.deepStrictEqual(sampler.end(), []);
+  });
+});
+
 describe('#.createSampleWithReplacements', function () {
-  var createSampleWithReplacements =
-    lib.sampleWithReplacements.createSampleWithReplacements;
+  var createSampleWithReplacements = lib.createSampleWithReplacements;
 
   var data = [13, 14, 15, 8, 20];
 
@@ -321,7 +359,7 @@ describe('#.createSampleWithReplacements', function () {
 });
 
 describe('#.createShuffle', function () {
-  var createShuffle = lib.shuffle.createShuffle;
+  var createShuffle = lib.createShuffle;
 
   it('should be possible to create a shuffle function using the supplied rng.', function () {
     var shuffle = createShuffle(rng());
@@ -332,8 +370,7 @@ describe('#.createShuffle', function () {
 });
 
 describe('#.createDangerouslyMutatingSample', function () {
-  var createDangerouslyMutatingSample =
-    lib.dangerouslyMutatingSample.createDangerouslyMutatingSample;
+  var createDangerouslyMutatingSample = lib.createDangerouslyMutatingSample;
 
   var data = [13, 14, 15, 8, 20],
     copy = data.slice();
@@ -374,7 +411,7 @@ describe('#.createDangerouslyMutatingSample', function () {
 });
 
 describe('#.naiveSample', function () {
-  var createNaiveSample = lib.naiveSample.createNaiveSample;
+  var createNaiveSample = lib.createNaiveSample;
 
   it('should be possible to create a sample function using the supplied rng.', function () {
     var sample = createNaiveSample(rng());
@@ -439,7 +476,7 @@ describe('#.naiveSample', function () {
 });
 
 describe('#.createShuffleInPlace', function () {
-  var createShuffleInPlace = lib.shuffleInPlace.createShuffleInPlace;
+  var createShuffleInPlace = lib.createShuffleInPlace;
 
   it('should be possible to create a shuffle in place function using the supplied rng.', function () {
     var shuffle = createShuffleInPlace(rng()),
@@ -451,8 +488,7 @@ describe('#.createShuffleInPlace', function () {
 });
 
 describe('#.createWeightedRandomIndex', function () {
-  var createWeightedRandomIndex =
-    lib.weightedRandomIndex.createWeightedRandomIndex;
+  var createWeightedRandomIndex = lib.createWeightedRandomIndex;
 
   function freq(fn, target) {
     var sample = 10 * 1000,
@@ -541,8 +577,7 @@ describe('#.createWeightedRandomIndex', function () {
 });
 
 describe('#.createCachedWeightedRandomIndex', function () {
-  var createCachedWeightedRandomIndex =
-    lib.weightedRandomIndex.createCachedWeightedRandomIndex;
+  var createCachedWeightedRandomIndex = lib.createCachedWeightedRandomIndex;
 
   var RELATIVE_WEIGHTS = [0.1, 0.1, 0.8],
     ABSOLUTE_WEIGHTS = [4, 4, 32];
@@ -638,7 +673,7 @@ describe('#.createCachedWeightedRandomIndex', function () {
 });
 
 describe('#.createWeightedChoice', function () {
-  var createWeightedChoice = lib.weightedChoice.createWeightedChoice;
+  var createWeightedChoice = lib.createWeightedChoice;
 
   function freq(fn, target) {
     var sample = 10 * 1000,
@@ -684,8 +719,7 @@ describe('#.createWeightedChoice', function () {
 });
 
 describe('#.createCachedWeightedChoice', function () {
-  var createCachedWeightedChoice =
-    lib.weightedChoice.createCachedWeightedChoice;
+  var createCachedWeightedChoice = lib.createCachedWeightedChoice;
 
   function freq(fn) {
     var sample = 10 * 1000,
@@ -734,7 +768,7 @@ describe('#.createCachedWeightedChoice', function () {
 });
 
 describe('#.createRandomString', function () {
-  var createRandomString = lib.randomString.createRandomString;
+  var createRandomString = lib.createRandomString;
 
   it('should be able to produce random string of fixed length.', function () {
     var randomString = createRandomString(rng());

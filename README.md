@@ -393,6 +393,8 @@ Function returning a random sample of size `k` from the given array.
 
 This function runs in `O(n)` time and `O(k)` memory.
 
+A helper class working with only `O(k)` memory is also available if you need to work on a stream, iterator etc.
+
 ```js
 import reservoirSample from 'pandemonium/reservoir-sample';
 // Or
@@ -402,9 +404,22 @@ reservoirSample(2, ['apple', 'orange', 'pear', 'pineapple']);
 >>> ['apple', 'pear']
 
 // To create your own function using custom RNG
-import {createReservoirSample} from 'pandemonium/naive-sample';
+import {createReservoirSample} from 'pandemonium/reservoir-sample';
 
 const customSample = createReservoirSample(rng);
+
+// To use the helper class
+import {ReservoirSampler} from 'pandemonium/reservoir-sample';
+
+// If RNG is not provide, will default to Math.random
+const sampler = new ReservoirSampler(10, rng);
+
+for (const value of lazyIterable) {
+  sampler.process(value);
+}
+
+// To retrieve the sample once every value has been consumed
+const sample = sampler.end();
 ```
 
 ## sampleWithReplacements
