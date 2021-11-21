@@ -4,6 +4,7 @@ export {default as fisherYatesSample} from './fisher-yates-sample';
 export {default as geometricReservoirSample} from './geometric-reservoir-sample';
 export {default as naiveSample} from './naive-sample';
 export {default as random} from './random';
+export {default as randomBoolean} from './random-boolean';
 export {default as randomFloat} from './random-float';
 export {default as randomIndex} from './random-index';
 export {default as randomString} from './random-string';

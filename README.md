@@ -19,6 +19,7 @@ npm install --save pandemonium
 
 * [choice](#choice)
 * [random](#random)
+* [randomBoolean](#randomboolean)
 * [randomFloat](#randomfloat)
 * [randomIndex](#randomindex)
 * [randomString](#randomstring)
@@ -76,6 +77,24 @@ import {createRandom} from 'pandemonium/random';
 const customRandom = createRandom(rng);
 ```
 
+## randomBoolean
+
+Function returning a random boolean.
+
+```js
+import randomBoolean from 'pandemonium/random-boolean';
+// Or
+import {randomBoolean} from 'pandemonium';
+
+randomBoolean();
+>>> true
+
+// To create your own function using custom RNG
+import {createrandomBoolean} from 'pandemonium/random-boolean';
+
+const customRandomBoolean = createRandomBoolean(rng);
+```
+
 ## randomFloat
 
 Function returning a random float between given `a` & `b`.
@@ -91,7 +110,7 @@ randomFloat(-5, 55);
 // To create your own function using custom RNG
 import {createRandomFloat} from 'pandemonium/random-float';
 
-const customRandomIndex = createRandomFloat(rng);
+const customRandomFloat = createRandomFloat(rng);
 ```
 
 ## randomIndex

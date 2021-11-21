@@ -10,6 +10,7 @@ exports.fisherYatesSample = require('./fisher-yates-sample.js');
 exports.geometricReservoirSample = require('./geometric-reservoir-sample.js');
 exports.naiveSample = require('./naive-sample.js');
 exports.random = require('./random.js');
+exports.randomBoolean = require('./random-boolean.js');
 exports.randomFloat = require('./random-float.js');
 exports.randomIndex = require('./random-index.js');
 exports.randomString = require('./random-string.js');

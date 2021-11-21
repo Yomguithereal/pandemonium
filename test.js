@@ -43,6 +43,31 @@ describe('#.createRandom', function() {
   });
 });
 
+describe('#.createRandomBoolean', function() {
+  var createRandomBoolean = lib.randomBoolean.createRandomBoolean;
+
+  it('should be possible to create a random function using supplied rng.', function() {
+    var randomBoolean = createRandomBoolean(rng());
+
+    var bools = vec(10, 0).map(function() {
+      return randomBoolean();
+    });
+
+    assert.deepStrictEqual(bools, [
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true,
+      false,
+      true,
+      false
+    ]);
+  });
+});
+
 describe('#.createRandomFloat', function() {
   var createRandomFloat = lib.randomFloat.createRandomFloat;
 
@@ -67,7 +92,6 @@ describe('#.createRandomFloat', function() {
     ]);
   });
 });
-
 
 describe('#.createRandomIndex', function() {
   var createRandomIndex = lib.randomIndex.createRandomIndex;
