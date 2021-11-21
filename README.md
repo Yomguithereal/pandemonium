@@ -411,7 +411,7 @@ const customSample = createReservoirSample(rng);
 // To use the helper class
 import {ReservoirSampler} from 'pandemonium/reservoir-sample';
 
-// If RNG is not provide, will default to Math.random
+// If RNG is not provided, will default to Math.random
 const sampler = new ReservoirSampler(10, rng);
 
 for (const value of lazyIterable) {
