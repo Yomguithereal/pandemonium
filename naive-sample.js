@@ -7,6 +7,7 @@
  * high proportion of `n`.
  */
 var createRandomIndex = require('./random-index.js').createRandomIndex;
+var utils = require('./utils.js');
 
 /**
  * Creating a function returning a sample of size n using the provided RNG.
@@ -27,26 +28,17 @@ function createNaiveSample(rng) {
   return function(n, sequence) {
     var needItems = typeof sequence !== 'number';
 
-    var i = 0;
-
     if (needItems) {
       if (n >= sequence.length) return sequence.slice();
     }
-    else {
-      if (n >= sequence) {
-        var indices = new Array(sequence);
-
-        for (i = 0; i < sequence; i++) {
-          indices[i] = i;
-        }
-
-        return indices;
-      }
+    else if (n >= sequence){
+      return utils.indices(sequence);
     }
 
     var items = new Set(),
         array = new Array(n),
         size = 0,
+        i = 0,
         index;
 
     while (items.size < n) {
