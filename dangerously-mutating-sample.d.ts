@@ -1,12 +1,12 @@
 import {RNGFunction} from './types';
 
 type DangerouslyMutatingSampleFunction<T> = (
-  n: number,
+  k: number,
   array: Array<T>
 ) => Array<T>;
 
 declare const dangerouslyMutatingSample: {
-  <T>(n: number, array: Array<T>): Array<T>;
+  <T>(k: number, array: Array<T>): Array<T>;
   createDangerouslyMutatingSample<T>(
     rng: RNGFunction
   ): DangerouslyMutatingSampleFunction<T>;

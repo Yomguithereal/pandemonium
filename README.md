@@ -339,6 +339,8 @@ This function runs in `O(k * (1 + log(n / k)))` time & `O(k)` memory using "Algo
 
 > Li, Kim-Hung. "Reservoir-sampling algorithms of time complexity O(n (1+ log (N/n)))." ACM Transactions on Mathematical Software (TOMS) 20.4 (1994): 481-493.
 
+Note that this function is able to sample indices without requiring an `O(n)` memory overhead if you just pass a length instead of a target array.
+
 ```js
 import geometricReservoirSample from 'pandemonium/geometric-reservoir-sample';
 // Or
@@ -364,6 +366,8 @@ Function returning a random sample of size `k` from the given array.
 This function works by keeping a `Set` of the already picked items and choosing a random item in the array until we have the desired `k` items.
 
 While it is a good pick for cases when `k` is little compared to the size of your array, this function will see its performance drop really fast when `k` becomes proportionally bigger.
+
+Note that this function is able to sample indices without requiring an `O(n)` memory overhead if you just pass a length instead of a target array.
 
 ```js
 import naiveSample from 'pandemonium/naive-sample';

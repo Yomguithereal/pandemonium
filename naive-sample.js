@@ -21,26 +21,26 @@ function createNaiveSample(rng) {
   /**
    * Function returning sample of size n from array.
    *
-   * @param  {number} n              - Size of the sample.
+   * @param  {number} k              - Size of the sample.
    * @param  {array|number} sequence - Target sequence or its length.
    * @return {array}                 - The random sample.
    */
-  return function (n, sequence) {
+  return function (k, sequence) {
     var needItems = typeof sequence !== 'number';
 
     if (needItems) {
-      if (n >= sequence.length) return sequence.slice();
-    } else if (n >= sequence) {
+      if (k >= sequence.length) return sequence.slice();
+    } else if (k >= sequence) {
       return utils.indices(sequence);
     }
 
     var items = new Set(),
-      array = new Array(n),
+      array = new Array(k),
       size = 0,
       i = 0,
       index;
 
-    while (items.size < n) {
+    while (items.size < k) {
       index = customRandomIndex(sequence);
 
       items.add(index);

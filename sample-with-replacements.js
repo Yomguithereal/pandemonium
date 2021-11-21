@@ -8,7 +8,7 @@
 var createRandom = require('./random.js').createRandom;
 
 /**
- * Creating a function returning a sample of size n with replacements
+ * Creating a function returning a sample of size k with replacements
  * using the provided RNG.
  *
  * @param  {function} rng - The RNG to use.
@@ -18,19 +18,19 @@ function createSampleWithReplacements(rng) {
   var customRandom = createRandom(rng);
 
   /**
-   * Function returning sample of size n from array with replacements.
+   * Function returning sample of size k from array with replacements.
    *
-   * @param  {number} n        - Size of the sample.
+   * @param  {number} k        - Size of the sample.
    * @param  {array}  sequence - Target sequence.
    * @return {array}           - The random sample.
    */
-  return function (n, sequence) {
-    var sample = new Array(n),
+  return function (k, sequence) {
+    var sample = new Array(k),
       m = sequence.length - 1,
       i,
       r;
 
-    for (i = 0; i < n; i++) {
+    for (i = 0; i < k; i++) {
       r = customRandom(0, m);
       sample[i] = sequence[r];
     }

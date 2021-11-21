@@ -1,12 +1,12 @@
 import {RNGFunction} from './types';
 
 type SampleWithReplacementsFunction<T> = (
-  n: number,
+  k: number,
   array: Array<T>
 ) => Array<T>;
 
 declare const naiveSampleWithReplacements: {
-  <T>(n: number, array: Array<T>): Array<T>;
+  <T>(k: number, array: Array<T>): Array<T>;
   createSampleWithReplacements<T>(
     rng: RNGFunction
   ): SampleWithReplacementsFunction<T>;

@@ -8,7 +8,7 @@
 var createRandom = require('./random.js').createRandom;
 
 /**
- * Creating a function returning a sample of size n using the provided RNG.
+ * Creating a function returning a sample of size k using the provided RNG.
  *
  * @param  {function} rng - The RNG to use.
  * @return {function}     - The created function.
@@ -17,17 +17,17 @@ function createDangerouslyMutatingSample(rng) {
   var customRandom = createRandom(rng);
 
   /**
-   * Function returning sample of size n from array.
+   * Function returning sample of size k from array.
    *
-   * @param  {number} n        - Size of the sample.
+   * @param  {number} k        - Size of the sample.
    * @param  {array}  sequence - Target sequence.
    * @return {array}           - The random sample.
    */
-  return function (n, sequence) {
-    if (n >= sequence.length) return sequence.slice();
+  return function (k, sequence) {
+    if (k >= sequence.length) return sequence.slice();
 
-    var result = new Array(n),
-      swaps = new Array(n),
+    var result = new Array(k),
+      swaps = new Array(k),
       lastIndex = sequence.length - 1;
 
     var index = -1,
@@ -35,7 +35,7 @@ function createDangerouslyMutatingSample(rng) {
       swap,
       r;
 
-    while (++index < n) {
+    while (++index < k) {
       r = customRandom(index, lastIndex);
       value = sequence[r];
 
