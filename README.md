@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/Yomguithereal/pandemonium.svg)](https://travis-ci.org/Yomguithereal/pandemonium)
-
+[![Build Status](https://github.com/Yomguithereal/pandemonium/workflows/Tests/badge.svg)](https://github.com/Yomguithereal/pandemonium/actions)
 # Pandemonium
 
 Pandemonium is a dead simple JavaScript/TypeScript library providing typical random-related functions such as `choice`, `sample` etc.
