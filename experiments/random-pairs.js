@@ -51,3 +51,4 @@ console.log(set);
 console.log(set.dimension);
 
 // TODO: how to sample more pairs than n?
+// TODO: we need to rely on naive sampling? (easy indexing if Math.floor(2**26.5), Math.sqrt(Number.MAX_SAFE_INTEGER))
