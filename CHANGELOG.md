@@ -2,6 +2,7 @@
 
 ## 2.1.1 (provisional)
 
+- Adding `randomPair`.
 - Improving `randomIndex` performance.
 
 ## 2.1.0

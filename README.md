@@ -16,7 +16,7 @@ npm install --save pandemonium
 
 ## Summary
 
-_Miscellaneous_
+_Typical helpers_
 
 - [choice](#choice)
 - [random](#random)
@@ -41,6 +41,10 @@ _Sampling_
 | [naiveSample](#naivesample)                             | `Ω(k)`, `O(∞)` | `O(k)` | Only useful if `k << n`.                                               |
 | [reservoirSample](#reservoirsample)                     | `O(n)`         | `O(k)` | Useful if pulling a sample from a stream.                              |
 | [sampleWithReplacements](#samplewithreplacements)       | `O(k)`         | `O(k)` | Performant but allows replacements.                                    |
+
+_Related to pairs_
+
+- [randomPair](#randompair)
 
 ## choice
 
@@ -440,6 +444,28 @@ sampleWithReplacements(3, ['apple', 'orange', 'pear', 'pineapple']);
 import {createSampleWithReplacements} from 'pandemonium/sample-with-replacements';
 
 const customSample = createSampleWithReplacements(rng);
+```
+
+## randomPair
+
+Function returning a random pair from the given array.
+
+```js
+import randomPair from 'pandemonium/random-pair';
+// Or
+import {randomPair} from 'pandemonium';
+
+randomPair(['apple', 'orange', 'pear', 'cherry']);
+>>> ['orange', 'cherry']
+
+// Alternatively, you can give the array's length instead and get a pair of indices
+randomPair(4);
+>>> [1, 3]
+
+// To create your own function using custom RNG
+import {createRandomPair} from 'pandemonium/random-pair';
+
+const customRandomPair = createRandomPair(rng);
 ```
 
 # Contribution

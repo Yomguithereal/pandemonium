@@ -16,6 +16,7 @@ export {default as random, createRandom} from './random';
 export {default as randomBoolean, createRandomBoolean} from './random-boolean';
 export {default as randomFloat, createRandomFloat} from './random-float';
 export {default as randomIndex, createRandomIndex} from './random-index';
+export {default as randomPair, createRandomPair} from './random-pair';
 export {default as randomString, createRandomString} from './random-string';
 export {
   default as reservoirSample,
