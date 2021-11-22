@@ -1,3 +1,4 @@
+/* eslint no-constant-condition: 0 */
 /**
  * Pandemonium Geometric Reservoir Sample
  * =======================================
@@ -54,12 +55,16 @@ function createGeometricReservoirSample(rng) {
     // NOTE: from this point, formulae consider i to be 1-based
     var w = exp(log(rng()) / k);
 
-    while (i <= n) {
+    if (i > n) return sample;
+
+    while (true) {
       i += floor(log(rng()) / log(1 - w)) + 1;
 
       if (i <= n) {
         sample[customRandomIndex(k)] = needItems ? sequence[i - 1] : i - 1;
         w *= exp(log(rng()) / k);
+      } else {
+        break;
       }
     }
 

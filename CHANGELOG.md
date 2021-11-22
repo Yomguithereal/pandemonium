@@ -5,6 +5,7 @@
 - Adding `randomPair`.
 - Improving `randomIndex` performance.
 - Improving `sampleWithReplacements` performance.
+- Improving `geometricReservoirSample` performance.
 
 ## 2.1.0
 
