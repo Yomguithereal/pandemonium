@@ -37,7 +37,7 @@ _Sampling_
 | ------------------------------------------------------- | --------------- | ------ | ---------------------------------------------------------------------- |
 | [dangerouslyMutatingSample](#dangerouslymutatingsample) | `O(k)`          | `O(k)` | Must be able to mutate given array to work.                            |
 | [fisherYatesSample](#fisheryatessample)                 | `O(n)`          | `O(n)` | Probably not a good idea.                                              |
-| [geometricReservoirSample](#geometricreservoirsample)   | `O(k log(n/k))` | `O(k)` | Probably the best way of sampling from a random access data structure. |
+| [geometricReservoirSample](#geometricreservoirsample)   | `O(k*log(n/k))` | `O(k)` | Probably the best way of sampling from a random access data structure. |
 | [naiveSample](#naivesample)                             | `Ω(k)`, `O(∞)`  | `O(k)` | Only useful if `k << n`.                                               |
 | [reservoirSample](#reservoirsample)                     | `O(n)`          | `O(k)` | Useful if pulling a sample from a stream.                              |
 | [sampleWithReplacements](#samplewithreplacements)       | `O(k)`          | `O(k)` | Performant but allows replacements.                                    |
