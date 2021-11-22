@@ -36,6 +36,9 @@ describe('utils', function () {
     // [0,  1,  2,  3,  4,  5,  6,  7,  8,  9 ]
     // [a0, a1, a2, a3, a4, a5, a6, a7, a8, a9]
 
+    // Row representation
+    // [0, 1, 2, 3, 4]
+
     var coords = [
       [0, 1],
       [0, 2],
