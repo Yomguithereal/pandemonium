@@ -1,9 +1,10 @@
 # Changelog
 
-## 2.1.1 (provisional)
+## 2.2.0 (provisional)
 
 - Adding `randomPair`.
 - Improving `randomIndex` performance.
+- Improving `sampleWithReplacements` performance.
 
 ## 2.1.0
 
