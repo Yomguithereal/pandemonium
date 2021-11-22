@@ -6,6 +6,7 @@ var assert = require('assert');
 var seedrandom = require('seedrandom');
 
 var lib = require('./');
+var utils = require('./utils.js');
 
 var rng = function () {
   return seedrandom('shawarma');
@@ -15,14 +16,6 @@ var vec = function (size, fill) {
   var array = new Array(size);
 
   for (var i = 0; i < size; i++) array[i] = fill;
-
-  return array;
-};
-
-var idx = function (size) {
-  var array = new Array(size);
-
-  for (var i = 0; i < size; i++) array[i] = i;
 
   return array;
 };
@@ -200,7 +193,7 @@ describe('#.createGeometricReservoirSample', function () {
 
   it('should always return coherent results.', function () {
     vec(50, 0).forEach(function () {
-      var sample = lib.geometricReservoirSample(500, idx(5000));
+      var sample = lib.geometricReservoirSample(500, utils.indices(5000));
 
       assert.strictEqual(sample.length, 500);
       assert.strictEqual(new Set(sample).size, 500);
@@ -277,7 +270,7 @@ describe('#.createReservoirSample', function () {
 
   it('should always return coherent results.', function () {
     vec(50, 0).forEach(function () {
-      var sample = lib.reservoirSample(500, idx(5000));
+      var sample = lib.reservoirSample(500, utils.indices(5000));
 
       assert.strictEqual(sample.length, 500);
       assert.strictEqual(new Set(sample).size, 500);
@@ -302,7 +295,7 @@ describe('ReservoirSampler', function () {
   it('should work as expected.', function () {
     var sampler = new lib.ReservoirSampler(10, rng());
 
-    idx(100).forEach(function (i) {
+    utils.indices(100).forEach(function (i) {
       sampler.process(i);
     });
 
@@ -318,19 +311,19 @@ describe('ReservoirSampler', function () {
 
     sampler = new lib.ReservoirSampler(15, rng());
 
-    idx(15).forEach(function (i) {
+    utils.indices(15).forEach(function (i) {
       sampler.process(i);
     });
 
-    assert.deepStrictEqual(sampler.end(), idx(15));
+    assert.deepStrictEqual(sampler.end(), utils.indices(15));
 
     sampler = new lib.ReservoirSampler(15, rng());
 
-    idx(5).forEach(function (i) {
+    utils.indices(5).forEach(function (i) {
       sampler.process(i);
     });
 
-    assert.deepStrictEqual(sampler.end(), idx(5));
+    assert.deepStrictEqual(sampler.end(), utils.indices(5));
 
     sampler = new lib.ReservoirSampler(15, rng());
 
