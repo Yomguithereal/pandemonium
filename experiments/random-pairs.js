@@ -1,5 +1,6 @@
 var MultiSet = require('mnemonist/multi-set');
 var sampling = require('../geometric-reservoir-sample');
+var utils = require('../utils');
 
 function derive(n, i) {
   var k = 1 + Math.floor(Math.random() * (n - 1));
@@ -37,18 +38,29 @@ function hashPair(pair) {
 // console.log(set);
 // console.log(set.dimension);
 
-var N = 1000000;
+//-----
 
-var set = new MultiSet();
+// var N = 1000000;
 
-for (var t = 0; t < N; t++) {
-  sampling(4, 5).forEach(function (i) {
-    set.add(hashPair([i, derive(5, i)]));
-  });
-}
+// var set = new MultiSet();
 
-console.log(set);
-console.log(set.dimension);
+// for (var t = 0; t < N; t++) {
+//   sampling(4, 5).forEach(function (i) {
+//     set.add(hashPair([i, derive(5, i)]));
+//   });
+// }
+
+// console.log(set);
+// console.log(set.dimension);
 
 // TODO: how to sample more pairs than n?
 // TODO: we need to rely on naive sampling? (easy indexing if Math.floor(2**26.5), Math.sqrt(Number.MAX_SAFE_INTEGER))
+
+var coords = utils.indices(15).map(function (i) {
+  var x = Math.floor(-0.5 + 0.5 * Math.sqrt(1 + 8 * i)) + 2;
+  var y = (x * (3 - x)) / 2 + i;
+
+  return [x - 1, y - 1];
+});
+
+coords.forEach(c => console.log(c));

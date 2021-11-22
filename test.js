@@ -60,22 +60,13 @@ describe('utils', function () {
       assert.strictEqual(l, linear.length);
     });
 
-    // it.only('should be possible to convert to triu coordinates.', function () {
-    //   var results = linear.map(function (i) {
-    //     return utils.linearIndexToTriuCoords(5, i);
-    //   });
+    it('should be possible to convert to triu coordinates.', function () {
+      var results = linear.map(function (i) {
+        return utils.linearIndexToTriuCoords(5, i);
+      });
 
-    //   assert.deepStrictEqual(results, coords);
-
-    //   results = linear.map(function (i) {
-    //     var x = Math.floor(-0.5 + 0.5 * Math.sqrt(1 + 8 * i)) + 2;
-    //     var y = (x * (3 - x)) / 2 + i;
-
-    //     return [x - 1, y - 1];
-    //   });
-
-    //   results.forEach(c => console.log(c));
-    // });
+      assert.deepStrictEqual(results, coords);
+    });
 
     it('should be possible to convert from triu coordinates.', function () {
       var results = coords.map(function (pair) {
