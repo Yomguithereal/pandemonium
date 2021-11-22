@@ -1,6 +1,10 @@
 # Changelog
 
-## 2.1.0 (provisional)
+## 2.1.1 (provisional)
+
+- Improving `randomIndex` performance.
+
+## 2.1.0
 
 - Adding `randomBoolean`.
 - Adding `ReservoirSampler`.
