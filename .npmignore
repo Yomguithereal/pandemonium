@@ -1,4 +1,5 @@
 .DS_Store
+experiments
 node_modules
 test.js
 test-types.ts
