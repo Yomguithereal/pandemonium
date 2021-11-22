@@ -1,4 +1,5 @@
 export function indices(length: number): Array<number>;
+export function triuLinearLength(n: number): number;
 export function linearIndexToTriuCoords(
   n: number,
   k: number

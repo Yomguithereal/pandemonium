@@ -51,6 +51,12 @@ describe('utils', function () {
 
     var linear = utils.indices(10);
 
+    it('should be possible to assess the linear length of a triu matrix.', function () {
+      var l = utils.triuLinearLength(5);
+
+      assert.strictEqual(l, linear.length);
+    });
+
     it('should be possible to convert to triu coordinates.', function () {
       var results = linear.map(function (i) {
         return utils.linearIndexToTriuCoords(5, i);

@@ -23,21 +23,20 @@ exports.indices = function (n) {
 };
 
 /**
- * Function returning the coordinates in an upper triangular square matrix
- * for the given linear index (we don't consider the diagonal).
+ * Function related to conversion between coordinates in an upper triangular
+ * square matrices and the equivalent linear indices (we don't consider the diagonal).
  *
  * [Reference]: https://stackoverflow.com/questions/27086195/linear-index-upper-triangular-matrix
- *
- * @param  {number} k - Linear index to convert to coordinates.
- * @return {Array}    - Coordinates pair.
  */
+exports.triuLinearLength = function (n) {
+  return (n * (n - 1)) / 2;
+};
 exports.linearIndexToTriuCoords = function (n, k) {
   var i = n - 2 - Math.floor(Math.sqrt(-8 * k + 4 * n * (n - 1) - 7) / 2 - 0.5);
   var j = k + i + 1 - (n * (n - 1)) / 2 + ((n - i) * (n - i - 1)) / 2;
 
   return [i, j];
 };
-
 exports.triuCoordsToLinearIndex = function (n, i, j) {
   return (n * (n - 1)) / 2 - ((n - i) * (n - i - 1)) / 2 + j - i - 1;
 };
