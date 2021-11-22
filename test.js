@@ -20,6 +20,55 @@ var vec = function (size, fill) {
   return array;
 };
 
+describe('utils', function () {
+  describe('triu conversions', function () {
+    // n = 5
+
+    // Matrix representation
+    //    0. 1.  2.  3.  4.
+    // 0. 0  a0  a1  a2  a3
+    // 1. 0   0  a4  a5  a6
+    // 2  0   0   0  a7  a8
+    // 3. 0   0   0   0  a9
+    // 4. 0   0   0   0   0
+
+    // Linear representation
+    // [0,  1,  2,  3,  4,  5,  6,  7,  8,  9 ]
+    // [a0, a1, a2, a3, a4, a5, a6, a7, a8, a9]
+
+    var coords = [
+      [0, 1],
+      [0, 2],
+      [0, 3],
+      [0, 4],
+      [1, 2],
+      [1, 3],
+      [1, 4],
+      [2, 3],
+      [2, 4],
+      [3, 4]
+    ];
+
+    var linear = utils.indices(10);
+
+    it('should be possible to convert to triu coordinates.', function () {
+      var results = linear.map(function (i) {
+        return utils.linearIndexToTriuCoords(5, i);
+      });
+
+      assert.deepStrictEqual(results, coords);
+    });
+
+    it('should be possible to convert from triu coordinates.', function () {
+      var results = coords.map(function (pair) {
+        return utils.triuCoordsToLinearIndex(5, pair[0], pair[1]);
+      });
+
+      assert.deepStrictEqual(results, linear);
+    });
+  });
+});
+
 describe('#.createRandom', function () {
   var createRandom = lib.createRandom;
 
