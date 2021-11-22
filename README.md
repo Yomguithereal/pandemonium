@@ -450,6 +450,8 @@ const customSample = createSampleWithReplacements(rng);
 
 Function returning a random pair from the given array.
 
+Note that this function will return unordered pairs (i.e. `[0, 1]` and `[1, 0]` are to be considered the same) and will not return pairs containing twice the same item (i.e. `[0, 0]`).
+
 ```js
 import randomPair from 'pandemonium/random-pair';
 // Or
