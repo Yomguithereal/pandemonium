@@ -1,7 +1,8 @@
-var MultiSet = require('mnemonist/multi-set');
-var sampling = require('../geometric-reservoir-sample');
 var utils = require('../utils');
 
+/**
+ * Helpers.
+ */
 function derive(n, i) {
   var k = 1 + Math.floor(Math.random() * (n - 1));
   var j = (i + k) % n;
@@ -9,7 +10,20 @@ function derive(n, i) {
   return j;
 }
 
-function randomOrderedPair(n) {
+function swapPair(pair) {
+  var tmp = pair[0];
+  pair[0] = pair[1];
+  pair[1] = tmp;
+}
+
+function hashPair(pair) {
+  return pair[0] + ',' + pair[1];
+}
+
+/**
+ * Functions.
+ */
+function randomOrderedPairByDerivation(n) {
   var i = Math.floor(Math.random() * n);
   var k = 1 + Math.floor(Math.random() * (n - 1));
   var j = (i + k) % n;
@@ -17,50 +31,71 @@ function randomOrderedPair(n) {
   return [i, j];
 }
 
-function randomUnorderedPair(n) {
-  var c = randomOrderedPair(n);
+function randomUnorderedPairByDerivation(n) {
+  var c = randomOrderedPairByDerivation(n);
 
-  if (c[0] > c[1]) return [c[1], c[0]]; // Swap for perf
+  if (c[0] > c[1]) swapPair(c);
 
   return c;
 }
 
-function hashPair(pair) {
-  return pair[0] + ',' + pair[1];
+function randomUnorderedPairTriu(n) {
+  const L = utils.triuLinearLength(n);
+
+  return utils.linearIndexToTriuCoordsFast(Math.floor(Math.random() * L));
 }
 
-// var N = 10000000;
+function randomOrderedPairTriu(n) {
+  var c = randomUnorderedPairTriu(n);
 
-// var set = new MultiSet();
+  if (Math.random() < 0.5) swapPair(c);
 
-// for (var t = 0; t < N; t++) set.add(hashPair(randomUnorderedPair(5)));
+  return c;
+}
 
-// console.log(set);
-// console.log(set.dimension);
+function randomOrderedPairNaive(n) {
+  var i = Math.floor(Math.random() * n);
 
-//-----
+  var j;
 
-// var N = 1000000;
+  do {
+    j = Math.floor(Math.random() * n);
+  } while (i === j);
 
-// var set = new MultiSet();
+  return [i, j];
+}
 
-// for (var t = 0; t < N; t++) {
-//   sampling(4, 5).forEach(function (i) {
-//     set.add(hashPair([i, derive(5, i)]));
-//   });
-// }
+function randomUnorderedPairNaive(n) {
+  var c = randomOrderedPairNaive(n);
 
-// console.log(set);
-// console.log(set.dimension);
+  if (c[0] > c[1]) swapPair(c);
 
-// TODO: how to sample more pairs than n?
-// TODO: we need to rely on naive sampling? (easy indexing if Math.floor(2**26.5), Math.sqrt(Number.MAX_SAFE_INTEGER))
+  return c;
+}
 
-var coords = utils.indices(15).map(function (i) {
-  var x = Math.floor(-0.5 + 0.5 * Math.sqrt(1 + 8 * i)) + 2;
-  var y = (x * (3 - x)) / 2 + i;
+/**
+ * Benchmark.
+ */
+function bench(fn) {
+  var name = fn.name;
+  var pair;
 
-  return [x - 1, y - 1];
-});
+  var T = 100000000;
+  var N = 20000;
 
-coords.forEach(c => console.log(c));
+  console.time(name);
+  for (var i = 0; i < T; i++) {
+    pair = fn(N);
+  }
+  console.timeEnd(name);
+}
+
+console.log('\nOrdered');
+bench(randomOrderedPairByDerivation);
+bench(randomOrderedPairTriu);
+bench(randomOrderedPairNaive);
+
+console.log('\nUnordered');
+bench(randomUnorderedPairByDerivation);
+bench(randomUnorderedPairTriu);
+bench(randomUnorderedPairNaive);
