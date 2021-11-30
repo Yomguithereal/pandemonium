@@ -26,7 +26,9 @@ exports.indices = function (n) {
  * Function related to conversion between coordinates in an upper triangular
  * square matrices and the equivalent linear indices (we don't consider the diagonal).
  *
- * [Reference]: https://stackoverflow.com/questions/27086195/linear-index-upper-triangular-matrix
+ * [References]:
+ * https://stackoverflow.com/questions/27086195/linear-index-upper-triangular-matrix
+ * https://gist.github.com/PhDP/2358809
  */
 exports.triuLinearLength = function (n) {
   return (n * (n - 1)) / 2;
@@ -39,4 +41,10 @@ exports.linearIndexToTriuCoords = function (n, k) {
 };
 exports.triuCoordsToLinearIndex = function (n, i, j) {
   return (n * (n - 1)) / 2 - ((n - i) * (n - i - 1)) / 2 + j - i - 1;
+};
+exports.linearIndexToTriuCoordsFast = function (k) {
+  var i = Math.floor(-0.5 + 0.5 * Math.sqrt(1 + 8 * k)) + 2;
+  var j = (i * (3 - i)) / 2 + k;
+
+  return [i - 1, j - 1];
 };

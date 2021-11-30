@@ -75,6 +75,47 @@ describe('utils', function () {
 
       assert.deepStrictEqual(results, linear);
     });
+
+    it('should be possible to convert efficiently to triu coordinates.', function () {
+      var results = linear.map(function (i) {
+        return utils.linearIndexToTriuCoordsFast(i);
+      });
+
+      assert.deepStrictEqual(results, [
+        [1, 0],
+        [2, 0],
+        [2, 1],
+        [3, 0],
+        [3, 1],
+        [3, 2],
+        [4, 0],
+        [4, 1],
+        [4, 2],
+        [4, 3]
+      ]);
+
+      results = utils.indices(utils.triuLinearLength(6)).map(function (i) {
+        return utils.linearIndexToTriuCoordsFast(i);
+      });
+
+      assert.deepStrictEqual(results, [
+        [1, 0],
+        [2, 0],
+        [2, 1],
+        [3, 0],
+        [3, 1],
+        [3, 2],
+        [4, 0],
+        [4, 1],
+        [4, 2],
+        [4, 3],
+        [5, 0],
+        [5, 1],
+        [5, 2],
+        [5, 3],
+        [5, 4]
+      ]);
+    });
   });
 });
 

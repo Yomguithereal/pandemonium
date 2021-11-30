@@ -9,3 +9,4 @@ export function triuCoordsToLinearIndex(
   i: number,
   j: number
 ): number;
+export function linearIndexToTriuCoordsFast(k: number);
