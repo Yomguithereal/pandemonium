@@ -1,19 +1,19 @@
 /**
- * Pandemonium Random Pair
- * ========================
+ * Pandemonium Random Ordered Pair
+ * ================================
  *
- * Random pair function.
+ * Random ordered pair function.
  */
 
 /**
- * Creating a function returning a random pair of the given array.
+ * Creating a function returning a random ordered pair of the given array.
  *
  * @param  {function} rng - RNG function returning uniform random.
  * @return {function}     - The created function.
  */
-function createRandomPair(rng) {
+function createRandomOrderedPair(rng) {
   /**
-   * Random pair function.
+   * Random ordered pair function.
    *
    * @param  {array|number}  array - Target array or length of the array.
    * @return {number}
@@ -25,21 +25,12 @@ function createRandomPair(rng) {
 
     if (n < 2)
       throw new Error(
-        'pandemonium/random-pair: cannot draw a random pair for length < 2.'
+        'pandemonium/random-ordered-pair: cannot draw a random ordered pair for length < 2.'
       );
 
     var i = Math.floor(rng() * n);
     var k = 1 + Math.floor(rng() * (n - 1));
     var j = (i + k) % n;
-
-    var tmp;
-
-    // Swapping coordinates to produce an unordered pair
-    if (i > j) {
-      tmp = i;
-      i = j;
-      j = tmp;
-    }
 
     if (needItems) return [array[i], array[j]];
 
@@ -48,12 +39,12 @@ function createRandomPair(rng) {
 }
 
 /**
- * Default random pair using `Math.random`.
+ * Default random ordered pair using `Math.random`.
  */
-var randomPair = createRandomPair(Math.random);
+var randomOrderedPair = createRandomOrderedPair(Math.random);
 
 /**
  * Exporting.
  */
-randomPair.createRandomPair = createRandomPair;
-module.exports = randomPair;
+randomOrderedPair.createRandomOrderedPair = createRandomOrderedPair;
+module.exports = randomOrderedPair;

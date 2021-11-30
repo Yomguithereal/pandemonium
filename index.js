@@ -14,6 +14,7 @@ var randomBoolean = require('./random-boolean.js');
 var randomFloat = require('./random-float.js');
 var randomIndex = require('./random-index.js');
 var randomPair = require('./random-pair.js');
+var randomOrderedPair = require('./random-ordered-pair.js');
 var randomString = require('./random-string.js');
 var reservoirSample = require('./reservoir-sample.js');
 var sampleWithReplacements = require('./sample-with-replacements.js');
@@ -53,6 +54,9 @@ exports.createRandomIndex = randomIndex.createRandomIndex;
 
 exports.randomPair = randomPair;
 exports.createRandomPair = randomPair.createRandomPair;
+
+exports.randomOrderedPair = randomOrderedPair;
+exports.createRandomOrderedPair = randomOrderedPair.createRandomOrderedPair;
 
 exports.randomString = randomString;
 exports.createRandomString = randomString.createRandomString;

@@ -1008,3 +1008,68 @@ describe('#.createRandomPair', function () {
     );
   });
 });
+
+describe('#.createOrderedRandomPair', function () {
+  it('should throw when working on length < 2.', function () {
+    var randomOrderedPair = lib.createRandomOrderedPair(rng());
+
+    assert.throws(function () {
+      randomOrderedPair([0]);
+    });
+
+    assert.throws(function () {
+      randomOrderedPair(0);
+    });
+  });
+
+  it('should properly return valid ordered pairs.', function () {
+    var randomOrderedPair = lib.createRandomOrderedPair(rng());
+
+    var target = ['apple', 'pear', 'tomato', 'olive'];
+
+    var test = [
+      ['pear', 'tomato'],
+      ['pear', 'olive'],
+      ['tomato', 'olive'],
+      ['pear', 'apple'],
+      ['pear', 'apple'],
+      ['tomato', 'apple'],
+      ['olive', 'tomato'],
+      ['tomato', 'apple'],
+      ['olive', 'tomato'],
+      ['apple', 'olive']
+    ];
+
+    var pairs = vec(10).map(function () {
+      return randomOrderedPair(target);
+    });
+
+    assert.deepStrictEqual(pairs, test);
+
+    randomOrderedPair = lib.createRandomOrderedPair(rng());
+
+    pairs = vec(10).map(function () {
+      return randomOrderedPair(4);
+    });
+
+    assert.deepStrictEqual(pairs, [
+      [1, 2],
+      [1, 3],
+      [2, 3],
+      [1, 0],
+      [1, 0],
+      [2, 0],
+      [3, 2],
+      [2, 0],
+      [3, 2],
+      [0, 3]
+    ]);
+
+    assert.deepStrictEqual(
+      pairs.map(function (pair) {
+        return [target[pair[0]], target[pair[1]]];
+      }),
+      test
+    );
+  });
+});

@@ -3,6 +3,7 @@
 ## 2.2.0 (provisional)
 
 - Adding `randomPair`.
+- Adding `randomOrderedPair`.
 - Improving `randomIndex` performance.
 - Improving `sampleWithReplacements` performance.
 - Improving `geometricReservoirSample` performance.

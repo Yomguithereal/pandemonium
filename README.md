@@ -45,6 +45,7 @@ _Sampling_
 _Related to pairs_
 
 - [randomPair](#randompair)
+- [randomOrderedPair](#randomorderedpair)
 
 ## choice
 
@@ -468,6 +469,28 @@ randomPair(4);
 import {createRandomPair} from 'pandemonium/random-pair';
 
 const customRandomPair = createRandomPair(rng);
+```
+
+## randomOrderedPair
+
+Function returning a random ordered pair (i.e. `[0, 1]` won't be considered to be the same as `[1, 0]`) from the given array.
+
+```js
+import randomOrderedPair from 'pandemonium/random-ordered-pair';
+// Or
+import {randomOrderedPair} from 'pandemonium';
+
+randomOrderedPair(['apple', 'orange', 'pear', 'cherry']);
+>>> ['cherry', 'apple']
+
+// Alternatively, you can give the array's length instead and get a pair of indices
+randomOrderedPair(4);
+>>> [3, 0]
+
+// To create your own function using custom RNG
+import {createRandomOrderedPair} from 'pandemonium/random-ordered-pair';
+
+const customRandomPair = createRandomOrderedPair(rng);
 ```
 
 # Contribution
