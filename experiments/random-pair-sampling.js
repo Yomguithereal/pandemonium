@@ -1,5 +1,8 @@
 var randomOrderedPair = require('../random-ordered-pair.js');
+var randomPair = require('../random-pair.js');
 var utils = require('../utils.js');
+
+var {exp, log, floor} = Math;
 
 /**
  * Helpers.
@@ -11,6 +14,26 @@ function hashPair(pair) {
 /**
  * Functions.
  */
+function sampleUnorderedPairsNaive(n, k) {
+  var alreadySeen = new Set();
+  var pairs = new Array(k);
+
+  var i = 0;
+  var candidate, key;
+
+  while (i !== k) {
+    var candidate = randomPair(n);
+    var key = candidate[0] * n + candidate[1];
+
+    if (alreadySeen.has(key)) continue;
+
+    alreadySeen.add(key);
+    pairs[i++] = candidate;
+  }
+
+  return pairs;
+}
+
 function sampleOrderedPairsNaive(n, k) {
   var alreadySeen = new Set();
   var pairs = new Array(k);
@@ -31,6 +54,32 @@ function sampleOrderedPairsNaive(n, k) {
   return pairs;
 }
 
+function sampleUnorderedPairsGeometric(l, k) {
+  var n = utils.triuLinearLength(l);
+  var sample = new Array(k);
+  var i;
+
+  for (i = 0; i < k; i++) sample[i] = utils.linearIndexToTriuCoordsFast(i);
+
+  // NOTE: from this point, formulae consider i to be 1-based
+  var w = exp(log(Math.random()) / k);
+
+  if (i > n) return sample;
+
+  while (true) {
+    i += floor(log(Math.random()) / log(1 - w)) + 1;
+
+    if (i <= n) {
+      sample[floor(k * Math.random())] = utils.linearIndexToTriuCoords(i - 1);
+      w *= exp(log(Math.random()) / k);
+    } else {
+      break;
+    }
+  }
+
+  return sample;
+}
+
 /**
  * Benchmark.
  */
@@ -42,9 +91,11 @@ function bench(fn) {
   var pairs;
 
   var T = 100000;
-  var N = 200000;
-  // var N = 5;
+
+  var N = 20000;
   var P = 500;
+
+  // var N = 5;
   // var P = 5;
 
   console.time(name);
@@ -61,3 +112,5 @@ console.log('\nOrdered');
 bench(sampleOrderedPairsNaive);
 
 console.log('\nUnordered');
+bench(sampleUnorderedPairsNaive);
+bench(sampleUnorderedPairsGeometric);
