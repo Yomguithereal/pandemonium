@@ -32,11 +32,13 @@ function randomOrderedPairByDerivation(n) {
 }
 
 function randomUnorderedPairByDerivation(n) {
-  var c = randomOrderedPairByDerivation(n);
+  var i = Math.floor(Math.random() * n);
+  var k = 1 + Math.floor(Math.random() * (n - 1));
+  var j = (i + k) % n;
 
-  if (c[0] > c[1]) swapPair(c);
+  if (i > j) return [j, i];
 
-  return c;
+  return [i, j];
 }
 
 function randomUnorderedPairTriu(n) {
@@ -66,17 +68,26 @@ function randomOrderedPairNaive(n) {
 }
 
 function randomUnorderedPairNaive(n) {
-  var c = randomOrderedPairNaive(n);
+  var i = Math.floor(Math.random() * n);
 
-  if (c[0] > c[1]) swapPair(c);
+  var j;
 
-  return c;
+  do {
+    j = Math.floor(Math.random() * n);
+  } while (i === j);
+
+  if (i > j) return [j, i];
+
+  return [i, j];
 }
 
 /**
  * Benchmark.
  */
 function bench(fn) {
+  // var MultiSet = require('mnemonist/multi-set');
+  // var set = new MultiSet();
+
   var name = fn.name;
   var pair;
 
@@ -86,8 +97,11 @@ function bench(fn) {
   console.time(name);
   for (var i = 0; i < T; i++) {
     pair = fn(N);
+    // set.add(hashPair(pair));
   }
   console.timeEnd(name);
+
+  // console.log(set, set.dimension);
 }
 
 console.log('\nOrdered');
