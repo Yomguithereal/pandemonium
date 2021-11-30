@@ -963,14 +963,19 @@ describe('#.createRandomPair', function () {
     var target = ['apple', 'pear', 'tomato', 'olive'];
 
     var test = [
-      ['apple', 'olive'],
+      ['pear', 'tomato'],
+      ['pear', 'olive'],
+      ['tomato', 'olive'],
+      ['apple', 'pear'],
+      ['apple', 'pear'],
       ['apple', 'tomato'],
+      ['tomato', 'olive'],
       ['apple', 'tomato'],
-      ['apple', 'olive'],
-      ['pear', 'tomato']
+      ['tomato', 'olive'],
+      ['apple', 'olive']
     ];
 
-    var pairs = vec(5).map(function () {
+    var pairs = vec(10).map(function () {
       return randomPair(target);
     });
 
@@ -978,16 +983,21 @@ describe('#.createRandomPair', function () {
 
     randomPair = lib.createRandomPair(rng());
 
-    pairs = vec(5).map(function () {
+    pairs = vec(10).map(function () {
       return randomPair(4);
     });
 
     assert.deepStrictEqual(pairs, [
-      [0, 3],
+      [1, 2],
+      [1, 3],
+      [2, 3],
+      [0, 1],
+      [0, 1],
       [0, 2],
+      [2, 3],
       [0, 2],
-      [0, 3],
-      [1, 2]
+      [2, 3],
+      [0, 3]
     ]);
 
     assert.deepStrictEqual(

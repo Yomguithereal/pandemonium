@@ -4,7 +4,6 @@
  *
  * Random pair function.
  */
-var utils = require('./utils.js');
 
 /**
  * Creating a function returning a random pair of the given array.
@@ -29,14 +28,22 @@ function createRandomPair(rng) {
         'pandemonium/random-pair: cannot draw a random pair for length < 2.'
       );
 
-    var t = utils.triuLinearLength(n);
-    var k = Math.floor(rng() * t);
+    var i = Math.floor(rng() * n);
+    var k = 1 + Math.floor(rng() * (n - 1));
+    var j = (i + k) % n;
 
-    var coords = utils.linearIndexToTriuCoords(n, k);
+    var tmp;
 
-    if (needItems) return [array[coords[0]], array[coords[1]]];
+    // Swapping coordinates to produce an unordered pair
+    if (i > j) {
+      tmp = i;
+      i = j;
+      j = tmp;
+    }
 
-    return coords;
+    if (needItems) return [array[i], array[j]];
+
+    return [i, j];
   };
 }
 
