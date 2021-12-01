@@ -24,6 +24,8 @@ _Typical helpers_
 - [randomFloat](#randomfloat)
 - [randomIndex](#randomindex)
 - [randomString](#randomstring)
+- [randomPair](#randompair)
+- [randomOrderedPair](#randomorderedpair)
 - [shuffle](#shuffle)
 - [shuffleInPlace](#shuffleinplace)
 - [weightedChoice](#weightedchoice)
@@ -41,11 +43,6 @@ _Sampling_
 | [naiveSample](#naivesample)                             | `Ω(k)`, `O(∞)`  | `O(k)` | Only useful if `k << n`.                                               |
 | [reservoirSample](#reservoirsample)                     | `O(n)`          | `O(k)` | Useful if pulling a sample from a stream.                              |
 | [sampleWithReplacements](#samplewithreplacements)       | `O(k)`          | `O(k)` | Performant but allows replacements.                                    |
-
-_Related to pairs_
-
-- [randomPair](#randompair)
-- [randomOrderedPair](#randomorderedpair)
 
 ## choice
 
@@ -165,6 +162,52 @@ const customRandomString = createRandomString(rng);
 
 // If you need a custom alphabet
 const customRandomString = createRandomString(rng, 'ATGC');
+```
+
+## randomPair
+
+Function returning a random pair from the given array.
+
+Note that this function will return unordered pairs (i.e. `[0, 1]` and `[1, 0]` are to be considered the same) and will not return pairs containing twice the same item (i.e. `[0, 0]`).
+
+```js
+import randomPair from 'pandemonium/random-pair';
+// Or
+import {randomPair} from 'pandemonium';
+
+randomPair(['apple', 'orange', 'pear', 'cherry']);
+>>> ['orange', 'cherry']
+
+// Alternatively, you can give the array's length instead and get a pair of indices
+randomPair(4);
+>>> [1, 3]
+
+// To create your own function using custom RNG
+import {createRandomPair} from 'pandemonium/random-pair';
+
+const customRandomPair = createRandomPair(rng);
+```
+
+## randomOrderedPair
+
+Function returning a random ordered pair (i.e. `[0, 1]` won't be considered to be the same as `[1, 0]`) from the given array.
+
+```js
+import randomOrderedPair from 'pandemonium/random-ordered-pair';
+// Or
+import {randomOrderedPair} from 'pandemonium';
+
+randomOrderedPair(['apple', 'orange', 'pear', 'cherry']);
+>>> ['cherry', 'apple']
+
+// Alternatively, you can give the array's length instead and get a pair of indices
+randomOrderedPair(4);
+>>> [3, 0]
+
+// To create your own function using custom RNG
+import {createRandomOrderedPair} from 'pandemonium/random-ordered-pair';
+
+const customRandomPair = createRandomOrderedPair(rng);
 ```
 
 ## shuffle
@@ -445,52 +488,6 @@ sampleWithReplacements(3, ['apple', 'orange', 'pear', 'pineapple']);
 import {createSampleWithReplacements} from 'pandemonium/sample-with-replacements';
 
 const customSample = createSampleWithReplacements(rng);
-```
-
-## randomPair
-
-Function returning a random pair from the given array.
-
-Note that this function will return unordered pairs (i.e. `[0, 1]` and `[1, 0]` are to be considered the same) and will not return pairs containing twice the same item (i.e. `[0, 0]`).
-
-```js
-import randomPair from 'pandemonium/random-pair';
-// Or
-import {randomPair} from 'pandemonium';
-
-randomPair(['apple', 'orange', 'pear', 'cherry']);
->>> ['orange', 'cherry']
-
-// Alternatively, you can give the array's length instead and get a pair of indices
-randomPair(4);
->>> [1, 3]
-
-// To create your own function using custom RNG
-import {createRandomPair} from 'pandemonium/random-pair';
-
-const customRandomPair = createRandomPair(rng);
-```
-
-## randomOrderedPair
-
-Function returning a random ordered pair (i.e. `[0, 1]` won't be considered to be the same as `[1, 0]`) from the given array.
-
-```js
-import randomOrderedPair from 'pandemonium/random-ordered-pair';
-// Or
-import {randomOrderedPair} from 'pandemonium';
-
-randomOrderedPair(['apple', 'orange', 'pear', 'cherry']);
->>> ['cherry', 'apple']
-
-// Alternatively, you can give the array's length instead and get a pair of indices
-randomOrderedPair(4);
->>> [3, 0]
-
-// To create your own function using custom RNG
-import {createRandomOrderedPair} from 'pandemonium/random-ordered-pair';
-
-const customRandomPair = createRandomOrderedPair(rng);
 ```
 
 # Contribution
