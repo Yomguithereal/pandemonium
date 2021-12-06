@@ -75,9 +75,9 @@ function createCachedWeightedRandomIndex(rngOrOptions, sequence) {
   // Computing the cumulative density function of the sequence (CDF)
   var l = sequence.length;
 
-  var CDF = new Float64Array(l),
-    total = 0,
-    weight;
+  var CDF = new Float64Array(l);
+  var total = 0;
+  var weight;
 
   for (var i = 0; i < l; i++) {
     weight = getWeight ? getWeight(sequence[i], i) : sequence[i];
@@ -131,9 +131,9 @@ function createWeightedRandomIndex(rngOrOptions) {
    * @return {number}
    */
   return function (sequence) {
-    var total = 0,
-      winner = 0,
-      weight;
+    var total = 0;
+    var winner = 0;
+    var weight;
 
     for (var i = 0, l = sequence.length; i < l; i++) {
       weight = getWeight ? getWeight(sequence[i], i) : sequence[i];
