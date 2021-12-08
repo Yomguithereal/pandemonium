@@ -48,3 +48,19 @@ exports.linearIndexToTriuCoordsFast = function (k) {
 
   return [i - 1, j - 1];
 };
+
+/**
+ * Function returning a unique key for a pair of numbers.
+ */
+var MAX_SAFE_ROOT = Math.floor(Math.sqrt(Number.MAX_SAFE_INTEGER));
+
+exports.createPairKeyFunction = function (n) {
+  if (n <= MAX_SAFE_ROOT)
+    return function (i, j) {
+      return j * n + i;
+    };
+
+  return function (i, j) {
+    return i + ',' + j;
+  };
+};

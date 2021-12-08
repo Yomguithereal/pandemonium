@@ -10,3 +10,6 @@ export function triuCoordsToLinearIndex(
   j: number
 ): number;
 export function linearIndexToTriuCoordsFast(k: number);
+export function createPairKeyFunction(
+  n: number
+): (i: number, j: number) => string | number;

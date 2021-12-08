@@ -117,6 +117,32 @@ describe('utils', function () {
       ]);
     });
   });
+
+  describe('pair keys', function () {
+    it('should return correct numerical keys.', function () {
+      var matrix = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8]
+      ];
+
+      var key = utils.createPairKeyFunction(matrix[0].length);
+
+      matrix.forEach(function (row, j) {
+        row.forEach(function (linearIndex, i) {
+          assert.strictEqual(key(i, j), linearIndex);
+        });
+      });
+    });
+
+    it('should fallback to string keys when numerical precision is overflown.', function () {
+      var n = 94906265 * 2;
+
+      var key = utils.createPairKeyFunction(n);
+
+      assert.strictEqual(key(4, 7), '4,7');
+    });
+  });
 });
 
 describe('#.createRandom', function () {
