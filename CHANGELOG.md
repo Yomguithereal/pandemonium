@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.0 (provisional)
+
+- Adding `samplePairs`.
+
 ## 2.2.0
 
 - Adding `randomPair`.

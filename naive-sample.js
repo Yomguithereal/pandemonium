@@ -10,7 +10,7 @@ var createRandomIndex = require('./random-index.js').createRandomIndex;
 var utils = require('./utils.js');
 
 /**
- * Creating a function returning a sample of size n using the provided RNG.
+ * Creating a function returning a sample of size k using the provided RNG.
  *
  * @param  {function} rng - The RNG to use.
  * @return {function}     - The created function.
@@ -19,7 +19,7 @@ function createNaiveSample(rng) {
   var customRandomIndex = createRandomIndex(rng);
 
   /**
-   * Function returning sample of size n from array.
+   * Function returning sample of size k from array.
    *
    * @param  {number} k              - Size of the sample.
    * @param  {array|number} sequence - Target sequence or its length.

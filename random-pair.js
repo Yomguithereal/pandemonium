@@ -29,8 +29,8 @@ function createRandomPair(rng) {
       );
 
     var i = Math.floor(rng() * n);
-    var k = 1 + Math.floor(rng() * (n - 1));
-    var j = (i + k) % n;
+    var o = 1 + Math.floor(rng() * (n - 1));
+    var j = (i + o) % n;
 
     var tmp;
 

@@ -27,6 +27,7 @@ export {
   createReservoirSample,
   ReservoirSampler
 } from './reservoir-sample';
+export {default as samplePairs, createSamplePairs} from './sample-pairs';
 export {
   default as sampleWithReplacements,
   createSampleWithReplacements

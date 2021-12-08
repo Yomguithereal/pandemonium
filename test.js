@@ -1099,3 +1099,50 @@ describe('#.createOrderedRandomPair', function () {
     );
   });
 });
+
+describe('#.createSamplePairs', function () {
+  it('should return a correct sample.', function () {
+    var samplePairs = lib.createSamplePairs(rng());
+
+    var target = [
+      'apple',
+      'pear',
+      'tomato',
+      'olive',
+      'watermelon',
+      'orange',
+      'strawberry'
+    ];
+
+    var expected = [
+      ['tomato', 'watermelon'],
+      ['tomato', 'orange'],
+      ['olive', 'orange'],
+      ['pear', 'olive'],
+      ['pear', 'tomato']
+    ];
+
+    var sample = samplePairs(5, target);
+
+    assert.deepStrictEqual(sample, expected);
+
+    samplePairs = lib.createSamplePairs(rng());
+
+    sample = samplePairs(5, target.length);
+
+    assert.deepStrictEqual(
+      sample.map(function (pair) {
+        return [target[pair[0]], target[pair[1]]];
+      }),
+      expected
+    );
+  });
+
+  it('should return unordered pairs.', function () {
+    var pairs = lib.samplePairs(25, 1000);
+
+    pairs.forEach(function (pair) {
+      assert(pair[0] < pair[1]);
+    });
+  });
+});
