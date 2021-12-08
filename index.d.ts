@@ -27,6 +27,11 @@ export {
   createReservoirSample,
   ReservoirSampler
 } from './reservoir-sample';
+export {
+  default as weightedReservoirSample,
+  createWeightedReservoirSample,
+  WeightedReservoirSampler
+} from './weighted-reservoir-sample';
 export {default as samplePairs, createSamplePairs} from './sample-pairs';
 export {
   default as sampleOrderedPairs,

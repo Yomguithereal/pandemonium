@@ -2,6 +2,7 @@
 
 ## 2.3.0 (provisional)
 
+- Adding `weightedReservoirSample`.
 - Adding `samplePairs`.
 - Adding `sampleOrderedPairs`.
 

@@ -35,16 +35,17 @@ _Sampling_
 
 `n` being the number of items in the sampled sequence and `k` being the number of items to be sampled.
 
-| Method                                                  | Time            | Memory | Note                                                                   |
-| ------------------------------------------------------- | --------------- | ------ | ---------------------------------------------------------------------- |
-| [dangerouslyMutatingSample](#dangerouslymutatingsample) | `O(k)`          | `O(k)` | Must be able to mutate given array to work.                            |
-| [fisherYatesSample](#fisheryatessample)                 | `O(n)`          | `O(n)` | Probably not a good idea.                                              |
-| [geometricReservoirSample](#geometricreservoirsample)   | `O(k*log(n/k))` | `O(k)` | Probably the best way of sampling from a random access data structure. |
-| [naiveSample](#naivesample)                             | `Ω(k)`, `O(∞)`  | `O(k)` | Only useful if `k << n`.                                               |
-| [reservoirSample](#reservoirsample)                     | `O(n)`          | `O(k)` | Useful if pulling a sample from a stream.                              |
-| [sampleWithReplacements](#samplewithreplacements)       | `O(k)`          | `O(k)` | Performant but allows replacements.                                    |
-| [samplePairs](#samplepairs)                             | `Ω(k)`, `O(∞)`  | `O(k)` | Variant of [naiveSample](#naivesample) for unordered pairs.            |
-| [sampleOrderedPairs](#sampleorderedpairs)               | `Ω(k)`, `O(∞)`  | `O(k)` | Variant of [naiveSample](#naivesample) for ordered pairs.              |
+| Method                                                  | Time            | Memory | Note                                                                        |
+| ------------------------------------------------------- | --------------- | ------ | --------------------------------------------------------------------------- |
+| [dangerouslyMutatingSample](#dangerouslymutatingsample) | `O(k)`          | `O(k)` | Must be able to mutate given array to work.                                 |
+| [fisherYatesSample](#fisheryatessample)                 | `O(n)`          | `O(n)` | Probably not a good idea.                                                   |
+| [geometricReservoirSample](#geometricreservoirsample)   | `O(k*log(n/k))` | `O(k)` | Probably the best way of sampling from a random access data structure.      |
+| [naiveSample](#naivesample)                             | `Ω(k)`, `O(∞)`  | `O(k)` | Only useful if `k << n`.                                                    |
+| [reservoirSample](#reservoirsample)                     | `O(n)`          | `O(k)` | Useful if pulling a sample from a stream.                                   |
+| [sampleWithReplacements](#samplewithreplacements)       | `O(k)`          | `O(k)` | Performant but allows replacements.                                         |
+| [samplePairs](#samplepairs)                             | `Ω(k)`, `O(∞)`  | `O(k)` | Variant of [naiveSample](#naivesample) for unordered pairs.                 |
+| [sampleOrderedPairs](#sampleorderedpairs)               | `Ω(k)`, `O(∞)`  | `O(k)` | Variant of [naiveSample](#naivesample) for ordered pairs.                   |
+| [weightedReservoirSample](#weightedreservoirsample)     | `O(n)`          | `O(k)` | Variant of [reservoirSample](#reservoirsample) working with weighted items. |
 
 ## choice
 
@@ -443,7 +444,7 @@ Function returning a random sample of size `k` from the given array.
 
 This function runs in `O(n)` time and `O(k)` memory.
 
-A helper class working with only `O(k)` memory is also available if you need to work on a stream, iterator etc.
+A helper class working able to work on an arbitrary stream of data that does not need to fit into memory is also available if you need it.
 
 ```js
 import reservoirSample from 'pandemonium/reservoir-sample';
@@ -456,7 +457,7 @@ reservoirSample(2, ['apple', 'orange', 'pear', 'pineapple']);
 // To create your own function using custom RNG
 import {createReservoirSample} from 'pandemonium/reservoir-sample';
 
-const customSample = createReservoirSample(rng);
+const customReservoirSample = createReservoirSample(rng);
 
 // To use the helper class
 import {ReservoirSampler} from 'pandemonium/reservoir-sample';
@@ -546,6 +547,56 @@ sampleOrderedPairs(2, 4);
 import {createSampleOrderedPairs} from 'pandemonium/sample-ordered-pairs';
 
 const customSampleOrderedPairs = createSampleOrderedPairs(rng);
+```
+
+## weightedReservoirSample
+
+Function returning a random sample of size `k` from a given array of weighted items.
+
+The result is a sample without replacement, which, in the case of weighted items, has been chosen to mean that subsequent items are picked based on the proportional total weight of the remaining items.
+
+We use algorithm "A-ES" from the following papers:
+
+> Pavlos S. Efraimidis, Paul G. Spirakis. "Weighted random sampling with a reservoir." https://arxiv.org/pdf/1012.0256.pdf
+
+> Pavlos S. Efraimidis. "Weighted Random Sampling over Data Streams."
+
+This function runs in `O(n)` time and `O(k)` memory.
+
+A helper class working able to work on an arbitrary stream of data that does not need to fit into memory is also available if you need it.
+
+```js
+import weightedReservoirSample from 'pandemonium/weighted-reservoir-sample';
+// Or
+import {weightedReservoirSample} from 'pandemonium';
+
+weightedReservoirSample(2, [.1, .1, .4, .3, .05]);
+>>> [.3, .4]
+
+// To create your own function using custom RNG
+import {createWeightedReservoirSample} from 'pandemonium/weighted-reservoir-sample';
+
+const customWeightedReservoirSample = createWeightedReservoirSample(rng);
+
+// To sample arbitrary items
+const data = [{label: 'orange', importance: 34}, ...];
+
+const customWeightedReservoirSample = createWeightedReservoirSample({
+  getWeight: item => item.importance
+});
+
+// To use the helper class
+import {WeightedReservoirSampler} from 'pandemonium/weighted-reservoir-sample';
+
+// If RNG is not provided, will default to Math.random
+const sampler = new WeightedReservoirSampler(10, {rng, getWeight});
+
+for (const value of lazyIterable) {
+  sampler.process(value);
+}
+
+// To retrieve the sample once every value has been consumed
+const sample = sampler.end();
 ```
 
 # Contribution

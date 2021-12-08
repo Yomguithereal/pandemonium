@@ -1185,3 +1185,43 @@ describe('#.createSampleOrderedPairs', function () {
     );
   });
 });
+
+describe('#.createWeightedReservoirSample', function () {
+  var items = [0.4, 0.4, 0.1, 0.001, 0.187, 0.3, 0.25, 0.5, 92];
+
+  it('should work properly.', function () {
+    var weightedReservoirSample = lib.createWeightedReservoirSample(rng());
+
+    var sample = weightedReservoirSample(3, items);
+
+    assert.deepStrictEqual(sample, [92, 0.5, 0.4]);
+
+    assert.deepStrictEqual(
+      new Set(weightedReservoirSample(100, items)),
+      new Set(items)
+    );
+  });
+
+  it('should be possible to sample arbitrary items.', function () {
+    var weightedReservoirSample = lib.createWeightedReservoirSample({
+      rng: rng(),
+      getWeight: function (n) {
+        return 1 / n;
+      }
+    });
+
+    var sample = weightedReservoirSample(3, items);
+
+    assert.deepStrictEqual(sample, [0.001, 0.1, 0.187]);
+  });
+
+  it('should be possible to use a sampler.', function () {
+    var sampler = new lib.WeightedReservoirSampler(3, rng());
+
+    items.forEach(function (n) {
+      sampler.process(n);
+    });
+
+    assert.deepStrictEqual(sampler.end(), [92, 0.5, 0.4]);
+  });
+});
