@@ -1146,3 +1146,42 @@ describe('#.createSamplePairs', function () {
     });
   });
 });
+
+describe('#.createSampleOrderedPairs', function () {
+  it('should return a correct sample.', function () {
+    var samplePairs = lib.createSampleOrderedPairs(rng());
+
+    var target = [
+      'apple',
+      'pear',
+      'tomato',
+      'olive',
+      'watermelon',
+      'orange',
+      'strawberry'
+    ];
+
+    var expected = [
+      ['tomato', 'watermelon'],
+      ['tomato', 'orange'],
+      ['olive', 'orange'],
+      ['olive', 'pear'],
+      ['tomato', 'pear']
+    ];
+
+    var sample = samplePairs(5, target);
+
+    assert.deepStrictEqual(sample, expected);
+
+    samplePairs = lib.createSampleOrderedPairs(rng());
+
+    sample = samplePairs(5, target.length);
+
+    assert.deepStrictEqual(
+      sample.map(function (pair) {
+        return [target[pair[0]], target[pair[1]]];
+      }),
+      expected
+    );
+  });
+});

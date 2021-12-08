@@ -1,6 +1,7 @@
 var randomOrderedPair = require('../random-ordered-pair.js');
 var randomPair = require('../random-pair.js');
 var utils = require('../utils.js');
+var lib = require('../');
 
 var {exp, log, floor} = Math;
 
@@ -83,11 +84,12 @@ function sampleUnorderedPairsGeometric(l, k) {
 /**
  * Benchmark.
  */
-function bench(fn) {
+function bench(fn, name) {
   // var MultiSet = require('mnemonist/multi-set');
   // var set = new MultiSet();
 
-  var name = fn.name;
+  if (!name) name = fn.name;
+
   var pairs;
 
   var T = 100000;
@@ -110,7 +112,9 @@ function bench(fn) {
 
 console.log('\nOrdered');
 bench(sampleOrderedPairsNaive);
+bench((a1, a2) => lib.sampleOrderedPairs(a2, a1), 'lib');
 
 console.log('\nUnordered');
 bench(sampleUnorderedPairsNaive);
 bench(sampleUnorderedPairsGeometric);
+bench((a1, a2) => lib.samplePairs(a2, a1), 'lib');

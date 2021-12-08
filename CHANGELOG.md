@@ -3,6 +3,7 @@
 ## 2.3.0 (provisional)
 
 - Adding `samplePairs`.
+- Adding `sampleOrderedPairs`.
 
 ## 2.2.0
 

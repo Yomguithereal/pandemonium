@@ -29,6 +29,10 @@ export {
 } from './reservoir-sample';
 export {default as samplePairs, createSamplePairs} from './sample-pairs';
 export {
+  default as sampleOrderedPairs,
+  createSampleOrderedPairs
+} from './sample-ordered-pairs';
+export {
   default as sampleWithReplacements,
   createSampleWithReplacements
 } from './sample-with-replacements';

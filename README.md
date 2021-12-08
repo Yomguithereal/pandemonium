@@ -35,15 +35,16 @@ _Sampling_
 
 `n` being the number of items in the sampled sequence and `k` being the number of items to be sampled.
 
-| Method                                                  | Time            | Memory | Note                                                                                                                             |
-| ------------------------------------------------------- | --------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| [dangerouslyMutatingSample](#dangerouslymutatingsample) | `O(k)`          | `O(k)` | Must be able to mutate given array to work.                                                                                      |
-| [fisherYatesSample](#fisheryatessample)                 | `O(n)`          | `O(n)` | Probably not a good idea.                                                                                                        |
-| [geometricReservoirSample](#geometricreservoirsample)   | `O(k*log(n/k))` | `O(k)` | Probably the best way of sampling from a random access data structure.                                                           |
-| [naiveSample](#naivesample)                             | `Ω(k)`, `O(∞)`  | `O(k)` | Only useful if `k << n`.                                                                                                         |
-| [reservoirSample](#reservoirsample)                     | `O(n)`          | `O(k)` | Useful if pulling a sample from a stream.                                                                                        |
-| [sampleWithReplacements](#samplewithreplacements)       | `O(k)`          | `O(k)` | Performant but allows replacements.                                                                                              |
-| [samplePairs](#samplePairs)                             | `Ω(k)`, `O(∞)`  | `O(k)` | Useful variant of [naiveSample](#naivesample) for pairs that works well because of the combinatorial nature of `n` in this case. |
+| Method                                                  | Time            | Memory | Note                                                                   |
+| ------------------------------------------------------- | --------------- | ------ | ---------------------------------------------------------------------- |
+| [dangerouslyMutatingSample](#dangerouslymutatingsample) | `O(k)`          | `O(k)` | Must be able to mutate given array to work.                            |
+| [fisherYatesSample](#fisheryatessample)                 | `O(n)`          | `O(n)` | Probably not a good idea.                                              |
+| [geometricReservoirSample](#geometricreservoirsample)   | `O(k*log(n/k))` | `O(k)` | Probably the best way of sampling from a random access data structure. |
+| [naiveSample](#naivesample)                             | `Ω(k)`, `O(∞)`  | `O(k)` | Only useful if `k << n`.                                               |
+| [reservoirSample](#reservoirsample)                     | `O(n)`          | `O(k)` | Useful if pulling a sample from a stream.                              |
+| [sampleWithReplacements](#samplewithreplacements)       | `O(k)`          | `O(k)` | Performant but allows replacements.                                    |
+| [samplePairs](#samplepairs)                             | `Ω(k)`, `O(∞)`  | `O(k)` | Variant of [naiveSample](#naivesample) for unordered pairs.            |
+| [sampleOrderedPairs](#sampleorderedpairs)               | `Ω(k)`, `O(∞)`  | `O(k)` | Variant of [naiveSample](#naivesample) for ordered pairs.              |
 
 ## choice
 
@@ -517,6 +518,34 @@ samplePairs(2, 4);
 import {createSamplePairs} from 'pandemonium/sample-pairs';
 
 const customSamplePairs = createSamplePairs(rng);
+```
+
+## sampleOrderedPairs
+
+Function returning a random sample of `k` unique ordered pairs from the given array.
+
+It works by storing a unique key created from the picked pairs, making it a specialized variant of [naiveSample](#naivesample).
+
+It is usually quite efficient because when sampling pairs, the total size of the population, being combinatorial, is often magnitudes larger than the size of the sample we need to retrieve.
+
+Note finally that this function is able to sample pairs of indices without requiring you to represent the range of indices in memory.
+
+```js
+import sampleOrderedPairs from 'pandemonium/sample-pairs';
+// Or
+import {sampleOrderedPairs} from 'pandemonium';
+
+sampleOrderedPairs(2, ['apple', 'orange', 'pear', 'pineapple']);
+>>>  [['apple', 'pear'], ['pear', 'orange']]
+
+// Alternatively, you can pass a length and get a sample of pairs of indices
+sampleOrderedPairs(2, 4);
+>>> [[0, 2], [2, 1]]
+
+// To create your own function using custom RNG
+import {createSampleOrderedPairs} from 'pandemonium/sample-ordered-pairs';
+
+const customSampleOrderedPairs = createSampleOrderedPairs(rng);
 ```
 
 # Contribution

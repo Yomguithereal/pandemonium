@@ -18,6 +18,7 @@ var randomOrderedPair = require('./random-ordered-pair.js');
 var randomString = require('./random-string.js');
 var reservoirSample = require('./reservoir-sample.js');
 var samplePairs = require('./sample-pairs.js');
+var sampleOrderedPairs = require('./sample-ordered-pairs.js');
 var sampleWithReplacements = require('./sample-with-replacements.js');
 var shuffle = require('./shuffle.js');
 var shuffleInPlace = require('./shuffle-in-place.js');
@@ -68,6 +69,9 @@ exports.ReservoirSampler = reservoirSample.ReservoirSampler;
 
 exports.samplePairs = samplePairs;
 exports.createSamplePairs = samplePairs.createSamplePairs;
+
+exports.sampleOrderedPairs = sampleOrderedPairs;
+exports.createSampleOrderedPairs = sampleOrderedPairs.createSampleOrderedPairs;
 
 exports.sampleWithReplacements = sampleWithReplacements;
 exports.createSampleWithReplacements =
