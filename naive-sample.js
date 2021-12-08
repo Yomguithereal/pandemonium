@@ -34,11 +34,10 @@ function createNaiveSample(rng) {
       return utils.indices(sequence);
     }
 
-    var items = new Set(),
-      array = new Array(k),
-      size = 0,
-      i = 0,
-      index;
+    var items = new Set();
+    var result = new Array(k);
+    var size = 0;
+    var index;
 
     while (items.size < k) {
       index = customRandomIndex(sequence);
@@ -46,12 +45,11 @@ function createNaiveSample(rng) {
       items.add(index);
 
       if (items.size > size) {
-        array[i++] = needItems ? sequence[index] : index;
-        size = items.size;
+        result[size++] = needItems ? sequence[index] : index;
       }
     }
 
-    return array;
+    return result;
   };
 }
 
