@@ -444,7 +444,7 @@ Function returning a random sample of size `k` from the given array.
 
 This function runs in `O(n)` time and `O(k)` memory.
 
-A helper class working able to work on an arbitrary stream of data that does not need to fit into memory is also available if you need it.
+A helper class able to work on an arbitrary stream of data that does not need to fit into memory is also available if you need it.
 
 ```js
 import reservoirSample from 'pandemonium/reservoir-sample';
