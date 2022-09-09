@@ -1,6 +1,6 @@
 /**
- * Pandemonium Dangerous But Performant Sample
- * ============================================
+ * Pandemonium Dangerously Mutating Sample
+ * ========================================
  *
  * Performant sampling function running in O(k) memory & time but mutating the
  * given array before reversing the mutations at the end of the process.
