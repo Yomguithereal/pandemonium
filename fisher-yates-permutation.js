@@ -17,8 +17,8 @@ function FisherYatesPermutation(length, rng) {
   this.indices = new PointerArray(length);
   this.rng = rng;
 
-  this.reorder();
   this.reset();
+  this.reorder();
 }
 
 FisherYatesPermutation.prototype.reorder = function () {
@@ -38,8 +38,8 @@ FisherYatesPermutation.prototype.shrinkAndReset = function (newLength) {
     );
 
   this.length = newLength;
-  this.reorder();
   this.reset();
+  this.reorder();
 };
 
 FisherYatesPermutation.prototype.permute = function () {
