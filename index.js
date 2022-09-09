@@ -6,6 +6,7 @@
  */
 var choice = require('./choice.js');
 var dangerouslyMutatingSample = require('./dangerously-mutating-sample.js');
+var FisherYatesPermutation = require('./fisher-yates-permutation.js');
 var fisherYatesSample = require('./fisher-yates-sample.js');
 var geometricReservoirSample = require('./geometric-reservoir-sample.js');
 var naiveSample = require('./naive-sample.js');
@@ -33,6 +34,8 @@ exports.createChoice = choice.createChoice;
 exports.dangerouslyMutatingSample = dangerouslyMutatingSample;
 exports.createDangerouslyMutatingSample =
   dangerouslyMutatingSample.createDangerouslyMutatingSample;
+
+exports.FisherYatesPermutation = FisherYatesPermutation.FisherYatesPermutation;
 
 exports.fisherYatesSample = fisherYatesSample;
 exports.createFisherYatesSample = fisherYatesSample.createFisherYatesSample;

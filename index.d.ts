@@ -3,6 +3,7 @@ export {
   default as dangerouslyMutatingSample,
   createDangerouslyMutatingSample
 } from './dangerously-mutating-sample';
+export {FisherYatesPermutation} from './fisher-yates-permutation';
 export {
   default as fisherYatesSample,
   createFisherYatesSample

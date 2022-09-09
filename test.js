@@ -1251,3 +1251,42 @@ describe('#.createRandomUint32', function () {
     );
   });
 });
+
+describe('FisherYatesPermutation', function () {
+  it('should throw when exhausted.', function () {
+    var p = new lib.FisherYatesPermutation(2, rng());
+
+    p.permute();
+    p.permute();
+
+    assert.throws(function () {
+      p.permute();
+    }, /exhaust/);
+  });
+
+  it('should work on a basic case.', function () {
+    var p = new lib.FisherYatesPermutation(5, rng());
+
+    var result = [];
+
+    for (var i = 0; i < 5; i++) {
+      result.push(p.permute());
+    }
+
+    assert.deepStrictEqual(result, [1, 0, 3, 2, 4]);
+  });
+
+  it('should always give good permutations.', function () {
+    for (var i = 0; i < 100; i++) {
+      var p = new lib.FisherYatesPermutation(10);
+
+      var result = new Set();
+
+      for (var j = 0; j < 10; j++) {
+        result.add(p.permute());
+      }
+
+      assert.strictEqual(result.size, 10);
+    }
+  });
+});
