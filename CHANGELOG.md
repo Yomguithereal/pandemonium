@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.0 (provisional)
+
+- Adding `randomUint32`.
+
 ## 2.3.0
 
 - Adding `weightedReservoirSample`.

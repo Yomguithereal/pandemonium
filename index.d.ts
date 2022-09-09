@@ -22,6 +22,7 @@ export {
   createRandomOrderedPair
 } from './random-ordered-pair';
 export {default as randomString, createRandomString} from './random-string';
+export {randomUint32, createRandomUint32} from './random-typed-int';
 export {
   default as reservoirSample,
   createReservoirSample,

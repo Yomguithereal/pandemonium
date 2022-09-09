@@ -24,6 +24,7 @@ _Typical helpers_
 - [randomFloat](#randomfloat)
 - [randomIndex](#randomindex)
 - [randomString](#randomstring)
+- [randomUint32](#randomuint32)
 - [randomPair](#randompair)
 - [randomOrderedPair](#randomorderedpair)
 - [shuffle](#shuffle)
@@ -165,6 +166,24 @@ const customRandomString = createRandomString(rng);
 
 // If you need a custom alphabet
 const customRandomString = createRandomString(rng, 'ATGC');
+```
+
+## randomUint32
+
+Function returning a random unsigned 32bits number.
+
+```js
+import {randomUint32} from 'pandemonium/random-typed-int';
+// Or
+import {randomUint32} from 'pandemonium';
+
+randomUint32();
+>>> 397536
+
+// To create your own function using custom RNG
+import {createRandomUint32} from 'pandemonium/random-typed-int';
+
+const customRandomUint32 = createRandomUint32(rng);
 ```
 
 ## randomPair

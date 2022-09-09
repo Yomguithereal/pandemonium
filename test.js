@@ -1225,3 +1225,27 @@ describe('#.createWeightedReservoirSample', function () {
     assert.deepStrictEqual(sampler.end(), [92, 0.5, 0.4]);
   });
 });
+
+describe('#.createRandomUint32', function () {
+  it('should return uint32 numbers.', function () {
+    for (var i = 0; i < 1000; i++) {
+      assert(lib.randomUint32() < Math.pow(2, 32) - 1);
+    }
+
+    var randomUint32 = lib.createRandomUint32(rng());
+
+    var result = [];
+
+    for (i = 0; i < 10; i++) {
+      result.push(randomUint32());
+    }
+
+    assert.deepStrictEqual(
+      result,
+      [
+        1551229437, 989934901, 1266845448, 1941618487, 2202774849, 1138438012,
+        2072530664, 3018165983, 1541435361, 4235357373
+      ]
+    );
+  });
+});
