@@ -1228,7 +1228,9 @@ describe('#.createWeightedReservoirSample', function () {
 
 describe('#.createRandomUint32', function () {
   it('should return uint32 numbers.', function () {
-    for (var i = 0; i < 1000; i++) {
+    var i;
+
+    for (i = 0; i < 1000; i++) {
       assert(lib.randomUint32() < Math.pow(2, 32) - 1);
     }
 
