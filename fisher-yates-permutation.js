@@ -32,7 +32,7 @@ FisherYatesPermutation.prototype.reset = function () {
 };
 
 FisherYatesPermutation.prototype.shrinkAndReset = function (newLength) {
-  if (newLength > this.length)
+  if (newLength >= this.length)
     throw new Error(
       'pandemonium/fisher-yates-permutation: new length should be less than current length.'
     );
