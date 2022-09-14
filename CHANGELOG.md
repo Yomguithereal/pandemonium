@@ -1,8 +1,9 @@
 # Changelog
 
-## 2.4.0 (provisional)
+## 2.4.0
 
 - Adding `randomUint32`.
+- Adding undocumented `FisherYatesPermutation`.
 
 ## 2.3.0
 
