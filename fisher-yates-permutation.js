@@ -31,7 +31,7 @@ FisherYatesPermutation.prototype.reset = function () {
   this.state = this.length;
 };
 
-FisherYatesPermutation.prototype.shrinkAndReset = function (newLength) {
+FisherYatesPermutation.prototype.shrink = function (newLength) {
   if (newLength >= this.length)
     throw new Error(
       'pandemonium/fisher-yates-permutation: new length should be less than current length.'

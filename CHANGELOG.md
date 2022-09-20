@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.1 (provisional)
+
+- Renaming undocumented `FisherYatesPermutation.shrinkAndReset` to `FisherYatesPermutation.shrink`.
+
 ## 2.4.0
 
 - Adding `randomUint32`.

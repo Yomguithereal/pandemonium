@@ -6,5 +6,5 @@ export class FisherYatesPermutation {
   constructor(length: number, rng?: RNGFunction);
   permute(): number;
   reset(): void;
-  shrinkAndReset(newLength: number): void;
+  shrink(newLength: number): void;
 }
