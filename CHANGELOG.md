@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.4.1 (provisional)
+## 2.4.1
 
 - Renaming undocumented `FisherYatesPermutation.shrinkAndReset` to `FisherYatesPermutation.shrink`.
 
